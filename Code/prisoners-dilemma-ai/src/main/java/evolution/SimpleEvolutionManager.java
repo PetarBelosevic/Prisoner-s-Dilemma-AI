@@ -16,9 +16,11 @@ public class SimpleEvolutionManager implements IEvolutionManager {
         this.evolution = evolution;
         this.maxGenerationLimit = maxGenerationLimit;
         this.acceptableFitness = acceptableFitness;
-        generationsHistory.add(new NTuple<>(evolution.getBestSpecimen().getFitness(),
-                                            evolution.getMedianSpecimen().getFitness(),
-                                            evolution.getWorstSpecimen().getFitness()));
+        generationsHistory.add(new NTuple<>(
+                evolution.getBestSpecimen().getFitness(),
+                evolution.getMedianSpecimen().getFitness(),
+                evolution.getWorstSpecimen().getFitness())
+        );
     }
 
     @Override
@@ -26,9 +28,11 @@ public class SimpleEvolutionManager implements IEvolutionManager {
         int i = 0;
         while (i++ < maxGenerationLimit && acceptableFitness > evolution.getBestSpecimen().getFitness()) {
             evolution.generateNextGeneration();
-            generationsHistory.add(new NTuple<>(evolution.getBestSpecimen().getFitness(),
+            generationsHistory.add(new NTuple<>(
+                    evolution.getBestSpecimen().getFitness(),
                     evolution.getMedianSpecimen().getFitness(),
-                    evolution.getWorstSpecimen().getFitness()));
+                    evolution.getWorstSpecimen().getFitness())
+            );
         }
     }
 

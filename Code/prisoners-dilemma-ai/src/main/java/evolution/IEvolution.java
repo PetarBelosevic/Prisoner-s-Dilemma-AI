@@ -32,7 +32,7 @@ public interface IEvolution {
 
     /**
      * <p>
-     *     Generates next generation of organisms.
+     *     Generates next generation of specimens.
      * </p>
      */
     void generateNextGeneration();
@@ -53,21 +53,61 @@ public interface IEvolution {
      */
     void setOneParent(boolean oneParent);
 
+    /**
+     * @return true if offsprings have only one parent, false otherwise
+     */
     boolean isOneParent();
 
+    /**
+     * @return number between 0.0 and 1.0, represents a chance of a small mutation to occur
+     */
     double getSmallMutationChance();
 
+    /**
+     *<p>
+     *     If given number is smaller than 0.0, method behaves like 0.0 was given.
+     *     If given number is grater than 1.0, method behaves like 1.0 was given.
+     *</p>
+     * @param smallMutationChance number between 0.0 and 1.0, represents a chance of small mutation to occur
+     */
     void setSmallMutationChance(double smallMutationChance);
 
-    int getSmallMutationAmplitude();
+    /**
+     * @return magnitude of small mutation when it occurs
+     */
+    int getSmallMutationMagnitude();
 
-    void setSmallMutationAmplitude(int smallMutationAmplitude);
+    /**
+     * @param smallMutationMagnitude magnitude of a small mutation when it occurs
+     */
+    void setSmallMutationMagnitude(int smallMutationMagnitude);
 
+    /**
+     * @return number between 0.0 and 1.0, represents a chance of a big mutation to occur
+     */
     double getBigMutationChance();
 
+    /**
+     * <p>
+     *     If given number is smaller than 0.0, method behaves like 0.0 was given.
+     *     If given number is grater than 1.0, method behaves like 1.0 was given.
+     * </p>
+     * @param bigMutationChance number between 0.0 and 1.0, represents a chance of big mutation to occur
+     */
     void setBigMutationChance(double bigMutationChance);
 
-    int getBigMutationAmplitude();
+    /**
+     * @return magnitude of small mutation when it occurs
+     */
+    int getBigMutationMagnitude();
 
-    void setBigMutationAmplitude(int bigMutationAmplitude);
+    /**
+     * @param bigMutationMagnitude magnitude of a big mutation when it occurs
+     */
+    void setBigMutationMagnitude(int bigMutationMagnitude);
+
+    /**
+     * @return size of one generation
+     */
+    int getGenerationSize();
 }

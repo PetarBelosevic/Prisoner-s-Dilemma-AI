@@ -10,6 +10,8 @@ public interface IPlayer {
      * <p>
      *     Gives decision (cooperate or deflect) based on the game history (scores of both players).
      * </p>
+     * This method must update decision history of this player.
+     *
      * @param otherScoreHistory scores of other player
      * @return true if cooperates, false if deflects
      */
@@ -64,4 +66,15 @@ public interface IPlayer {
      * @param index index of a player (1 or 2)
      */
     void setIndex(int index);
+
+    /**
+     * <p>
+     *     Returns list of past decisions of this player.
+     * </p>
+     * Positive number (typically 1) means cooperation.
+     * Negative number (typically -1) means deflection.
+     *
+     * @return list of past decisions
+     */
+    List<Integer> getDecisionHistory();
 }

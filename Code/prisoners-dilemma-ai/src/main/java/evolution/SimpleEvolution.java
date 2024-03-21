@@ -2,112 +2,68 @@ package evolution;
 
 import evolution.specimen.ISpecimen;
 import evolution.specimen.ISpecimenFactory;
+import game.IGame;
+import game.PrisonersDilemmaGame;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class SimpleEvolution implements IEvolution {
-    private double smallMutationChance;
-    private int smallMutationAmplitude;
-    private double bigMutationChance;
-    private int bigMutationAmplitude;
-    private boolean oneParent;
-    private int currentGenerationIndex;
-    private int generationSize;
-    private List<ISpecimen> currentGeneration;
-    private List<ISpecimen> nextGeneration;
+public class SimpleEvolution extends AbstractEvolution {
+    private int totalFitness = 0;
+    private IGame game;
 
     public SimpleEvolution(double smallMutationChance, int smallMutationAmplitude, double bigMutationChance, int bigMutationAmplitude, boolean oneParent, int generationSize, ISpecimenFactory factory) {
-        this.smallMutationChance = smallMutationChance;
-        this.smallMutationAmplitude = smallMutationAmplitude;
-        this.bigMutationChance = bigMutationChance;
-        this.bigMutationAmplitude = bigMutationAmplitude;
-        this.oneParent = oneParent;
-        this.generationSize = generationSize;
-        initialize(factory);
+        super(smallMutationChance, smallMutationAmplitude, bigMutationChance, bigMutationAmplitude, oneParent, generationSize, factory);
+        this.game = new PrisonersDilemmaGame(50); // TODO
     }
 
-    private void initialize(ISpecimenFactory factory) {
-        currentGeneration = new ArrayList<>(generationSize);
-        nextGeneration = new ArrayList<>(generationSize);
+    /**
+     * <p>
+     *     Evaluates fitness for every specimen of next generation.
+     * </p>
+     */
+    private void evaluateNextGeneration() {
 
-        for (int i = 0; i < generationSize; i++) {
-            currentGeneration.add(factory.create());
-        }
-    }
-
-    @Override
-    public ISpecimen getBestSpecimen() {
-        return null;
-    }
-
-    @Override
-    public ISpecimen getWorstSpecimen() {
-        return null;
-    }
-
-    @Override
-    public ISpecimen getMedianSpecimen() {
-        return null;
     }
 
     @Override
     public void generateNextGeneration() {
+        nextGeneration.set(0, currentGeneration.get(0));
+        for (int i = 1; i < generationSize; i++) {
+            if (!oneParent) {
+                nextGeneration.get(i).createOffspring(selectParent(), selectParent());
+            }
+            nextGeneration.get(i).mutate(smallMutationChance, smallMutationMagnitude, bigMutationChance, bigMutationMagnitude);
+        }
+        evaluateNextGeneration();
 
+        nextGeneration.sort(null);
+        totalFitness -= nextGeneration.get(generationSize - 1).getFitness();
+
+        List<ISpecimen> temp = currentGeneration;
+        currentGeneration = nextGeneration;
+        nextGeneration = temp;
+        currentGenerationIndex++;
     }
 
-    @Override
-    public int getCurrentGenerationIndex() {
-        return currentGenerationIndex;
-    }
-
-    @Override
-    public void setOneParent(boolean oneParent) {
-        this.oneParent = oneParent;
-    }
-
-    @Override
-    public boolean isOneParent() {
-        return oneParent;
-    }
-
-    @Override
-    public double getSmallMutationChance() {
-        return smallMutationChance;
-    }
-
-    @Override
-    public void setSmallMutationChance(double smallMutationChance) {
-        this.smallMutationChance = smallMutationChance;
-    }
-
-    @Override
-    public int getSmallMutationAmplitude() {
-        return smallMutationAmplitude;
-    }
-
-    @Override
-    public void setSmallMutationAmplitude(int smallMutationAmplitude) {
-        this.smallMutationAmplitude = smallMutationAmplitude;
-    }
-
-    @Override
-    public double getBigMutationChance() {
-        return bigMutationChance;
-    }
-
-    @Override
-    public void setBigMutationChance(double bigMutationChance) {
-        this.bigMutationChance = bigMutationChance;
-    }
-
-    @Override
-    public int getBigMutationAmplitude() {
-        return bigMutationAmplitude;
-    }
-
-    @Override
-    public void setBigMutationAmplitude(int bigMutationAmplitude) {
-        this.bigMutationAmplitude = bigMutationAmplitude;
+    /**
+     * <p>
+     *     Parent is selected based on its fitness.
+     * </p>
+     * Greater fitness means greater chance of being selected.
+     *
+     * @return specimen selected for reproduction
+     */
+    private ISpecimen selectParent() {
+        double random = Math.random() * totalFitness;
+        int currentFitnessSum = 0;
+        for (ISpecimen specimen: currentGeneration) {
+            if (currentFitnessSum < random) {
+                currentFitnessSum += specimen.getFitness();
+            }
+            if (currentFitnessSum >= random) {
+                return specimen;
+            }
+        }
+        return currentGeneration.get(0);
     }
 }

@@ -1,7 +1,8 @@
 package game;
 
+import game.player.AIPlayer;
 import game.player.IPlayer;
-import game.player.PrisonersDilemmaUserPlayer;
+import neuralNetwork.NeuralNetwork;
 
 /**
  * <p>
@@ -9,8 +10,13 @@ import game.player.PrisonersDilemmaUserPlayer;
  * </p>
  */
 public class ConsoleApp {
+    private static final int ITERATIONS = 6;
+
     public static void main(String[] args) {
-        PrisonersDilemmaGame game = new PrisonersDilemmaGame(new PrisonersDilemmaUserPlayer(), new PrisonersDilemmaUserPlayer(), 6);
+        PrisonersDilemmaGame game = new PrisonersDilemmaGame(
+                new AIPlayer(new NeuralNetwork(ITERATIONS, 4, 1)),
+                new AIPlayer(new NeuralNetwork(ITERATIONS, 4, 1)),
+                ITERATIONS);
         game.run();
         printResults(game);
     }

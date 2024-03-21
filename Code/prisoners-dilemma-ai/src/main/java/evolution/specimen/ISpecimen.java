@@ -5,13 +5,13 @@ package evolution.specimen;
  *     Model for organism in evolutionary computing.
  * </p>
  */
-public interface ISpecimen {
+public interface ISpecimen extends Comparable<ISpecimen> {
     /**
      * <p>
      *     Mutates organism.
      * </p>
      */
-    void mutate();
+    void mutate(double smallMutationChance, int smallMutationMagnitude, double bigMutationChance, int bigMutationMagnitude);
 
     /**
      * <p>
@@ -37,4 +37,9 @@ public interface ISpecimen {
      * @return true if object was modified since last call of getFitness method, false otherwise
      */
     boolean isModified();
+
+    @Override
+    default int compareTo(ISpecimen o) {
+        return getFitness() - o.getFitness();
+    }
 }
