@@ -9,6 +9,7 @@ import org.nd4j.linalg.api.ndarray.INDArray;
  * </p>
  */
 public interface INeuralNetwork {
+    // TODO remove?
     /**
      * <p>
      *     Processes input through entire neural network

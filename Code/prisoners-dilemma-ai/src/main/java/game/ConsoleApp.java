@@ -13,7 +13,7 @@ public class ConsoleApp {
     private static final int ITERATIONS = 6;
 
     public static void main(String[] args) {
-        PrisonersDilemmaGame game = new PrisonersDilemmaGame(
+        PrisonersDilemmaGame<AIPlayer, AIPlayer> game = new PrisonersDilemmaGame<>(
                 new AIPlayer(new NeuralNetwork(ITERATIONS, 4, 1)),
                 new AIPlayer(new NeuralNetwork(ITERATIONS, 4, 1)),
                 ITERATIONS);
@@ -21,13 +21,14 @@ public class ConsoleApp {
         printResults(game);
     }
 
+    // TODO output urediti?
     /**
      * <p>
      *     Prints game results.
      * </p>
      * Method should be called only after game finished.
      */
-    private static void printResults(IGame game) {
+    private static void printResults(IGame<AIPlayer, AIPlayer> game) {
         int iterations = game.getIterations();
         IPlayer player1 = game.getPlayer1();
         IPlayer player2 = game.getPlayer2();

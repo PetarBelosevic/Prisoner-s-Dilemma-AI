@@ -1,9 +1,15 @@
-package evolution;
+package evolution.manager;
 
 import utils.INTuple;
 
 import java.util.List;
 
+/**
+ * <p>
+ *     Interface for managing evolution.
+ * </p>
+ * Manager runs evolution and saves scores for best, median and worst specimen of every generation.
+ */
 public interface IEvolutionManager {
     /**
      * <p>

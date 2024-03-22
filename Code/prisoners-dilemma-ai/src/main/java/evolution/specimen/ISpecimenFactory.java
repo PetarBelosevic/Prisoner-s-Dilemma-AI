@@ -4,10 +4,11 @@ package evolution.specimen;
  * <p>
  *     Interface for ISpecimen objects factory.
  * </p>
+ * @param <T> extends ISpecimen
  */
-public interface ISpecimenFactory {
+public interface ISpecimenFactory<T extends ISpecimen> {
     /**
-     * @return ISpecimen object
+     * @return object that is or extends type ISpecimen
      */
-    ISpecimen create();
+    T create();
 }

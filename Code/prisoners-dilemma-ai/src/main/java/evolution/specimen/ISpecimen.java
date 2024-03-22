@@ -5,7 +5,7 @@ package evolution.specimen;
  *     Model for organism in evolutionary computing.
  * </p>
  */
-public interface ISpecimen extends Comparable<ISpecimen> {
+public interface ISpecimen<T extends ISpecimen> extends Comparable<ISpecimen> {
     /**
      * <p>
      *     Mutates organism.
@@ -20,7 +20,7 @@ public interface ISpecimen extends Comparable<ISpecimen> {
      * @param parent1 first parent of this organism
      * @param parent2 second parent of this organism
      */
-    void createOffspring(ISpecimen parent1, ISpecimen parent2);
+    void createOffspring(T parent1, T parent2);
 
     /**
      * <p>
@@ -30,6 +30,19 @@ public interface ISpecimen extends Comparable<ISpecimen> {
      */
     int getFitness();
 
+    /**
+     * @param fitness value that is to be added to total fitness of this specimen
+     */
+    void addToFitness(int fitness);
+
+    /**
+     * <p>
+     *     Resets fitness to initial value (typically 0).
+     * </p>
+     */
+    void resetFitness();
+
+    // TODO remove?
     /**
      * <p>
      *     Returns if modified since last call of getFitness method.

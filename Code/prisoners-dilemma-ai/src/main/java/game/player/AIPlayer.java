@@ -1,7 +1,6 @@
 package game.player;
 
 import neuralNetwork.INeuralNetwork;
-import org.nd4j.linalg.api.ndarray.INDArray;
 
 import java.util.List;
 
@@ -27,5 +26,13 @@ public class AIPlayer extends AbstractPlayer {
 
         decisionHistory.add(decision ? 1 : -1);
         return decision;
+    }
+
+    public INeuralNetwork getNeuralNetwork() {
+        return this.neuralNetwork;
+    }
+
+    public void setNeuralNetwork(INeuralNetwork network) {
+        this.neuralNetwork = network;
     }
 }

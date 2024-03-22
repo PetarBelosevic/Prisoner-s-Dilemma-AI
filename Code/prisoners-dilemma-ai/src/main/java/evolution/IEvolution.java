@@ -8,27 +8,27 @@ import evolution.specimen.ISpecimen;
  * </p>
  * Every implementations of this interface needs to initialize its first generation of specimens after its construction.
  */
-public interface IEvolution {
+public interface IEvolution<T extends ISpecimen> {
     /**
      * <p>
      *     Get the best organism in current generation.
      * </p>
      */
-    ISpecimen getBestSpecimen();
+    T getBestSpecimen();
 
     /**
      * <p>
      *     Get the worst organism in current generation.
      * </p>
      */
-    ISpecimen getWorstSpecimen();
+    T getWorstSpecimen();
 
     /**
      * <p>
      *     Get the median organism in current generation.
      * </p>
      */
-    ISpecimen getMedianSpecimen();
+    T getMedianSpecimen();
 
     /**
      * <p>
@@ -54,6 +54,9 @@ public interface IEvolution {
     void setOneParent(boolean oneParent);
 
     /**
+     * <p>
+     *     Default value is false.
+     * </p>
      * @return true if offsprings have only one parent, false otherwise
      */
     boolean isOneParent();

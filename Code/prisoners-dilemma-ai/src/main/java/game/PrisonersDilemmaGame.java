@@ -7,18 +7,20 @@ import utils.Pair;
  * <p>
  *     Models game of iterated Prisoner's Dilemma.
  * </p>
+ * @param <T> extends IPlayer, type of player1
+ * @param <D> extends IPlayer, type of player2
  */
-public class PrisonersDilemmaGame implements IGame {
+public class PrisonersDilemmaGame<T extends IPlayer, D extends IPlayer> implements IGame<T, D> {
     // defined payoffs based on the decisions of both players
     private static final Pair<Integer, Integer> COOP_COOP = new Pair<>(3, 3);
     private static final Pair<Integer, Integer> DEFLECT_DEFLECT = new Pair<>(1, 1);
     private static final Pair<Integer, Integer> COOP_DEFLECT = new Pair<>(0, 5);
     private static final Pair<Integer, Integer> DEFLECT_COOP = new Pair<>(5, 0);
-    private IPlayer player1;
-    private IPlayer player2;
+    private T player1;
+    private D player2;
     private int iterations; // number of repetitions of Prisoner's Dilemma game
 
-    public PrisonersDilemmaGame(IPlayer player1, IPlayer player2, int iterations) {
+    public PrisonersDilemmaGame(T player1, D player2, int iterations) {
         player1.setIndex(1);
         player2.setIndex(2);
         this.player1 = player1;
@@ -31,23 +33,23 @@ public class PrisonersDilemmaGame implements IGame {
     }
 
     @Override
-    public IPlayer getPlayer1() {
+    public T getPlayer1() {
         return player1;
     }
 
     @Override
-    public void setPlayer1(IPlayer player1) {
+    public void setPlayer1(T player1) {
         player1.setIndex(1);
         this.player1 = player1;
     }
 
     @Override
-    public IPlayer getPlayer2() {
+    public D getPlayer2() {
         return player2;
     }
 
     @Override
-    public void setPlayer2(IPlayer player2) {
+    public void setPlayer2(D player2) {
         player2.setIndex(2);
         this.player2 = player2;
     }

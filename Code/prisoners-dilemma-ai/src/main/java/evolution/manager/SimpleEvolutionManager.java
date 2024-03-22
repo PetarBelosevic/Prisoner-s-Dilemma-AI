@@ -1,18 +1,25 @@
-package evolution;
+package evolution.manager;
 
+import evolution.IEvolution;
+import evolution.specimen.ISpecimen;
 import utils.INTuple;
 import utils.NTuple;
 
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * <p>
+ *     Simple implementation of IEvolutionManager.
+ * </p>
+ */
 public class SimpleEvolutionManager implements IEvolutionManager {
-    private IEvolution evolution;
-    private int maxGenerationLimit;
-    private int acceptableFitness;
-    private List<INTuple<Integer>> generationsHistory = new LinkedList<>();
+    private final IEvolution<? extends ISpecimen> evolution;
+    private final int maxGenerationLimit;
+    private final int acceptableFitness;
+    private final List<INTuple<Integer>> generationsHistory = new LinkedList<>();
 
-    public SimpleEvolutionManager(IEvolution evolution, int maxGenerationLimit, int acceptableFitness) {
+    public SimpleEvolutionManager(IEvolution<? extends ISpecimen> evolution, int maxGenerationLimit, int acceptableFitness) {
         this.evolution = evolution;
         this.maxGenerationLimit = maxGenerationLimit;
         this.acceptableFitness = acceptableFitness;

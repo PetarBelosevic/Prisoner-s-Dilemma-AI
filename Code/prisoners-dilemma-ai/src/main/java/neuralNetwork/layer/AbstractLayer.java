@@ -1,10 +1,7 @@
 package neuralNetwork.layer;
 
-import jdk.dynalink.NoSuchDynamicMethodException;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
-
-import java.util.Arrays;
 
 /**
  * <p>

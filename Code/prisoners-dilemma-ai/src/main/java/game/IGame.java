@@ -6,12 +6,14 @@ import game.player.IPlayer;
  * <p>
  *     Model of a iterative two-player game in game theory.
  * </p>
+ * @param <T> type of player1
+ * @param <D> type of player2
  */
-public interface IGame {
+public interface IGame<T extends IPlayer, D extends IPlayer> {
     /**
      * @return player 1
      */
-    IPlayer getPlayer1();
+    T getPlayer1();
 
     /**
      * <p>
@@ -19,12 +21,12 @@ public interface IGame {
      * </p>
      * @param player1
      */
-    void setPlayer1(IPlayer player1);
+    void setPlayer1(T player1);
 
     /**
      * @return player 2
      */
-    IPlayer getPlayer2();
+    D getPlayer2();
 
     /**
      * <p>
@@ -32,7 +34,7 @@ public interface IGame {
      * </p>
      * @param player2
      */
-    void setPlayer2(IPlayer player2);
+    void setPlayer2(D player2);
 
     /**
      * @return number of iterations of game played between two players in one run
