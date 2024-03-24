@@ -2,31 +2,30 @@ package evolution.specimen;
 
 /**
  * <p>
- *     Model for organism in evolutionary computing.
+ *     Model for specimen in evolution.
  * </p>
  */
-public interface ISpecimen<T extends ISpecimen> extends Comparable<ISpecimen> {
+public interface ISpecimen<T extends ISpecimen<T>> extends Comparable<ISpecimen<T>> {
     /**
      * <p>
      *     Mutates organism.
      * </p>
      */
-    void mutate(double smallMutationChance, int smallMutationMagnitude, double bigMutationChance, int bigMutationMagnitude);
+    void mutate(double smallMutationChance, double smallMutationMagnitude, double bigMutationChance, double bigMutationMagnitude);
 
     /**
      * <p>
-     *     Modifies this organism so that it is child of two given parents
+     *     Modifies this organism so that it becomes child of two given parents.
      * </p>
+     * Order of parents shouldn't make a difference in final result.
+     *
      * @param parent1 first parent of this organism
      * @param parent2 second parent of this organism
      */
     void createOffspring(T parent1, T parent2);
 
     /**
-     * <p>
-     *     Gets value of the fitness function for this organism.
-     * </p>
-     * @return value of the fitness function
+     * @return fitness of this specimen
      */
     int getFitness();
 
@@ -42,17 +41,38 @@ public interface ISpecimen<T extends ISpecimen> extends Comparable<ISpecimen> {
      */
     void resetFitness();
 
-    // TODO remove?
     /**
      * <p>
-     *     Returns if modified since last call of getFitness method.
+     *     Copies relevant values from other specimen so this one acts like the other.
      * </p>
-     * @return true if object was modified since last call of getFitness method, false otherwise
+     * Other specimen remains unmodified.
+     *
+     * @param other specimen which is copied into this one
      */
-    boolean isModified();
+    void copyFrom(T other);
+
+    /**
+     * <p>
+     *     Saves all relevant information in the given file.
+     * </p>
+     * File will be stored in resources directory.
+     *
+     * @param fileName name of the file where information will be saved
+     */
+    void saveInFile(String fileName);
+
+    /**
+     * <p>
+     *     Loads all relevant information form given file.
+     * </p>
+     * File is expected to be stored in resources directory.
+     *
+     * @param fileName name of the file where relevant information is stored
+     */
+    void loadFromFile(String fileName);
 
     @Override
     default int compareTo(ISpecimen o) {
-        return getFitness() - o.getFitness();
+        return o.getFitness() - getFitness();
     }
 }

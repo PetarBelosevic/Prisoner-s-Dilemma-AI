@@ -1,37 +1,37 @@
 package game;
 
-import game.player.AIPlayer;
 import game.player.IPlayer;
-import neuralNetwork.NeuralNetwork;
+import utils.Pair;
 
 /**
  * <p>
- *      Simple console app for Prisoner's Dilemma game.
+ *     Prisoner's Dilemma simulator with logs.
  * </p>
+ * Simulator prints in console players' choices after every move and total score with history of moves at the end of game.
+ * @param <T> type of player1
+ * @param <D> type of player2
  */
-public class ConsoleApp {
-    private static final int ITERATIONS = 6;
-
-    public static void main(String[] args) {
-        PrisonersDilemmaGame<AIPlayer, AIPlayer> game = new PrisonersDilemmaGame<>(
-                new AIPlayer(new NeuralNetwork(ITERATIONS, 4, 1)),
-                new AIPlayer(new NeuralNetwork(ITERATIONS, 4, 1)),
-                ITERATIONS);
-        game.run();
-        printResults(game);
+public class PDGameLogs<T extends IPlayer, D extends IPlayer> extends PDGame<T, D> {
+    public PDGameLogs(T player1, D player2, int iterations) {
+        super(player1, player2, iterations);
     }
 
-    // TODO output urediti?
+    @Override
+    public void run() {
+        super.run();
+        printResults();
+    }
+
     /**
      * <p>
      *     Prints game results.
      * </p>
      * Method should be called only after game finished.
      */
-    private static void printResults(IGame<AIPlayer, AIPlayer> game) {
-        int iterations = game.getIterations();
-        IPlayer player1 = game.getPlayer1();
-        IPlayer player2 = game.getPlayer2();
+    private void printResults() {
+        int iterations = getIterations();
+        IPlayer player1 = getPlayer1();
+        IPlayer player2 = getPlayer2();
         System.out.println("========================================");
         System.out.println("Game finished with score: " + player1.getScore() + " - " + player2.getScore());
         System.out.println("========================================");
@@ -41,5 +41,11 @@ public class ConsoleApp {
             System.out.printf("|    %3d.   |    %1d    |    %1d    |%n", i+1, player1.getScoreHistory().get(i), player2.getScoreHistory().get(i));
             System.out.println("|-----------|---------|---------|");
         }
+    }
+
+    @Override
+    protected void updateScores(Pair<Integer, Integer> score) {
+        super.updateScores(score);
+        System.out.println("Played: " + score);
     }
 }

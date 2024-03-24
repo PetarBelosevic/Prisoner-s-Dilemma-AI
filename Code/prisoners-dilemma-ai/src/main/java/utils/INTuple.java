@@ -8,18 +8,12 @@ package utils;
  */
 public interface INTuple<T> {
     /**
-     * <p>
-     *     Get number of elements that this n-tuple stores.
-     * </p>
-     * @return n
+     * @return number of elements that this n-tuple stores
      */
     int getN();
 
     /**
-     * <p>
-     *      Get element at position index.
-     * </p>
-     * @param index
+     * @param index position of requested element
      * @return element at position index
      */
     T getElementAt(int index);

@@ -4,16 +4,16 @@ import org.nd4j.linalg.api.ndarray.INDArray;
 
 /**
  * <p>
- *     Model of a fully connected neural network's layer
+ *     Model of a fully connected neural network's layer.
  * </p>
  */
 public interface ILayer {
-
     /**
      * @return matrix of weights in this layer
      */
     INDArray getWeights();
 
+    // TODO remove?
     /**
      * @param weights new matrix of weights
      */
@@ -24,6 +24,7 @@ public interface ILayer {
      */
     INDArray getBiases();
 
+    // TODO remove?
     /**
      * @param biases new vector of biases for this layer
      */
@@ -33,6 +34,8 @@ public interface ILayer {
      * <p>
      *     Multiplies input with weights, adds biases and applies transition function.
      * </p>
+     * Input data must be of type double.
+     *
      * @param input input to the layer
      * @return output of the layer
      */

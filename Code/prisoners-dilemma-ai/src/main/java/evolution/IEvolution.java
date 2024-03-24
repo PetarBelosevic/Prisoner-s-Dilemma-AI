@@ -4,11 +4,11 @@ import evolution.specimen.ISpecimen;
 
 /**
  * <p>
- *     Model for an evolutionary process in evolutionary computing.
+ *     Model for an evolution in evolutionary computing.
  * </p>
  * Every implementations of this interface needs to initialize its first generation of specimens after its construction.
  */
-public interface IEvolution<T extends ISpecimen> {
+public interface IEvolution<T extends ISpecimen<T>> {
     /**
      * <p>
      *     Get the best organism in current generation.
@@ -78,12 +78,12 @@ public interface IEvolution<T extends ISpecimen> {
     /**
      * @return magnitude of small mutation when it occurs
      */
-    int getSmallMutationMagnitude();
+    double getSmallMutationMagnitude();
 
     /**
      * @param smallMutationMagnitude magnitude of a small mutation when it occurs
      */
-    void setSmallMutationMagnitude(int smallMutationMagnitude);
+    void setSmallMutationMagnitude(double smallMutationMagnitude);
 
     /**
      * @return number between 0.0 and 1.0, represents a chance of a big mutation to occur
@@ -102,12 +102,12 @@ public interface IEvolution<T extends ISpecimen> {
     /**
      * @return magnitude of small mutation when it occurs
      */
-    int getBigMutationMagnitude();
+    double getBigMutationMagnitude();
 
     /**
      * @param bigMutationMagnitude magnitude of a big mutation when it occurs
      */
-    void setBigMutationMagnitude(int bigMutationMagnitude);
+    void setBigMutationMagnitude(double bigMutationMagnitude);
 
     /**
      * @return size of one generation

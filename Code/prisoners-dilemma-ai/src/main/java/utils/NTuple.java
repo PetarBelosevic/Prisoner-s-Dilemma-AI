@@ -1,29 +1,37 @@
 package utils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class NTuple<T> implements INTuple<T> {
-    private final List<T> elements;
+    private final T[] values;
+    StringBuilder builder = new StringBuilder();
 
+    @SafeVarargs
     public NTuple(T... values) {
-        this.elements = new ArrayList<>();
-        elements.addAll(Arrays.stream(values).toList());
+        this.values = values;
     }
 
     @Override
     public int getN() {
-        return elements.size();
+        return values.length;
     }
 
     @Override
     public T getElementAt(int index) {
-        return elements.get(index);
+        return values[index];
     }
 
     @Override
     public void setElementAt(int index, T value) {
-        elements.set(index, value);
+        values[index] = value;
+    }
+
+    @Override
+    public String toString() {
+        builder.setLength(0);
+        builder.append("( ");
+        for (T element: values) {
+            builder.append(element).append(" ");
+        }
+        builder.append(")");
+        return builder.toString();
     }
 }

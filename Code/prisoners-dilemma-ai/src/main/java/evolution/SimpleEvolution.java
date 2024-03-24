@@ -15,24 +15,27 @@ import java.util.List;
  *
  * @param <T> extends ISpecimen
  */
-public class SimpleEvolution<T extends ISpecimen> extends AbstractEvolution<T> {
+public class SimpleEvolution<T extends ISpecimen<T>> extends AbstractEvolution<T> {
     private int totalFitness = 0;
-    private IEvaluator<T> evaluator;
+    private final IEvaluator<T> evaluator;
 
-    public SimpleEvolution(double smallMutationChance, int smallMutationAmplitude, double bigMutationChance, int bigMutationAmplitude, int generationSize, ISpecimenFactory factory, IEvaluator<T> evaluator) {
-        super(smallMutationChance, smallMutationAmplitude, bigMutationChance, bigMutationAmplitude, generationSize, factory);
+    public SimpleEvolution(double smallMutationChance, int smallMutationMagnitude, double bigMutationChance, int bigMutationMagnitude, int generationSize, ISpecimenFactory<T> factory, IEvaluator<T> evaluator) {
+        super(smallMutationChance, smallMutationMagnitude, bigMutationChance, bigMutationMagnitude, generationSize, factory);
         this.evaluator = evaluator;
     }
 
     @Override
     protected void evaluateNextGeneration() {
         for (int i = 0; i < generationSize; i++) {
+            nextGeneration.get(i).resetFitness();
+        }
+        for (int i = 0; i < generationSize; i++) {
             for (int j = i; j < generationSize; j++) {
                 totalFitness += evaluator.evaluate(nextGeneration.get(i), nextGeneration.get(j));
             }
         }
         nextGeneration.sort(null);
-        totalFitness -= nextGeneration.get(generationSize - 1).getFitness();
+        totalFitness -= nextGeneration.get(generationSize - 1).getFitness() * generationSize;
 
         List<T> temp = currentGeneration;
         currentGeneration = nextGeneration;
@@ -47,7 +50,7 @@ public class SimpleEvolution<T extends ISpecimen> extends AbstractEvolution<T> {
                 nextGeneration.get(i).createOffspring(selectParent(), selectParent());
             }
             else {
-                nextGeneration.set(i, selectParent());
+                nextGeneration.get(i).copyFrom(selectParent());
             }
             nextGeneration.get(i).mutate(smallMutationChance, smallMutationMagnitude, bigMutationChance, bigMutationMagnitude);
         }
@@ -68,12 +71,12 @@ public class SimpleEvolution<T extends ISpecimen> extends AbstractEvolution<T> {
         int currentFitnessSum = 0;
         for (T specimen: currentGeneration) {
             if (currentFitnessSum < random) {
-                currentFitnessSum += specimen.getFitness();
+                currentFitnessSum += specimen.getFitness() - getWorstSpecimen().getFitness();
             }
             if (currentFitnessSum >= random) {
                 return specimen;
             }
         }
-        return currentGeneration.get(0);
+        return getBestSpecimen();
     }
 }

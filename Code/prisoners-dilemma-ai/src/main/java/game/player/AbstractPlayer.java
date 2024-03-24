@@ -35,9 +35,10 @@ public abstract class AbstractPlayer implements IPlayer {
     }
 
     @Override
-    public void resetScore() {
+    public void reset() {
         score = 0;
         scoreHistory.clear();
+        decisionHistory.clear();
     }
 
     @Override

@@ -2,6 +2,7 @@ package evolution.specimen.evaulator;
 
 import evolution.specimen.ISpecimen;
 
+// TODO problem sa parametrizacijom
 /**
  * <p>
  *     Interface for evaluation of two specimens.
@@ -10,7 +11,7 @@ import evolution.specimen.ISpecimen;
  *
  * @param <T> Any object that implements ISpecimen interface
  */
-public interface IEvaluator<T extends ISpecimen> {
+public interface IEvaluator<T extends ISpecimen<?>> {
     /**
      * <p>
      *     Method takes two specimens, puts them in interaction and based on that contributes to their fitness.
@@ -19,7 +20,7 @@ public interface IEvaluator<T extends ISpecimen> {
      *
      * @param specimen1 first specimen in interaction
      * @param specimen2 second specimen in interaction
-     * @return combined value of fitness added to both if specimens
+     * @return combined value of fitness added to both of specimens
      */
     int evaluate(T specimen1, T specimen2);
 }

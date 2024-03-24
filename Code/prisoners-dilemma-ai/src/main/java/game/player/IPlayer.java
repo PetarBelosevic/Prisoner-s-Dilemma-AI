@@ -3,25 +3,25 @@ package game.player;
 import java.util.List;
 
 /**
- * Player model for iterated Prisoner's Dilemma
+ * Player model for simple games modeled by IGame interface.
  */
 public interface IPlayer {
     /**
      * <p>
-     *     Gives decision (cooperate or deflect) based on the game history (scores of both players).
+     *     Gives decision based on the game history (past decisions of other player).
      * </p>
      * This method must update decision history of this player.
      *
-     * @param otherScoreHistory scores of other player
-     * @return true if cooperates, false if deflects
+     * @param otherDecisionHistory decisions of other player
+     * @return true or false
      */
-    boolean getDecision(List<Integer> otherScoreHistory);
+    int getDecision(List<Integer> otherDecisionHistory);
 
     /**
      * <p>
      *     Add points to the player.
      * </p>
-     * Points should also be added in the score history of a player.
+     * Points should also be added in the score history of this player.
      *
      * @param points to be added
      */
@@ -39,9 +39,9 @@ public interface IPlayer {
      * <p>
      *     Resets current score to 0.
      * </p>
-     * History of scores is also deleted.
+     * History of scores and decisions are also deleted.
      */
-    void resetScore();
+    void reset();
 
     /**
      * <p>
@@ -71,8 +71,6 @@ public interface IPlayer {
      * <p>
      *     Returns list of past decisions of this player.
      * </p>
-     * Positive number (typically 1) means cooperation.
-     * Negative number (typically -1) means deflection.
      *
      * @return list of past decisions
      */

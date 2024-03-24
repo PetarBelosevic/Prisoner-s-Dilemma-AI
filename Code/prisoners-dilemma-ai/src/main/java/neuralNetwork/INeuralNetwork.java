@@ -5,7 +5,7 @@ import org.nd4j.linalg.api.ndarray.INDArray;
 
 /**
  * <p>
- *     Interface for fully connected neural network
+ *     Interface for fully connected neural network.
  * </p>
  */
 public interface INeuralNetwork {
@@ -20,8 +20,9 @@ public interface INeuralNetwork {
     INDArray process(INDArray input);
     double[] process(double[] input);
 
+    // TODO remove?
     /**
-     * @return array of layers in this network
+     * @return array of layers from this network
      */
     ILayer[] getLayers();
 
@@ -36,15 +37,6 @@ public interface INeuralNetwork {
      * @return layer at given index
      */
     ILayer getLayer(int index);
-
-    /**
-     * <p>
-     *     Sets Layer at given index.
-     * </p>
-     * @param index where new layer is being set
-     * @param layer that is to be set
-     */
-    void setLayer(int index, ILayer layer);
 
     /**
      * <p>

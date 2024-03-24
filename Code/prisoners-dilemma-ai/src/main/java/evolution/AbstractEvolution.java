@@ -12,22 +12,22 @@ import java.util.List;
  * </p>
  * @param <T> extends ISpecimen
  */
-public abstract class AbstractEvolution<T extends ISpecimen> implements IEvolution<T> {
+public abstract class AbstractEvolution<T extends ISpecimen<T>> implements IEvolution<T> {
     protected double smallMutationChance;
-    protected int smallMutationMagnitude;
+    protected double smallMutationMagnitude;
     protected double bigMutationChance;
-    protected int bigMutationMagnitude;
+    protected double bigMutationMagnitude;
     protected boolean oneParent = false;
     protected int currentGenerationIndex = 0;
     protected int generationSize;
     protected List<T> currentGeneration;
     protected List<T> nextGeneration;
 
-    protected AbstractEvolution(double smallMutationChance, int smallMutationAmplitude, double bigMutationChance, int bigMutationAmplitude, int generationSize, ISpecimenFactory<T> factory) {
+    protected AbstractEvolution(double smallMutationChance, int smallMutationMagnitude, double bigMutationChance, int bigMutationMagnitude, int generationSize, ISpecimenFactory<T> factory) {
         this.smallMutationChance = smallMutationChance;
-        this.smallMutationMagnitude = smallMutationAmplitude;
+        this.smallMutationMagnitude = smallMutationMagnitude;
         this.bigMutationChance = bigMutationChance;
-        this.bigMutationMagnitude = bigMutationAmplitude;
+        this.bigMutationMagnitude = bigMutationMagnitude;
         this.generationSize = generationSize;
         initialize(factory);
     }
@@ -44,9 +44,8 @@ public abstract class AbstractEvolution<T extends ISpecimen> implements IEvoluti
 
         for (int i = 0; i < generationSize; i++) {
             currentGeneration.add(factory.create());
-            nextGeneration.add(currentGeneration.get(i));
+            nextGeneration.add(factory.create());
         }
-        // TODO evaluate?
     }
 
     /**
@@ -97,12 +96,12 @@ public abstract class AbstractEvolution<T extends ISpecimen> implements IEvoluti
     }
 
     @Override
-    public int getSmallMutationMagnitude() {
+    public double getSmallMutationMagnitude() {
         return smallMutationMagnitude;
     }
 
     @Override
-    public void setSmallMutationMagnitude(int smallMutationMagnitude) {
+    public void setSmallMutationMagnitude(double smallMutationMagnitude) {
         this.smallMutationMagnitude = smallMutationMagnitude;
     }
 
@@ -117,12 +116,12 @@ public abstract class AbstractEvolution<T extends ISpecimen> implements IEvoluti
     }
 
     @Override
-    public int getBigMutationMagnitude() {
+    public double getBigMutationMagnitude() {
         return bigMutationMagnitude;
     }
 
     @Override
-    public void setBigMutationMagnitude(int bigMutationMagnitude) {
+    public void setBigMutationMagnitude(double bigMutationMagnitude) {
         this.bigMutationMagnitude = bigMutationMagnitude;
     }
 

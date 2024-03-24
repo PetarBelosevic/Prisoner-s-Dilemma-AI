@@ -6,7 +6,7 @@ package evolution.specimen;
  * </p>
  * @param <T> extends ISpecimen
  */
-public interface ISpecimenFactory<T extends ISpecimen> {
+public interface ISpecimenFactory<T extends ISpecimen<T>> {
     /**
      * @return object that is or extends type ISpecimen
      */

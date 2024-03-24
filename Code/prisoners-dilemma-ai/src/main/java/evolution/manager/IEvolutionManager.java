@@ -1,5 +1,7 @@
 package evolution.manager;
 
+import evolution.IEvolution;
+import evolution.specimen.ISpecimen;
 import utils.INTuple;
 
 import java.util.List;
@@ -10,7 +12,7 @@ import java.util.List;
  * </p>
  * Manager runs evolution and saves scores for best, median and worst specimen of every generation.
  */
-public interface IEvolutionManager {
+public interface IEvolutionManager<T extends ISpecimen<T>> {
     /**
      * <p>
      *     Starts evolutionary process for creating best organism.
@@ -25,4 +27,9 @@ public interface IEvolutionManager {
      * @return fitness history of the best, median and the worst specimens
      */
     List<INTuple<Integer>> getGenerationsHistory();
+
+    /**
+     * @return evolution used in this manager
+     */
+    IEvolution<T> getEvolution();
 }

@@ -13,27 +13,21 @@ import java.util.List;
  *     Simple implementation of IEvolutionManager.
  * </p>
  */
-public class SimpleEvolutionManager implements IEvolutionManager {
-    private final IEvolution<? extends ISpecimen> evolution;
+public class SimpleEvolutionManager<T extends ISpecimen<T>> implements IEvolutionManager<T> {
+    private final IEvolution<T> evolution;
     private final int maxGenerationLimit;
     private final int acceptableFitness;
     private final List<INTuple<Integer>> generationsHistory = new LinkedList<>();
 
-    public SimpleEvolutionManager(IEvolution<? extends ISpecimen> evolution, int maxGenerationLimit, int acceptableFitness) {
+    public SimpleEvolutionManager(IEvolution<T> evolution, int maxGenerationLimit, int acceptableFitness) {
         this.evolution = evolution;
         this.maxGenerationLimit = maxGenerationLimit;
         this.acceptableFitness = acceptableFitness;
-        generationsHistory.add(new NTuple<>(
-                evolution.getBestSpecimen().getFitness(),
-                evolution.getMedianSpecimen().getFitness(),
-                evolution.getWorstSpecimen().getFitness())
-        );
     }
 
     @Override
     public void runEvolution() {
-        int i = 0;
-        while (i++ < maxGenerationLimit && acceptableFitness > evolution.getBestSpecimen().getFitness()) {
+        while (evolution.getCurrentGenerationIndex() < maxGenerationLimit && acceptableFitness > evolution.getBestSpecimen().getFitness()) {
             evolution.generateNextGeneration();
             generationsHistory.add(new NTuple<>(
                     evolution.getBestSpecimen().getFitness(),
@@ -46,5 +40,10 @@ public class SimpleEvolutionManager implements IEvolutionManager {
     @Override
     public List<INTuple<Integer>> getGenerationsHistory() {
         return generationsHistory;
+    }
+
+    @Override
+    public IEvolution<T> getEvolution() {
+        return evolution;
     }
 }
