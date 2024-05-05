@@ -4,8 +4,6 @@ import evolution.specimen.ISpecimen;
 import evolution.specimen.ISpecimenFactory;
 import evolution.specimen.evaulator.IEvaluator;
 
-import java.util.List;
-
 /**
  * <p>
  *     Simple implementation of IEvolution interface.
@@ -26,36 +24,36 @@ public class SimpleEvolution<T extends ISpecimen<T>> extends AbstractEvolution<T
 
     @Override
     protected void evaluateNextGeneration() {
-        for (int i = 0; i < generationSize; i++) {
-            nextGeneration.get(i).resetFitness();
+        totalFitness = 0;
+        for (int i = 0; i < getGenerationSize(); i++) {
+            getNextGeneration().get(i).resetFitness();
         }
-        for (int i = 0; i < generationSize; i++) {
-            for (int j = i; j < generationSize; j++) {
-                totalFitness += evaluator.evaluate(nextGeneration.get(i), nextGeneration.get(j));
+
+        for (int i = 0; i < getGenerationSize(); i++) {
+            for (int j = i; j < getGenerationSize(); j++) {
+                totalFitness += evaluator.evaluate(getNextGeneration().get(i), getNextGeneration().get(j));
             }
         }
-        nextGeneration.sort(null);
-        totalFitness -= nextGeneration.get(generationSize - 1).getFitness() * generationSize;
+        getNextGeneration().sort(null);
+        totalFitness -= getNextGeneration().get(getGenerationSize() - 1).getFitness() * getGenerationSize();
 
-        List<T> temp = currentGeneration;
-        currentGeneration = nextGeneration;
-        nextGeneration = temp;
+        swapGenerations();
     }
 
     @Override
     public void generateNextGeneration() {
-        nextGeneration.set(0, currentGeneration.get(0));
-        for (int i = 1; i < generationSize; i++) {
-            if (!oneParent) {
-                nextGeneration.get(i).createOffspring(selectParent(), selectParent());
+        getNextGeneration().set(0, getCurrentGeneration().get(0));
+        for (int i = 1; i < getGenerationSize(); i++) {
+            if (!isOneParent()) {
+                getNextGeneration().get(i).createOffspring(selectParent(), selectParent());
             }
             else {
-                nextGeneration.get(i).copyFrom(selectParent());
+                getNextGeneration().get(i).copyFrom(selectParent());
             }
-            nextGeneration.get(i).mutate(smallMutationChance, smallMutationMagnitude, bigMutationChance, bigMutationMagnitude);
+            getNextGeneration().get(i).mutate(getSmallMutationChance(), getSmallMutationMagnitude(), getBigMutationChance(), getBigMutationMagnitude());
         }
         evaluateNextGeneration();
-        currentGenerationIndex++;
+        incrementCurrentGenerationIndex();
     }
 
     /**
@@ -69,7 +67,7 @@ public class SimpleEvolution<T extends ISpecimen<T>> extends AbstractEvolution<T
     private T selectParent() {
         double random = Math.random() * totalFitness;
         int currentFitnessSum = 0;
-        for (T specimen: currentGeneration) {
+        for (T specimen: getCurrentGeneration()) {
             if (currentFitnessSum < random) {
                 currentFitnessSum += specimen.getFitness() - getWorstSpecimen().getFitness();
             }

@@ -9,10 +9,10 @@ import java.util.List;
  * </p>
  */
 public abstract class AbstractPlayer implements IPlayer {
-    protected List<Integer> scoreHistory;
-    protected List<Integer> decisionHistory;
-    protected int score = 0;
-    protected int index = 0;
+    private final List<Integer> scoreHistory;
+    private final List<Integer> decisionHistory;
+    private int score = 0;
+    private int index = 0;
 
     protected AbstractPlayer() {
         this(16);

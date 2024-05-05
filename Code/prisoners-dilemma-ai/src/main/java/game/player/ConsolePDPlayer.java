@@ -13,7 +13,7 @@ public class ConsolePDPlayer extends AbstractPlayer {
 
     @Override
     public int getDecision(List<Integer> otherDecisionHistory) {
-        System.out.print("Player" + index + " input: ");
+        System.out.print("Player" + getIndex() + " input: ");
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
 

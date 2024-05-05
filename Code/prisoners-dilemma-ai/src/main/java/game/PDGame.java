@@ -24,8 +24,8 @@ public class PDGame<T extends IPlayer, D extends IPlayer> extends AbstractGame<T
 
     @Override
     protected void evaluateDecisions() {
-        int x1 = player1.getDecision(player2.getDecisionHistory());
-        int x2 = player2.getDecision(player1.getDecisionHistory());
+        int x1 = getPlayer1().getDecision(getPlayer2().getDecisionHistory());
+        int x2 = getPlayer2().getDecision(getPlayer1().getDecisionHistory());
         Pair<Integer, Integer> score;
 
         if (x1 > 0 && x2 > 0) {

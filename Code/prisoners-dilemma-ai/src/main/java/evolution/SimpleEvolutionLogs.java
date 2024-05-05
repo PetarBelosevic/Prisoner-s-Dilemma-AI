@@ -24,11 +24,11 @@ public class SimpleEvolutionLogs<T extends ISpecimen<T>> extends SimpleEvolution
     @Override
     public void generateNextGeneration() {
         super.generateNextGeneration();
-        if ((currentGenerationIndex) % STEP == 0) {
-            System.out.printf(FORMAT, currentGenerationIndex, getBestSpecimen().getFitness(), getMedianSpecimen().getFitness(), getWorstSpecimen().getFitness());
-            getBestSpecimen().saveInFile("bestInGen" + currentGenerationIndex + ".txt");
-            getMedianSpecimen().saveInFile("medianInGen" + currentGenerationIndex + ".txt");
-            getWorstSpecimen().saveInFile("worstInGen" + currentGenerationIndex + ".txt");
+        if ((getCurrentGenerationIndex()) % STEP == 0) {
+            System.out.printf(FORMAT, getCurrentGenerationIndex(), getBestSpecimen().getFitness(), getMedianSpecimen().getFitness(), getWorstSpecimen().getFitness());
+            getBestSpecimen().saveInFile("bestInGen" + getCurrentGenerationIndex() + ".txt");
+            getMedianSpecimen().saveInFile("medianInGen" + getCurrentGenerationIndex() + ".txt");
+            getWorstSpecimen().saveInFile("worstInGen" + getCurrentGenerationIndex() + ".txt");
         }
     }
 }

@@ -13,15 +13,15 @@ import java.util.List;
  * @param <T> extends ISpecimen
  */
 public abstract class AbstractEvolution<T extends ISpecimen<T>> implements IEvolution<T> {
-    protected double smallMutationChance;
-    protected double smallMutationMagnitude;
-    protected double bigMutationChance;
-    protected double bigMutationMagnitude;
-    protected boolean oneParent = false;
-    protected int currentGenerationIndex = 0;
-    protected int generationSize;
-    protected List<T> currentGeneration;
-    protected List<T> nextGeneration;
+    private double smallMutationChance;
+    private double smallMutationMagnitude;
+    private double bigMutationChance;
+    private double bigMutationMagnitude;
+    private boolean oneParent = false;
+    private int currentGenerationIndex = 0;
+    private final int generationSize;
+    private List<T> currentGeneration;
+    private List<T> nextGeneration;
 
     protected AbstractEvolution(double smallMutationChance, int smallMutationMagnitude, double bigMutationChance, int bigMutationMagnitude, int generationSize, ISpecimenFactory<T> factory) {
         this.smallMutationChance = smallMutationChance;
@@ -128,5 +128,39 @@ public abstract class AbstractEvolution<T extends ISpecimen<T>> implements IEvol
     @Override
     public int getGenerationSize() {
         return generationSize;
+    }
+
+    /**
+     * @return current generation of specimens
+     */
+    protected List<T> getCurrentGeneration() {
+        return currentGeneration;
+    }
+
+    /**
+     * @return next generation of specimens (this is temporary list of specimens)
+     */
+    protected List<T> getNextGeneration() {
+        return nextGeneration;
+    }
+
+    /**
+     * <p>
+     *     Swaps current and next generation.
+     * </p>
+     */
+    protected void swapGenerations() {
+        List<T> temp = getCurrentGeneration();
+        currentGeneration = nextGeneration;
+        nextGeneration = temp;
+    }
+
+    /**
+     * <p>
+     *     Increments current generation index by 1.
+     * </p>
+     */
+    protected void incrementCurrentGenerationIndex() {
+        currentGenerationIndex++;
     }
 }

@@ -3,12 +3,19 @@ package game;
 import game.player.IPlayer;
 import utils.Pair;
 
+/**
+ * <p>
+ *     Abstract implementation of IGame interface.
+ * </p>
+ * @param <T> type of first player
+ * @param <D> type of second player
+ */
 public abstract class AbstractGame<T extends IPlayer, D extends IPlayer> implements IGame<T, D> {
-    protected T player1;
-    protected D player2;
-    protected int iterations; // number of rounds in game
+    private final T player1;
+    private final D player2;
+    private final int iterations; // number of rounds in game
 
-    public AbstractGame(T player1, D player2, int iterations) {
+    protected AbstractGame(T player1, D player2, int iterations) {
         player1.setIndex(1);
         player2.setIndex(2);
         this.player1 = player1;

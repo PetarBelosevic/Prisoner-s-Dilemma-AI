@@ -1,64 +1,102 @@
 package neuralNetwork.layer;
 
+import neuralNetwork.layer.activationFunctions.ActivationFunctions;
 import org.nd4j.linalg.api.buffer.DataType;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
+import utilities.Constants;
+
+import java.util.function.UnaryOperator;
 
 /**
  * <p>
  *     Simple abstract implementation of an ILayer interface.
  * </p>
- * This class doesn't implement activation function.
+ * This class implements but doesn't use activation function.
  */
 abstract class AbstractLayer implements ILayer {
-    protected INDArray weights;
-    protected INDArray biases;
-    protected INDArray result;
+    private INDArray[] parameters = new INDArray[2];
+    private INDArray result;
+    private UnaryOperator<INDArray> activationFunction;
+    private String activationFunctionName;
 
-    protected AbstractLayer(int currentLayerSize, int previousLayerSize) {
-        this.weights = Nd4j.create(currentLayerSize, previousLayerSize).castTo(DataType.DOUBLE);
-        this.biases = Nd4j.create(currentLayerSize).castTo(DataType.DOUBLE);
-        this.result = Nd4j.create(currentLayerSize).castTo(DataType.DOUBLE);
+    protected AbstractLayer(String activationFunctionName) {
+        initialize(activationFunctionName);
     }
 
-    protected AbstractLayer(INDArray weights, INDArray biases) {
-        this.weights = weights.castTo(DataType.DOUBLE);
-        this.biases = biases.castTo(DataType.DOUBLE);
-        this.result = Nd4j.create(biases.shape()).castTo(DataType.DOUBLE);
+    protected AbstractLayer(int previousLayerSize, int currentLayerSize, String activationFunctionName) {
+        this.parameters[0] = Nd4j.create(currentLayerSize).castTo(DataType.DOUBLE);
+        this.parameters[1] = Nd4j.create(currentLayerSize, previousLayerSize).castTo(DataType.DOUBLE);
+        this.result = Nd4j.create(parameters[0].shape()).castTo(DataType.DOUBLE);
+        initialize(activationFunctionName);
+        randomizeWeightsAndBiases();
     }
 
-    @Override
-    public INDArray getWeights() {
-        return weights;
-    }
-
-    @Override
-    public void setWeights(INDArray weights) {
-        this.weights = weights.castTo(DataType.DOUBLE);
-    }
-
-    @Override
-    public INDArray getBiases() {
-        return biases;
+    /**
+     * <p>
+     *     Initializes result INDArray and activation function.
+     * </p>
+     */
+    private void initialize(String activationFunctionName) {
+        this.activationFunctionName = activationFunctionName;
+        activationFunction = ActivationFunctions.getFunction(activationFunctionName);
     }
 
     @Override
-    public void setBiases(INDArray biases) {
-        this.biases = biases.castTo(DataType.DOUBLE);
+    public INDArray[] getParameters() {
+        return parameters;
+    }
+
+    @Override
+    public void setParameters(INDArray[] newParameters) {
+        this.parameters = newParameters;
+        this.result = Nd4j.create(parameters[0].shape()).castTo(DataType.DOUBLE);
+    }
+
+    /**
+     * @return result INDArray after applying activation function on it
+     */
+    protected INDArray applyActivationFunction() {
+        return activationFunction.apply(result);
+    }
+
+    /**
+     * <p>
+     *     Randomizes values of biases and weights in this layer.
+     * </p>
+     */
+    private void randomizeWeightsAndBiases() {
+        for (INDArray parameter: parameters) {
+            for (int j = 0; j < parameter.length(); j++) {
+                parameter.putScalar(j, (Math.random() * Constants.RANDOMNESS_LEVEL) - Constants.RANDOMNESS_LEVEL / 2);
+            }
+        }
     }
 
     @Override
     public INDArray getOutput(INDArray input) {
-        return weights.mmuli(input, result).addi(biases, result);
+        return parameters[1].mmuli(input, result).addi(parameters[0], result);
     }
 
     @Override
-    public int getRowNumber() {
-        return (int) biases.size(0);
+    public int getNumberOfInputs() {
+        return (int) parameters[1].size(1);
     }
 
     @Override
-    public int getColumnNumber() {
-        return (int) weights.size(1);
+    public int getNumberOfOutputs() {
+        return (int) parameters[0].size(0);
+    }
+
+    @Override
+    public String getActivationFunctionName() {
+        return activationFunctionName;
+    }
+
+    /**
+     * @return INDArray for storing result of input processing
+     */
+    protected INDArray getResult() {
+        return result;
     }
 }

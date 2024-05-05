@@ -6,29 +6,25 @@ import org.nd4j.linalg.api.ndarray.INDArray;
  * <p>
  *     Model of a fully connected neural network's layer.
  * </p>
+ * Layers are meant to be mutable.
+ * Every layer must have constructor with activation function name as single parameter.
  */
 public interface ILayer {
     /**
-     * @return matrix of weights in this layer
+     * <p>
+     *     Vector of biases is always on index 0 and matrix of weights is always on index 1.
+     * </p>
+     * @return array of matrices in this layer
      */
-    INDArray getWeights();
-
-    // TODO remove?
-    /**
-     * @param weights new matrix of weights
-     */
-    void setWeights(INDArray weights);
+    INDArray[] getParameters();
 
     /**
-     * @return vector of biases for this layer
+     * <p>
+     *     Sets new parameters for this layer.
+     * </p>
+     * @param newParameters new parameters
      */
-    INDArray getBiases();
-
-    // TODO remove?
-    /**
-     * @param biases new vector of biases for this layer
-     */
-    void setBiases(INDArray biases);
+    void setParameters(INDArray[] newParameters);
 
     /**
      * <p>
@@ -42,22 +38,24 @@ public interface ILayer {
     INDArray getOutput(INDArray input);
 
     /**
-     * <p>
-     *     Returns number of rows in layer matrix.
-     * </p>
-     * Equivalent of number of inputs in the layer.
-     *
-     * @return number of rows in layer matrix
+     * @return number of inputs in the layer
      */
-    int getRowNumber();
+    int getNumberOfInputs();
+
+    /**
+     * @return number of outputs of the layer
+     */
+    int getNumberOfOutputs();
+
+    /**
+     * @return name of activation function used in this layer
+     */
+    String getActivationFunctionName();
 
     /**
      * <p>
-     *     Returns number of columns in layer matrix.
+     *     Clears layer from any cached data (e.g. context)
      * </p>
-     * Equivalent of number of outputs of the layer.
-     *
-     * @return number of columns in layer matrix
      */
-    int getColumnNumber();
+    void clearLayer();
 }

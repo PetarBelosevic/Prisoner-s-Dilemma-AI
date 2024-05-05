@@ -13,6 +13,8 @@ import game.PDGame;
 import game.PDGameLogs;
 import game.player.AIPDPlayer;
 import game.player.ConsolePDPlayer;
+import neuralNetwork.layer.ElmanNNLayer;
+import neuralNetwork.layer.Layer;
 
 /**
  * <p>
@@ -25,14 +27,18 @@ public class ConsoleTrainingApp {
     private static final double BIG_MUTATION_CHANCE = 0.01;
     private static final int BIG_MUTATION_MAGNITUDE = 6;
     private static final int GENERATION_SIZE = 60;
-    private static final int MAX_GENERATION_LIMIT = 100;
+    private static final int MAX_GENERATION_LIMIT = 50;
     private static final int GAME_ITERATIONS = 50;
     private static final int ACCEPTABLE_FITNESS = 5 * GAME_ITERATIONS * GENERATION_SIZE + 1;
     private static final boolean ONE_PARENT = false;
 
     public static void main(String[] args) {
-        ISpecimenFactory<SimpleNeuralNetworkSpecimen> factory =
-                () -> new SimpleNeuralNetworkSpecimen(GAME_ITERATIONS, GAME_ITERATIONS, 1);
+        ISpecimenFactory<SimpleNeuralNetworkSpecimen> factory = () -> new SimpleNeuralNetworkSpecimen(
+                new ElmanNNLayer(1, 6, "sigmoid"),
+                new ElmanNNLayer(1, 10, "sigmoid"),
+                new ElmanNNLayer(10, 6, "sigmoid"),
+                new Layer(6, 1, "sigmoid")
+        );
         IGame<AIPDPlayer, AIPDPlayer> game = new PDGame<>(new AIPDPlayer(), new AIPDPlayer(), GAME_ITERATIONS);
         IEvolutionManager<SimpleNeuralNetworkSpecimen> manager = getEvolutionManager(game, factory);
         manager.runEvolution();
@@ -55,7 +61,7 @@ public class ConsoleTrainingApp {
      * @return evolution manager ready for running evolution
      */
     private static IEvolutionManager<SimpleNeuralNetworkSpecimen> getEvolutionManager(IGame<AIPDPlayer, AIPDPlayer> game, ISpecimenFactory<SimpleNeuralNetworkSpecimen> factory) {
-        IEvaluator<SimpleNeuralNetworkSpecimen> evaluator = new PDEvaluator<>(game);
+        IEvaluator<SimpleNeuralNetworkSpecimen> evaluator = new PDEvaluator(game);
         IEvolution<SimpleNeuralNetworkSpecimen> evolution = new SimpleEvolutionLogs<>(
                 SMALL_MUTATION_CHANCE,
                 SMALL_MUTATION_MAGNITUDE,

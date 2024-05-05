@@ -11,7 +11,7 @@ import evolution.specimen.ISpecimen;
  *
  * @param <T> Any object that implements ISpecimen interface
  */
-public interface IEvaluator<T extends ISpecimen<?>> {
+public interface IEvaluator<T extends ISpecimen<T>> {
     /**
      * <p>
      *     Method takes two specimens, puts them in interaction and based on that contributes to their fitness.

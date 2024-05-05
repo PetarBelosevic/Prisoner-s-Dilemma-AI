@@ -15,21 +15,22 @@ public class AIPDPlayer extends AbstractPlayer {
 
     public AIPDPlayer(INeuralNetwork neuralNetwork) {
         this.neuralNetwork = neuralNetwork;
-        this.inputArray = new double[neuralNetwork.getLayer(0).getRowNumber()];
+        this.inputArray = new double[neuralNetwork.getLayer(0).getNumberOfInputs()];
     }
 
     public AIPDPlayer() {}
 
     @Override
     public int getDecision(List<Integer> otherDecisionHistory) {
+        int n = otherDecisionHistory.size() - 1;
         for (int i = 0; i < inputArray.length; i++) {
-            inputArray[i] = i < otherDecisionHistory.size() ? otherDecisionHistory.get(i) : 0;
+            inputArray[i] = i <= n ? otherDecisionHistory.get(n - i) : 0;
         }
 
         double[] result = neuralNetwork.process(inputArray);
-        boolean decision = result[0] > 0.5; // ili >= ?
+        boolean decision = result[0] >= 0.5;
 
-        decisionHistory.add(decision ? 1 : -1);
+        getDecisionHistory().add(decision ? 1 : -1);
         return decision ? 1 : -1;
     }
 
@@ -45,8 +46,14 @@ public class AIPDPlayer extends AbstractPlayer {
      */
     public void setNeuralNetwork(INeuralNetwork network) {
         this.neuralNetwork = network;
-        if (inputArray == null || inputArray.length != neuralNetwork.getLayer(0).getRowNumber()) {
-            this.inputArray = new double[neuralNetwork.getLayer(0).getRowNumber()];
+        if (inputArray == null || inputArray.length != neuralNetwork.getLayer(0).getNumberOfInputs()) {
+            this.inputArray = new double[neuralNetwork.getLayer(0).getNumberOfInputs()];
         }
+    }
+
+    @Override
+    public void reset() {
+        super.reset();
+        neuralNetwork.clearNetwork();
     }
 }
