@@ -7,6 +7,8 @@ import evolution.specimen.ISpecimen;
  *     Model for an evolution in evolutionary computing.
  * </p>
  * Every implementations of this interface needs to initialize its first generation of specimens after its construction.
+ *
+ * @param <T> type of specimen
  */
 public interface IEvolution<T extends ISpecimen<T>> {
     /**

@@ -1,7 +1,7 @@
 package evolution;
 
 import evolution.specimen.ISpecimen;
-import evolution.specimen.ISpecimenFactory;
+import evolution.specimen.factory.ISpecimenFactory;
 import evolution.specimen.evaulator.IEvaluator;
 
 /**

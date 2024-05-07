@@ -1,7 +1,7 @@
 package evolution;
 
 import evolution.specimen.ISpecimen;
-import evolution.specimen.ISpecimenFactory;
+import evolution.specimen.factory.ISpecimenFactory;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,6 @@
-package evolution.specimen;
+package evolution.specimen.factory;
+
+import evolution.specimen.ISpecimen;
 
 /**
  * <p>

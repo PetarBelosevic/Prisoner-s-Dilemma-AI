@@ -11,9 +11,10 @@ public interface IPlayer {
      *     Gives decision based on the game history (past decisions of other player).
      * </p>
      * This method must update decision history of this player.
+     * In games with two opposite decisions available this method should return 1 or -1.
      *
      * @param otherDecisionHistory decisions of other player
-     * @return true or false
+     * @return decision value
      */
     int getDecision(List<Integer> otherDecisionHistory);
 

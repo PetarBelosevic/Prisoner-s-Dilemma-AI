@@ -24,15 +24,14 @@ public class EvolutionSetUpJPanel extends JPanel {
     private final JSpinner bigMutationChanceSpinner = createJSpinner(0.01, 0.0, 1.0, 0.01);
     private final JSpinner bigMutationMagnitudeSpinner = createJSpinner(6, 0, -1, -1);
     private final JSpinner numberOfParentsSpinner = createJSpinner(1, 1, 2, 1);
-    private final JSpinner generationSizeSpinner = createJSpinner(60, 0, -1, -1);
-    private final JSpinner maxGenerationLimitSpinner = createJSpinner(50, 0, -1, -1);
-    private final JSpinner gameIterationsSpinner = createJSpinner(50, 0, -1, -1);
+    private final JSpinner generationSizeSpinner = createJSpinner(40, 0, -1, -1);
+    private final JSpinner maxGenerationLimitSpinner = createJSpinner(40, 0, -1, -1);
+    private final JSpinner gameIterationsSpinner = createJSpinner(40, 0, -1, -1);
 
     public EvolutionSetUpJPanel() {
         setLayout(new BorderLayout());
 
         JPanel centerPanel = new JPanel(new GridLayout(0, 2, 40, 40));
-        centerPanel.setBackground(Color.LIGHT_GRAY);
         centerPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         centerPanel.add(createJLabel("small mutation chance: "));
@@ -135,7 +134,8 @@ public class EvolutionSetUpJPanel extends JPanel {
      * @return small mutation magnitude on input
      */
     public int getSmallMutationMagnitude() {
-        return (int) smallMutationMagnitudeSpinner.getValue();
+        double x = (double) smallMutationMagnitudeSpinner.getValue();
+        return (int) x;
     }
 
     /**
@@ -149,34 +149,39 @@ public class EvolutionSetUpJPanel extends JPanel {
      * @return big mutation magnitude on input
      */
     public int getBigMutationMagnitude() {
-        return (int) bigMutationMagnitudeSpinner.getValue();
+        double x = (double) bigMutationMagnitudeSpinner.getValue();
+        return (int) x;
     }
 
     /**
      * @return number of parents (1 or 2) on input
      */
     public int getNumberOfParents() {
-        return (int) numberOfParentsSpinner.getValue();
+        double x = (double) numberOfParentsSpinner.getValue();
+        return (int) x;
     }
 
     /**
      * @return size of one generation on input
      */
     public int getGenerationSize() {
-        return (int) generationSizeSpinner.getValue();
+        double x = (double) generationSizeSpinner.getValue();
+        return (int) x;
     }
 
     /**
      * @return max generation limit on input
      */
     public int getMaxGenerationLimit() {
-        return (int) maxGenerationLimitSpinner.getValue();
+        double x = (double) maxGenerationLimitSpinner.getValue();
+        return (int) x;
     }
 
     /**
      * @return game iterations on input
      */
     public int getGameIterations() {
-        return (int) gameIterationsSpinner.getValue();
+        double x = (double) gameIterationsSpinner.getValue();
+        return (int) x;
     }
 }

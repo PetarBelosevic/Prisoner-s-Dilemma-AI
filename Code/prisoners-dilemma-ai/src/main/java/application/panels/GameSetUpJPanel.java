@@ -29,7 +29,6 @@ public class GameSetUpJPanel extends JPanel {
 
         JPanel leftPanel = new JPanel(new GridBagLayout());
         leftPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 1, Color.BLACK));
-        leftPanel.setBackground(Color.LIGHT_GRAY);
         constraints.ipady = 40;
         constraints.gridy = 0;
         leftPanel.add(player1Label, constraints);
@@ -47,7 +46,6 @@ public class GameSetUpJPanel extends JPanel {
 
         JPanel rightPanel = new JPanel(new GridBagLayout());
         rightPanel.setBorder(BorderFactory.createMatteBorder(0, 1, 2, 0, Color.BLACK));
-        rightPanel.setBackground(Color.LIGHT_GRAY);
         constraints.gridy = 0;
         rightPanel.add(player2Label, constraints);
         constraints.gridy++;

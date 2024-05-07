@@ -1,10 +1,12 @@
 package evolution.training;
 
 import evolution.IEvolution;
-import evolution.SimpleEvolutionLogs;
+import evolution.EvolutionLogs;
+import evolution.SimpleEvolution;
 import evolution.manager.IEvolutionManager;
 import evolution.manager.SimpleEvolutionManager;
-import evolution.specimen.ISpecimenFactory;
+import evolution.specimen.factory.ElmanNeuralNetworkFactory;
+import evolution.specimen.factory.ISpecimenFactory;
 import evolution.specimen.SimpleNeuralNetworkSpecimen;
 import evolution.specimen.evaulator.IEvaluator;
 import evolution.specimen.evaulator.PDEvaluator;
@@ -13,8 +15,6 @@ import game.PDGame;
 import game.PDGameLogs;
 import game.player.AIPDPlayer;
 import game.player.ConsolePDPlayer;
-import neuralNetwork.layer.ElmanNNLayer;
-import neuralNetwork.layer.Layer;
 
 /**
  * <p>
@@ -26,19 +26,14 @@ public class ConsoleTrainingApp {
     private static final int SMALL_MUTATION_MAGNITUDE = 1;
     private static final double BIG_MUTATION_CHANCE = 0.01;
     private static final int BIG_MUTATION_MAGNITUDE = 6;
-    private static final int GENERATION_SIZE = 60;
-    private static final int MAX_GENERATION_LIMIT = 50;
-    private static final int GAME_ITERATIONS = 50;
+    private static final int GENERATION_SIZE = 40;
+    private static final int MAX_GENERATION_LIMIT = 40;
+    private static final int GAME_ITERATIONS = 40;
     private static final int ACCEPTABLE_FITNESS = 5 * GAME_ITERATIONS * GENERATION_SIZE + 1;
     private static final boolean ONE_PARENT = false;
 
     public static void main(String[] args) {
-        ISpecimenFactory<SimpleNeuralNetworkSpecimen> factory = () -> new SimpleNeuralNetworkSpecimen(
-                new ElmanNNLayer(1, 6, "sigmoid"),
-                new ElmanNNLayer(1, 10, "sigmoid"),
-                new ElmanNNLayer(10, 6, "sigmoid"),
-                new Layer(6, 1, "sigmoid")
-        );
+        ISpecimenFactory<SimpleNeuralNetworkSpecimen> factory = new ElmanNeuralNetworkFactory();
         IGame<AIPDPlayer, AIPDPlayer> game = new PDGame<>(new AIPDPlayer(), new AIPDPlayer(), GAME_ITERATIONS);
         IEvolutionManager<SimpleNeuralNetworkSpecimen> manager = getEvolutionManager(game, factory);
         manager.runEvolution();
@@ -60,9 +55,9 @@ public class ConsoleTrainingApp {
      * @param factory object for creating specimens for evolution
      * @return evolution manager ready for running evolution
      */
-    private static IEvolutionManager<SimpleNeuralNetworkSpecimen> getEvolutionManager(IGame<AIPDPlayer, AIPDPlayer> game, ISpecimenFactory<SimpleNeuralNetworkSpecimen> factory) {
+    public static IEvolutionManager<SimpleNeuralNetworkSpecimen> getEvolutionManager(IGame<AIPDPlayer, AIPDPlayer> game, ISpecimenFactory<SimpleNeuralNetworkSpecimen> factory) {
         IEvaluator<SimpleNeuralNetworkSpecimen> evaluator = new PDEvaluator(game);
-        IEvolution<SimpleNeuralNetworkSpecimen> evolution = new SimpleEvolutionLogs<>(
+        IEvolution<SimpleNeuralNetworkSpecimen> evolution = new EvolutionLogs<>(new SimpleEvolution<>(
                 SMALL_MUTATION_CHANCE,
                 SMALL_MUTATION_MAGNITUDE,
                 BIG_MUTATION_CHANCE,
@@ -70,7 +65,7 @@ public class ConsoleTrainingApp {
                 GENERATION_SIZE,
                 factory,
                 evaluator
-        );
+        ));
         evolution.setOneParent(ONE_PARENT);
         return new SimpleEvolutionManager<>(evolution, MAX_GENERATION_LIMIT, ACCEPTABLE_FITNESS);
     }
