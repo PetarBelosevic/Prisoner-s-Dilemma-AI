@@ -17,8 +17,6 @@ import java.awt.*;
  * Panel shows the best, median and the worst score in every 10th generation.
  */
 public class EvolutionLogsJPanel<T extends ISpecimen<T>> extends JPanel {
-//    private final JButton pauseButton = new MyJButton("Pause", GUIApp.NORMAL_FONT_SIZE);
-//    private final JButton stopButton = new MyJButton("Stop", GUIApp.NORMAL_FONT_SIZE);
     private final JButton nextButton = new MyJButton("Next", GUIApp.NORMAL_FONT_SIZE);
 
     private IEvolutionManager<T> manager;
@@ -50,20 +48,10 @@ public class EvolutionLogsJPanel<T extends ISpecimen<T>> extends JPanel {
 
         JPanel bottomPanel = new JPanel();
         bottomPanel.setBackground(Color.LIGHT_GRAY);
-//        bottomPanel.add(pauseButton);
-//        bottomPanel.add(stopButton);
         bottomPanel.add(nextButton);
         nextButton.setEnabled(false);
         add(bottomPanel, BorderLayout.PAGE_END);
     }
-
-//    public JButton getPauseButton() {
-//        return pauseButton;
-//    }
-//
-//    public JButton getStopButton() {
-//        return stopButton;
-//    }
 
     /**
      * <p>
@@ -97,13 +85,6 @@ public class EvolutionLogsJPanel<T extends ISpecimen<T>> extends JPanel {
     }
 
     /**
-     * @return panel for showing scores of the best, median and the worst specimen of generation in evolution
-     */
-    public JPanel getCenterPanel() {
-        return centerPanel;
-    }
-
-    /**
      * @return used evolution manager
      */
     public IEvolutionManager<T> getManager() {
@@ -116,12 +97,13 @@ public class EvolutionLogsJPanel<T extends ISpecimen<T>> extends JPanel {
      * </p>
      * After evolution is over, method enables next button.
      */
-    public void startEvolution() {
+    public Thread startEvolution() {
         Thread t = new Thread(() -> {
             manager.runEvolution();
             nextButton.setEnabled(true);
         });
         t.start();
+        return t;
 //        try {
 //            t.join();
 //        }

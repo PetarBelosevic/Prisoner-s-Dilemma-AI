@@ -21,19 +21,17 @@ public class MainJPanel extends JPanel {
     private final GridBagConstraints constraints = new GridBagConstraints();
 
     public MainJPanel() {
-        info.addActionListener((e) -> {
-            JOptionPane.showMessageDialog(
-                    this,
-                    """
-                            This application lets you play Prisoner's Dilemma.
-                            You can play this game in two modes:
-                               1. Against AI player - in this case you can first train artificial neural network using evolutionary computing.
-                               2. Against other player
-                            Enjoy the game!""",
-                    "About the application",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
-        });
+        info.addActionListener((e) -> JOptionPane.showMessageDialog(
+                this,
+                """
+                        This application lets you play Prisoner's Dilemma.
+                        You can play this game in two modes:
+                           1. Against AI player - in this case you can first train artificial neural network using evolutionary computing.
+                           2. Against other player
+                        Enjoy the game!""",
+                "About the application",
+                JOptionPane.INFORMATION_MESSAGE
+        ));
 
         setBackground(Color.LIGHT_GRAY);
 
@@ -69,11 +67,11 @@ public class MainJPanel extends JPanel {
      * @param element item to be added
      * @param x position of the element at x-axis
      * @param y position of the element at y-axis
-     * @param yPadd padding of the element over y-axis
+     * @param yPad padding of the element over y-axis
      * @param width number of columns that element will occupy
      */
-    private void addComponent(JComponent element, int x, int y, int yPadd, int width) {
-        constraints.ipady = yPadd;
+    private void addComponent(JComponent element, int x, int y, int yPad, int width) {
+        constraints.ipady = yPad;
         constraints.gridx = x;
         constraints.gridy = y;
         constraints.gridwidth = width;

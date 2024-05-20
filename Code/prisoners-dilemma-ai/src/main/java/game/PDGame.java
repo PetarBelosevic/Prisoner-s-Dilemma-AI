@@ -17,6 +17,7 @@ public class PDGame<T extends IPlayer, D extends IPlayer> extends AbstractGame<T
     private static final Pair<Integer, Integer> DEFLECT_DEFLECT = new Pair<>(1, 1);
     private static final Pair<Integer, Integer> COOP_DEFLECT = new Pair<>(0, 5);
     private static final Pair<Integer, Integer> DEFLECT_COOP = new Pair<>(5, 0);
+    private static final Pair<Integer, Integer> IGNORE_PLAY = new Pair<>(0, 0);
 
     public PDGame(T player1, D player2, int iterations) {
         super(player1, player2, iterations);
@@ -39,6 +40,9 @@ public class PDGame<T extends IPlayer, D extends IPlayer> extends AbstractGame<T
         }
         else if (x1 < 0 && x2 < 0) {
             score = DEFLECT_DEFLECT;
+        }
+        else if (stop) {
+            score = IGNORE_PLAY;
         }
         else {
             throw new IllegalDecisionException();

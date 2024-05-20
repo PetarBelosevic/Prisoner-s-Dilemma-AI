@@ -5,6 +5,11 @@ import game.player.GUIPlayer;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
+/**
+ * <p>
+ *     Action for making binary decisions for non-AI player.
+ * </p>
+ */
 public class PlayerAction extends AbstractAction {
     private final GUIPlayer player;
     private final boolean cooperateButton;

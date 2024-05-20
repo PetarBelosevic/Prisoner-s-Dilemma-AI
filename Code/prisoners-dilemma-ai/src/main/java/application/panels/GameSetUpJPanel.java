@@ -7,6 +7,11 @@ import application.components.MyJLabel;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * <p>
+ *     Panel that shows settings for Prisoner's Dilemma game.
+ * </p>
+ */
 public class GameSetUpJPanel extends JPanel {
     private final JLabel player1Label = new MyJLabel("Player 1", SwingConstants.CENTER, GUIApp.BIG_FONT_SIZE);
     private final JLabel player1CoopLabel = new MyJLabel("cooperate key: W", SwingConstants.CENTER, GUIApp.NORMAL_FONT_SIZE);
@@ -20,7 +25,6 @@ public class GameSetUpJPanel extends JPanel {
     private final JButton startButton = new MyJButton("Start", GUIApp.NORMAL_FONT_SIZE);
 
     public GameSetUpJPanel() {
-//        initializeLabels();
         setLayout(new BorderLayout());
 
         JPanel centerPanel = new JPanel(new GridLayout(0, 2));

@@ -1,11 +1,15 @@
 package game.player;
 
+import game.GameObserver;
+
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class GUIPlayer extends AbstractPlayer {
     private final AtomicBoolean cooperateFlag = new AtomicBoolean(false);
     private final AtomicBoolean deflectFlag = new AtomicBoolean(false);
+    private final AtomicBoolean stopFlag = new AtomicBoolean(false);
 
     public GUIPlayer() {
         super();
@@ -15,11 +19,9 @@ public class GUIPlayer extends AbstractPlayer {
     public synchronized int getDecision(List<Integer> otherDecisionHistory) {
         boolean cooperate = cooperateFlag.compareAndSet(true, false);
         boolean deflect = deflectFlag.compareAndSet(true, false);
+        boolean stop = stopFlag.compareAndSet(true, false);
 
-//        boolean cooperate = false;
-//        boolean deflect = false;
-
-        while (!cooperate && !deflect) {
+        while (!cooperate && !deflect && !stop) {
             try {
                 wait();
             }
@@ -28,6 +30,11 @@ public class GUIPlayer extends AbstractPlayer {
             }
             cooperate = cooperateFlag.compareAndSet(true, false);
             deflect = deflectFlag.compareAndSet(true, false);
+            stop = stopFlag.compareAndSet(true, false);
+        }
+
+        if (stop) {
+            return 0;
         }
 
         if (cooperate) {
@@ -45,6 +52,11 @@ public class GUIPlayer extends AbstractPlayer {
 
     public synchronized void setDeflectFlag(boolean value) {
         deflectFlag.set(value);
+        notify();
+    }
+
+    public synchronized void setStopFlag(boolean value) {
+        stopFlag.set(value);
         notify();
     }
 }

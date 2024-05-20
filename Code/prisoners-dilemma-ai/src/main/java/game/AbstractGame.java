@@ -3,6 +3,9 @@ package game;
 import game.player.IPlayer;
 import utils.Pair;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * <p>
  *     Abstract implementation of IGame interface.
@@ -14,6 +17,8 @@ public abstract class AbstractGame<T extends IPlayer, D extends IPlayer> impleme
     private final T player1;
     private final D player2;
     private final int iterations; // number of rounds in game
+    volatile boolean stop = false;
+    private final List<GameObserver> observers = new LinkedList<>();
 
     protected AbstractGame(T player1, D player2, int iterations) {
         player1.setIndex(1);
@@ -42,7 +47,8 @@ public abstract class AbstractGame<T extends IPlayer, D extends IPlayer> impleme
     public void run() {
         player1.reset();
         player2.reset();
-        for (int i = 0; i < iterations; i++) {
+        stop = false;
+        for (int i = 0; i < iterations && !stop; i++) {
             evaluateDecisions();
         }
     }
@@ -64,4 +70,23 @@ public abstract class AbstractGame<T extends IPlayer, D extends IPlayer> impleme
      * </p>
      */
     protected abstract void evaluateDecisions();
+
+    @Override
+    public synchronized void stopGame() {
+        this.stop = true;
+        notifyGameObservers();
+    }
+
+    @Override
+    public void addGameObserver(GameObserver go) {
+        observers.add(go);
+    }
+    @Override
+    public void removeGameObserver(GameObserver go) {
+        observers.remove(go);
+    }
+    @Override
+    public void notifyGameObservers() {
+        observers.forEach(GameObserver::gameStopped);
+    }
 }

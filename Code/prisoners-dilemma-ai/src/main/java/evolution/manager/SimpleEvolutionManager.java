@@ -18,6 +18,7 @@ public class SimpleEvolutionManager<T extends ISpecimen<T>> implements IEvolutio
     private final int maxGenerationLimit;
     private final int acceptableFitness;
     private final List<INTuple<Integer>> generationsHistory = new LinkedList<>();
+    private volatile boolean stop = false;
 
     public SimpleEvolutionManager(IEvolution<T> evolution, int maxGenerationLimit, int acceptableFitness) {
         this.evolution = evolution;
@@ -27,7 +28,7 @@ public class SimpleEvolutionManager<T extends ISpecimen<T>> implements IEvolutio
 
     @Override
     public void runEvolution() {
-        while (evolution.getCurrentGenerationIndex() < maxGenerationLimit && acceptableFitness > evolution.getBestSpecimen().getFitness()) {
+        while (evolution.getCurrentGenerationIndex() < maxGenerationLimit && acceptableFitness > evolution.getBestSpecimen().getFitness() && !stop) {
             evolution.generateNextGeneration();
             generationsHistory.add(new NTuple<>(
                     evolution.getBestSpecimen().getFitness(),
@@ -45,5 +46,10 @@ public class SimpleEvolutionManager<T extends ISpecimen<T>> implements IEvolutio
     @Override
     public IEvolution<T> getEvolution() {
         return evolution;
+    }
+
+    @Override
+    public synchronized void stopEvolution() {
+        this.stop = true;
     }
 }

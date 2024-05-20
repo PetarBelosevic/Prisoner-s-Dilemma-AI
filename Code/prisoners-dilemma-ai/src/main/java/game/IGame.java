@@ -6,6 +6,8 @@ import game.player.IPlayer;
  * <p>
  *     Model of a iterative two-player game.
  * </p>
+ * This model is also subject for GameObservers.
+ *
  * @param <T> type of player1
  * @param <D> type of player2
  */
@@ -31,4 +33,34 @@ public interface IGame<T extends IPlayer, D extends IPlayer> {
      * </p>
      */
     void run();
+
+    /**
+     * <p>
+     *     Sends signal to stop the game and it's players if necessary.
+     * </p>
+     */
+    void stopGame();
+
+    /**
+     * <p>
+     *     Registers game observers.
+     * </p>
+     * @param go GameObserver
+     */
+    void addGameObserver(GameObserver go);
+
+    /**
+     * <p>
+     *     Removes game observers.
+     * </p>
+     * @param go GameObserver
+     */
+    void removeGameObserver(GameObserver go);
+
+    /**
+     * <p>
+     *     Notifies all game observers.
+     * </p>
+     */
+    void notifyGameObservers();
 }

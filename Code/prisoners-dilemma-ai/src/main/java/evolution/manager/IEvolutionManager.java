@@ -32,4 +32,11 @@ public interface IEvolutionManager<T extends ISpecimen<T>> {
      * @return evolution used in this manager
      */
     IEvolution<T> getEvolution();
+
+    /**
+     * <p>
+     *     Sends signal to stop evolution.
+     * </p>
+     */
+    void stopEvolution();
 }
