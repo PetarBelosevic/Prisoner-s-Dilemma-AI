@@ -17,7 +17,7 @@
 \naslov{Umjetna inteligencija u Zatvorenikovoj dilemi}
 
 % Broj rada / Thesis number
-\brojrada{!!!!}
+\brojrada{1678}
 
 % Autor / Author
 \author{Petar Belošević}
@@ -45,14 +45,13 @@
 
 % Zadatak se ubacuje iz vanjske datoteke / Thesis assignment is included from external file
 % Upiši ime PDF datoteke preuzete s FERWeb-a / Enter the filename of the PDF downloaded from FERWeb
-\zadatak{filename.pdf}
+\zadatak{Extra/hr-0036538383-73.pdf}
 
 
 %--- ZAHVALE / ACKNOWLEDGMENT --------------------------------------------------
 
 \begin{zahvale}
   % Ovdje upišite zahvale / Write in the acknowledgment
-  Hvala na kavi...
 \end{zahvale}
 
 
@@ -73,7 +72,7 @@ Trebaju nam samo radi testiranja kako izgleda referenciranje rada s konferencije
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=0.38\linewidth]{Figures/lenovo_yoga_tab3_pro_front.png} 
+  \includegraphics[width=0.38\linewidth]{Extra/lenovo_yoga_tab3_pro_front.png} 
   \caption{Moja prva slika}
   \label{slk:prvaslika}
 \end{figure}
@@ -96,19 +95,17 @@ Jednadžba \eqref{jed:prvajednadzba} je moja prva jednadžba koja definira par $
 
 	Zatvorenikova dilema jedan je od najpoznatijih problema iz područja teorije igara. Dilema proučava interakciju između dvaju pojedinaca kroz igru suradnje i izdaje. Zatvorenikova dilema se može pronaći u korijenu mnogih interakcija koje se pojavljuju u društvu, ali i u životinjskom svijetu. Glavno pitanje je kako ta interakcija utječe na dobrobit oba igrača. Paradoks u Zatvorenikove dileme je činjenica da racionalno razmišljanje navodi svakog pojedinca da odabire opciju koja ne odgovara niti jednom od igrača \cite{PrisDilemmaHrEnc}.
 	
-	U stvarnom životu su takve interakcije često ponavljajuće prirode. Tada je potrebno imati na umu da će druga strana vjerojatno imati iskustvo prošlih interakcija što može utjecati na njihovu odluku u novoj interakciji. Stoga je zanimljivo promatranje malo složenijeg problema iterirajuće Zatvorenikove dileme. Zanimljivo je da se u iterirajućem problemu mijenja pristup optimalnoj strategiji u odnosu na jednokratnu Zatvorenikovu dilemu.
+	U stvarnom životu su takve interakcije često ponavljajuće prirode. Tada je potrebno imati na umu da će druga strana vjerojatno imati iskustvo prošlih interakcija što može utjecati na njihovu odluku u novoj interakciji. Stoga je interesantno razmatranje malo složenijeg problema iterirajuće Zatvorenikove dileme. Zanimljivo je da se u iterirajućem problemu mijenja pristup optimalnoj strategiji u odnosu na jednokratnu Zatvorenikovu dilemu.
 	
 	U korijenu Zatvorenikove dileme je napetost između individualnog racionalizma (u pogledu da je objema stranama smisleno biti sebičan) i grupnog racionalizma (objema stranama je isplativija obostrana suradnja nego obostrana izdaja) \cite{1980Axelrod1}.
 	
-	Mnogo je radova na pisano na temu optimalnog načina igranja Zatvorenikove dileme. Tako je Robert Axelrod iz Sveučilišta u Michiganu održao dva turnira u kojima su sudionici predavali svoje strategije za igranje igre u obliku računalnih programa \cite{1980Axelrod1} \cite{1980Axelrod2}. Analizom turnira došlo se zanimljivih zaključaka. Axelrod je proučavanjem strategija i njihovih rezultata izlučio nekoliko karakteristika koje imale tendenciju davati bolje rezultate. Te karakteristike su ljubaznost, opraštanje i provokabilnost \cite{1980Axelrod2}. \textit{Možda izbaciti zadnju rečenicu?}
+	Mnogo je radova na pisano na temu optimalnog načina igranja Zatvorenikove dileme. Tako je Robert Axelrod iz Sveučilišta u Michiganu održao dva turnira u kojima su sudionici predavali svoje strategije za igranje igre u obliku računalnih programa \cite{1980Axelrod1} \cite{1980Axelrod2}. Analizom turnira došlo se zanimljivih zaključaka. Axelrod je proučavanjem strategija i njihovih rezultata izlučio nekoliko karakteristika koje imale tendenciju davati bolje rezultate. Te karakteristike su ljubaznost, opraštanje i provokabilnost \cite{1980Axelrod2}. \textit{\textbf{Možda izbaciti zadnju rečenicu?}}
 	
-	Glavna ideja ovog rada je napraviti model inteligentnog igrača koji će naučiti igrati iterirajuću Zatvorenikovu dilemu. Cilj ovoga je proučiti kakvo će ponašanje razviti inteligentni igrač i kako će igrati protiv nekih drugih poznatih strategija. Također će biti zanimljivo analizirati ponašanje inteligentnog igrača i vidjeti je li razvio karakteristike koje su se pokazale poželjnima u Axelrodovim turnirima.
+	Glavni cilj ovog rada je napraviti model inteligentnog igrača koji će naučiti igrati iterirajuću Zatvorenikovu dilemu. Cilj ovoga je proučiti kakvo će ponašanje razviti inteligentni igrač i kako će igrati protiv nekih drugih poznatih strategija. Također će biti zanimljivo analizirati ponašanje inteligentnog igrača i vidjeti je li razvio karakteristike koje su se pokazale poželjnima u Axelrodovim turnirima.
 
 %-------------------------------------------------------------------------------
-\chapter{Glavni dio}
+\chapter{Zatvorenikova dilema}
 \label{pog:glavni_dio}
-
-\section{Zatvorenikova dilema}
 
 	Zatvorenikova dilema je poznati problem iz područja teorije igara koji proučava odnose između pojedinaca. Radi se o igri sa dva igrača koji imaju na izboru dva poteza: suradnja sa drugim igračem, ili izdaja drugog igrača. S obzirom na odabir oba igrača, svakom od njih se daje određena kazna ili nagrada. 
 	
@@ -116,7 +113,7 @@ Jednadžba \eqref{jed:prvajednadzba} je moja prva jednadžba koja definira par $
 	
 	Dilema se naravno može staviti i opisati kroz razne slikovite kontekste. No, u ovom radu ćemo radi jednostavnosti dilemu gledati samo kao igru u kojoj igrači skupljaju bodove.
 	
-	\textit{Još raspisati?}
+	\textit{\textbf{Još raspisati?}}
 
 	Generalna pravila za "bodovanje" je da obostrana suradnja i obostrana izdaja daju simetričnu podjelu bodova, uz to da suradnja daje veći broj bodova. U slučaju da jedan igrač surađuje dok ga drugi izdaje dolazi do nesimetrične podjele bodova. Igrač koje je izdan mora dobiti manje bodove nego bi dobio obostranom izdajom. Igrač koji ga je izdao tim potezom mora dobiti više nego bi dobio obostranom suradnjom. Tipična raspodjela bodova \cite{1980Axelrod1} koja će se koristiti i u ovom radu dana je u tablici \ref{Payoffs}.
 	
@@ -143,7 +140,7 @@ Jednadžba \eqref{jed:prvajednadzba} je moja prva jednadžba koja definira par $
 	 
 	Zbog ove karakteristike Zatvorenikova dilema dobro opisuje mnoge probleme iz stvarnog života i objašnjava zašto je ponekad suradnja sa neprijateljem poželjna. Poznati je takav primjer problem prekomjernog naoružavanja i međusobnog nepovjerenja SAD-a i SSSR-a tijekom hladnog rata \cite{1980Axelrod1} Upravo je i taj problem bio jedan od motiva nastanka i proučavanja Zatvorenikove dileme.
 
-	\subsection{Dobra strategija}
+	\section{Dobra strategija}
 	
 		Pitanje koje se prirodno nameće u Zatvorenikovoj dilemi je dosta očito: Kako dobro igrati ovu igru? Kojom strategijom pristupiti ovoj igri?
 
@@ -163,31 +160,42 @@ Jednadžba \eqref{jed:prvajednadzba} je moja prva jednadžba koja definira par $
 	
 		Axelrod je u svojem radu napomenuo važnu stvar, a to je da ne postoji najbolja strategija za Zatvorenikovu dilemu. To proizlazi iz jednostavne činjenice da performansa strategije uvelike ovisi o strategijama s kojima ta strategija igra. Dakle, okruženje u kojem se nalazi je od presudne važnosti \cite{1980Axelrod1}.
 	
-		No kroz detaljnu analizu drugog turnira Axelrod je ustanovio da su navedene karakteristike generalno poželjne i donose dobre rezultate. Također, iako "Tit for Tat" nije univerzalno najbolja strategija, pokazuje se da generalno daje odlične rezultate u raznim okruženjima zbog dobro kombiniranih poželjnih karakteristika \cite{1980Axelrod2}.
+		No kroz detaljnu analizu drugog turnira Axelrod je ustanovio da su navedene karakteristike generalno poželjne i u pravilu donose dobre rezultate. Također, iako "Tit for Tat" nije univerzalno najbolja strategija, pokazuje se da generalno daje odlične rezultate u raznim okruženjima zbog dobro kombiniranih poželjnih karakteristika \cite{1980Axelrod2}.
 	
 		Axelrod je također napomenuo da je kod kreiranja strategije potrebna analiza na barem 3 dubine \cite{1980Axelrod1}. Prva razina je direktna posljedica trenutne odluke, to jest, koliko bodova igrač dobiva na temelju svoje odluke. Druga razina je uzimanje u obzira da će drugi igrač možda odlučiti kazniti izdaju. Treća razina razmatra da reagiranje na izdaju može prouzrokovati eho efekt međusobnih izdaja koji će dugoročno štetiti i jednom i drugom igraču.
 
-\section{Umjetne neuronske mreže}
+\chapter{Umjetne neuronske mreže}
 
-	Ili nešto drugo?
+	U svrhu implementacije inteligentnog igrača koji će igrati Zatvorenikovu dilemu korištene su umjetne neuronske mreže.
+	
+	\textit{\textbf{Odakle citirati?}}
+	
+	Umjetne neuronske mreže su jedan od mnogih koncepata u strojnom učenju, koje je najpopularnija grana područja umjetne inteligencije. Neuronsku mrežu čine međusobno povezani umjetni neuroni. 
+	
+	Umjetni neuron je najmanja funkcionalna jedinka neuronske mreže i modelira biološki neuron u ljudskom mozgu. Umjetni neuroni mogu izvršavati vrlo jednostavnu obradu podataka. Svaki umjetni neuron na ulazu prima nekakve vrijednosti (izlazi drugih neurona ili ulazni podaci). Dobiveni ulazi se zbrajaju u jednu sumu koja se provlači kroz takozvanu prijenosnu funkciju. Rezultat prijenosne funkcije se postavlja na izlaz umjetnog neurona te se propagira dalje na ulaze drugih neurona ili na izlaz neuronske mreže. Postoje razne prijenosne funkcije različitih složenosti koje se mogu koristiti kod umjetnih neurona, a neke od njih su: funkcija identiteta, funkcija skoka, sigmoidalna funkcija, tangens hiperbolni, funkcija zglobnica, funkcija propusna zglobnica.
 
-\section{Definiranje pokusa}
+	\textit{\textbf{Neka slika neurona (i prijenosnih funkcija)}}
+	
+	Umjetni neuroni se u umjetnim neuronskim mrežama obično organiziraju u slojeve. Tako razlikujemo ulazni sloj, skrivene slojeve i izlazni sloj. Skriveni slojevi i izlazni sloj se sastoje od umjetnih neurona dok ulazni sloj zapravo ne sadrži umjetne neurone kakvi su opisani u odjeljku iznad. Neuroni ulaznog sloja na svoje ulaze samo primaju ulazne podatke neuronske mreže te ih dalje prosljeđuju neuronima prvog skrivenog sloja.
+	
+	Arhitektura umjetne neuronske mreže opisuje kako su povezani umjetni neuroni u mreži i koliko ih ima. Postoje razne arhitekture neuronskih mreža, što jednostavnih, što kompleksnih, a svaka ima svoje prednosti i područja u kojima su našle primjenu.
+	
+	U ovom radu koristit će se jednostavna Elmanova neuronska mreža sa potpuno povezanim slojevima.
+	
+	\section{Elmanova neuronska mreža}
+	
+		O Elmanovoj neuronskoj mreži...
+	
+\chapter{Treniranje inteligentnog igrača}
+
+	Dobro pitanje
+
+\chapter{Definiranje pokusa}
 
 	Jedna "iteracija" se sastoji od npr. 50 ponavljanja Zatvorenikove dileme.
 
-\section{Arhitektura inteligentnog igrača}
 
-\subsection{Ulazni sloj}
 
-	50 neurona - jedan za svaki potez suparnika u jednom od ponavljanja igre. Time Inteligentni igrač ima povijest svih poteza suparnika u trenutnoj iteraciji.
-
-\subsection{Unutarnji slojevi}
-
-\subsection{Izlazni sloj}
-
-\section{Treniranje inteligentnog igrača}
-
-	Dobro pitanje
 
 % \Blindtext
 

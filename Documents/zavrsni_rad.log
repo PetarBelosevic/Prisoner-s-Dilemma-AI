@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.23)  9 MAR 2024 19:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.23)  20 MAY 2024 21:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -951,9 +951,43 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2023/
-texmf-dist/fonts/enc/dvips/opensans/a_jg4h6q.enc}] [2
-
-{c:/texlive/2023/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-t1.enc}]
+texmf-dist/fonts/enc/dvips/opensans/a_jg4h6q.enc}]
+<Extra/hr-0036538383-73.pdf, id=61, 598.235pt x 845.1575pt>
+File: Extra/hr-0036538383-73.pdf Graphic file (type pdf)
+<use Extra/hr-0036538383-73.pdf>
+Package pdftex.def Info: Extra/hr-0036538383-73.pdf  used on input line 48.
+(pdftex.def)             Requested size: 598.23354pt x 845.15544pt.
+File: Extra/hr-0036538383-73.pdf Graphic file (type pdf)
+<use Extra/hr-0036538383-73.pdf>
+Package pdftex.def Info: Extra/hr-0036538383-73.pdf  used on input line 48.
+(pdftex.def)             Requested size: 598.23354pt x 845.15544pt.
+<Extra/hr-0036538383-73.pdf, id=64, page=1, 598.235pt x 845.1575pt>
+File: Extra/hr-0036538383-73.pdf Graphic file (type pdf)
+<use Extra/hr-0036538383-73.pdf, page 1>
+Package pdftex.def Info: Extra/hr-0036538383-73.pdf , page1 used on input line 
+48.
+(pdftex.def)             Requested size: 598.23354pt x 845.15544pt.
+File: Extra/hr-0036538383-73.pdf Graphic file (type pdf)
+<use Extra/hr-0036538383-73.pdf, page 1>
+Package pdftex.def Info: Extra/hr-0036538383-73.pdf , page1 used on input line 
+48.
+(pdftex.def)             Requested size: 597.7406pt x 844.45905pt.
+File: Extra/hr-0036538383-73.pdf Graphic file (type pdf)
+<use Extra/hr-0036538383-73.pdf, page 1>
+Package pdftex.def Info: Extra/hr-0036538383-73.pdf , page1 used on input line 
+48.
+(pdftex.def)             Requested size: 597.7406pt x 844.45905pt.
+File: Extra/hr-0036538383-73.pdf Graphic file (type pdf)
+<use Extra/hr-0036538383-73.pdf, page 1>
+Package pdftex.def Info: Extra/hr-0036538383-73.pdf , page1 used on input line 
+48.
+(pdftex.def)             Requested size: 597.7406pt x 844.45905pt.
+File: Extra/hr-0036538383-73.pdf Graphic file (type pdf)
+<use Extra/hr-0036538383-73.pdf, page 1>
+Package pdftex.def Info: Extra/hr-0036538383-73.pdf , page1 used on input line 
+48.
+(pdftex.def)             Requested size: 597.7406pt x 844.45905pt.
+ [2 <./Extra/hr-0036538383-73.pdf>]
 LaTeX Font Info:    Font shape `T1/stix2/m/sl' in size <12> not available
 (Font)              Font shape `T1/stix2/m/it' tried instead on input line 53.
  [3
@@ -962,10 +996,11 @@ LaTeX Font Info:    Font shape `T1/stix2/m/sl' in size <12> not available
 LaTeX Font Info:    Font shape `T1/opensans-TLF/bx/n' in size <18> not availabl
 e
 (Font)              Font shape `T1/opensans-TLF/b/n' tried instead on input lin
-e 64.
+e 63.
 LaTeX Font Info:    Font shape `T1/opensans-TLF/b/n' will be
-(Font)              scaled to size 18.0pt on input line 64.
- (./zavrsni_rad.toc)
+(Font)              scaled to size 18.0pt on input line 63.
+
+(./zavrsni_rad.toc)
 \tf@toc=\write4
 \openout4 = `zavrsni_rad.toc'.
 
@@ -974,20 +1009,20 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.68 \chapter
+l.67 \chapter
              {Uvod} [1
 
 
-]
+{c:/texlive/2023/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-t1.enc}]
 Poglavlje 1..
-<Figures/lenovo_yoga_tab3_pro_front.png, id=115, 562.1pt x 346.29375pt>
-File: Figures/lenovo_yoga_tab3_pro_front.png Graphic file (type png)
-<use Figures/lenovo_yoga_tab3_pro_front.png>
-Package pdftex.def Info: Figures/lenovo_yoga_tab3_pro_front.png  used on input 
-line 76.
+<Extra/lenovo_yoga_tab3_pro_front.png, id=113, 562.1pt x 346.29375pt>
+File: Extra/lenovo_yoga_tab3_pro_front.png Graphic file (type png)
+<use Extra/lenovo_yoga_tab3_pro_front.png>
+Package pdftex.def Info: Extra/lenovo_yoga_tab3_pro_front.png  used on input li
+ne 75.
 (pdftex.def)             Requested size: 167.58888pt x 103.24426pt.
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 8
-2.
+1.
 (c:/texlive/2023/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
@@ -995,30 +1030,24 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.95 \break
+l.94 \break
             [2
 
 {c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{c:/texliv
 e/2023/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-mathcal.enc}{c:/texlive/202
 3/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-mathrm.enc}{c:/texlive/2023/texm
 f-dist/fonts/enc/dvips/stix2-type1/stix2-mathit.enc}{c:/texlive/2023/texmf-dist
-/fonts/enc/dvips/stix2-type1/stix2-mathscr.enc} <./Figures/lenovo_yoga_tab3_pro
-_front.png>]
+/fonts/enc/dvips/stix2-type1/stix2-mathscr.enc} <./Extra/lenovo_yoga_tab3_pro_f
+ront.png>]
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.108 \chapter
-              {Glavni dio} [3]
+l.107 \chapter
+              {Zatvorenikova dilema} [3]
 Poglavlje 2..
-LaTeX Font Info:    Font shape `T1/opensans-TLF/bx/n' in size <16> not availabl
-e
-(Font)              Font shape `T1/opensans-TLF/b/n' tried instead on input lin
-e 111.
-LaTeX Font Info:    Font shape `T1/opensans-TLF/b/n' will be
-(Font)              scaled to size 16.0pt on input line 111.
 
-Overfull \hbox (5.45387pt too wide) in paragraph at lines 115--116
+Overfull \hbox (5.45387pt too wide) in paragraph at lines 112--113
 \T1/stix2/m/n/12 sana u kon-tek-stu odvo-je-nog is-pi-ti-va-nja dvo-jice osum-n
 ji-£e-nih kri-mi-na-laca. Svaki od osum-
  []
@@ -1035,14 +1064,20 @@ ji-£e-nih kri-mi-na-laca. Svaki od osum-
 > Step: calculate cell and line sizes.
 > Step: build the whole table.
 
-Overfull \hbox (1.08264pt too wide) in paragraph at lines 144--145
+Overfull \hbox (1.08264pt too wide) in paragraph at lines 141--142
 []\T1/stix2/m/n/12 Zbog ove ka-rak-te-ris-tike Za-tvo-re-ni-kova di-lema do-bro
  opi-suje mnoge pro-bleme iz stvar-
  []
 
+LaTeX Font Info:    Font shape `T1/opensans-TLF/bx/n' in size <16> not availabl
+e
+(Font)              Font shape `T1/opensans-TLF/b/n' tried instead on input lin
+e 143.
+LaTeX Font Info:    Font shape `T1/opensans-TLF/b/n' will be
+(Font)              scaled to size 16.0pt on input line 143.
 [5]
 LaTeX Font Info:    Trying to load font information for TS1+stix2 on input line
- 157.
+ 154.
  (c:/texlive/2023/texmf-dist/tex/latex/stix2-type1/ts1stix2.fd
 File: ts1stix2.fd 2018/04/02 v2.0.0-latex stix2 TS1 font definitions
 ) [6{c:/texlive/2023/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-ts1.enc}] [7]
@@ -1050,31 +1085,43 @@ File: ts1stix2.fd 2018/04/02 v2.0.0-latex stix2 TS1 font definitions
 Poglavlje 3..
 [8
 
-]
+] [9]
 Poglavlje 4..
-(./zavrsni_rad.bbl [9
+[10
 
-] [10
+]
+Poglavlje 5..
+[11
 
-]) [11]
-Overfull \hbox (9.77625pt too wide) in paragraph at lines 230--233
+]
+Poglavlje 6..
+[12
+
+]
+Poglavlje 7..
+(./zavrsni_rad.bbl [13
+
+] [14
+
+]) [15]
+Overfull \hbox (9.77625pt too wide) in paragraph at lines 238--241
 \T1/stix2/b/n/12 Klju£ne ri-je£i:   \T1/stix2/m/n/12 Za-tvo-re-ni-kova di-lema,
  umjetna in-te-li-gen-cija, umjetne ne-uron-ske mreºe,
  []
 
-[12
+[16
 
-] [13
+] [17
 
 ]
 pdfTeX warning (ext4): destination with the same identifier (name{chapter.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.254 \chapter{The Code}
+l.262 \chapter{The Code}
                         
 Privitak A.
-[14
+[18
 
 
 ] (./zavrsni_rad.aux)
@@ -1197,34 +1244,39 @@ ls1stix2sf.fd    2018/04/02 v2.0.0-latex stix2 sans-serif LS1 font definitions
 ls2stix2tt.fd    2018/04/02 v2.0.0-latex stix2 typewriter LS2 font definitions
     umsa.fd    2013/01/14 v3.01 AMS symbols A
     umsb.fd    2013/01/14 v3.01 AMS symbols B
-Figures/lenovo_yoga_tab3_pro_front.png
+Extra/hr-0036538383-73.pdf
+Extra/hr-0036538383-73.pdf
+Extra/hr-0036538383-73.pdf
+Extra/hr-0036538383-73.pdf
+Extra/lenovo_yoga_tab3_pro_front.png
   t1cmtt.fd    2023/04/13 v2.5m Standard LaTeX font definitions
 ts1stix2.fd    2018/04/02 v2.0.0-latex stix2 TS1 font definitions
 zavrsni_rad.bbl
  ***********
 
 Package rerunfilecheck Info: File `zavrsni_rad.out' has not changed.
-(rerunfilecheck)             Checksum: 071E83C825DD792A98B496F348F7A327;2212.
+(rerunfilecheck)             Checksum: 4A986CEE5C0D8F4FDB75A51056D3661B;1629.
  ) 
 Here is how much of TeX's memory you used:
- 20694 strings out of 474503
- 343850 string characters out of 5756704
+ 20708 strings out of 474503
+ 344296 string characters out of 5756704
  1938043 words of memory out of 5000000
- 42283 multiletter control sequences out of 15000+600000
- 639722 words of font info for 142 fonts, out of 8000000 for 9000
+ 42294 multiletter control sequences out of 15000+600000
+ 647414 words of font info for 143 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,6n,131p,642b,659s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 87i,17n,131p,803b,661s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Bold.pfb><
 c:/texlive/2023/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Regular.pfb><
 c:/texlive/2023/texmf-dist/fonts/type1/public/stix2-type1/STIX2Math.pfb><c:/tex
 live/2023/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Bold.pfb><c:/texl
-ive/2023/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Italic.pfb><c:/tex
-live/2023/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Regular.pfb><c:/t
-exlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on zavrsni_rad.pdf (17 pages, 846896 bytes).
+ive/2023/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-BoldItalic.pfb><c:
+/texlive/2023/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Italic.pfb><c
+:/texlive/2023/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Regular.pfb>
+<c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on zavrsni_rad.pdf (21 pages, 996325 bytes).
 PDF statistics:
- 286 PDF objects out of 1000 (max. 8388607)
- 244 compressed objects within 3 object streams
+ 307 PDF objects out of 1000 (max. 8388607)
+ 251 compressed objects within 3 object streams
  46 named destinations out of 1000 (max. 500000)
- 142 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 130 words of extra memory for PDF output out of 10000 (max. 10000000)
 

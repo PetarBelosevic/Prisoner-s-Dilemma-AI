@@ -48,10 +48,13 @@ public class ElmanNNLayer extends AbstractLayer {
     public INDArray getOutput(INDArray input) {
         getParameters()[2].mmuli(context, context);
         super.getOutput(input).addi(context, getResult());
+
+        INDArray res = applyActivationFunction();
         for (int i = 0; i < getResult().length(); i++) {
-            context.putScalar(i, getResult().getDouble(i));
+            context.putScalar(i, res.getDouble(i));
         }
-        return getResult();
+        
+        return res;
     }
 
     @Override
