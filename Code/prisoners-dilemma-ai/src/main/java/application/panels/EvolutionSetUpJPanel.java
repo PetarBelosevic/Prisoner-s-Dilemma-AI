@@ -21,7 +21,7 @@ public class EvolutionSetUpJPanel extends JPanel {
 
     private final JSpinner smallMutationChanceSpinner = createJSpinner(0.05, 0.0, 1.0, 0.01);
     private final JSpinner smallMutationMagnitudeSpinner = createJSpinner(1, 0, -1, -1);
-    private final JSpinner bigMutationChanceSpinner = createJSpinner(0.01, 0.0, 1.0, 0.01);
+    private final JSpinner bigMutationChanceSpinner = createJSpinner(0.01, 0.0, 1.0, 0.001);
     private final JSpinner bigMutationMagnitudeSpinner = createJSpinner(6, 0, -1, -1);
     private final JSpinner numberOfParentsSpinner = createJSpinner(1, 1, 2, 1);
     private final JSpinner generationSizeSpinner = createJSpinner(40, 0, -1, -1);

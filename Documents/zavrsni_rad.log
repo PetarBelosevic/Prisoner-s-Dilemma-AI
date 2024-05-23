@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.23)  20 MAY 2024 21:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.23)  23 MAY 2024 10:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -952,7 +952,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2023/
 texmf-dist/fonts/enc/dvips/opensans/a_jg4h6q.enc}]
-<Extra/hr-0036538383-73.pdf, id=61, 598.235pt x 845.1575pt>
+<Extra/hr-0036538383-73.pdf, id=69, 598.235pt x 845.1575pt>
 File: Extra/hr-0036538383-73.pdf Graphic file (type pdf)
 <use Extra/hr-0036538383-73.pdf>
 Package pdftex.def Info: Extra/hr-0036538383-73.pdf  used on input line 48.
@@ -961,7 +961,7 @@ File: Extra/hr-0036538383-73.pdf Graphic file (type pdf)
 <use Extra/hr-0036538383-73.pdf>
 Package pdftex.def Info: Extra/hr-0036538383-73.pdf  used on input line 48.
 (pdftex.def)             Requested size: 598.23354pt x 845.15544pt.
-<Extra/hr-0036538383-73.pdf, id=64, page=1, 598.235pt x 845.1575pt>
+<Extra/hr-0036538383-73.pdf, id=72, page=1, 598.235pt x 845.1575pt>
 File: Extra/hr-0036538383-73.pdf Graphic file (type pdf)
 <use Extra/hr-0036538383-73.pdf, page 1>
 Package pdftex.def Info: Extra/hr-0036538383-73.pdf , page1 used on input line 
@@ -1015,7 +1015,27 @@ l.67 \chapter
 
 {c:/texlive/2023/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-t1.enc}]
 Poglavlje 1..
-<Extra/lenovo_yoga_tab3_pro_front.png, id=113, 562.1pt x 346.29375pt>
+
+LaTeX Warning: Citation `6248073' on page 2 undefined on input line 70.
+
+
+LaTeX Warning: Citation `6247753' on page 2 undefined on input line 70.
+
+
+LaTeX Warning: Citation `ghiglia_pritt_phase_unwrapping' on page 2 undefined on
+ input line 70.
+
+
+LaTeX Warning: Citation `hartley2003multiple' on page 2 undefined on input line
+ 70.
+
+
+LaTeX Warning: Citation `4250461' on page 2 undefined on input line 70.
+
+
+LaTeX Warning: Citation `123DCatch' on page 2 undefined on input line 70.
+
+<Extra/lenovo_yoga_tab3_pro_front.png, id=117, 562.1pt x 346.29375pt>
 File: Extra/lenovo_yoga_tab3_pro_front.png Graphic file (type png)
 <use Extra/lenovo_yoga_tab3_pro_front.png>
 Package pdftex.def Info: Extra/lenovo_yoga_tab3_pro_front.png  used on input li
@@ -1046,12 +1066,6 @@ been already used, duplicate ignored
 l.107 \chapter
               {Zatvorenikova dilema} [3]
 Poglavlje 2..
-
-Overfull \hbox (5.45387pt too wide) in paragraph at lines 112--113
-\T1/stix2/m/n/12 sana u kon-tek-stu odvo-je-nog is-pi-ti-va-nja dvo-jice osum-n
-ji-£e-nih kri-mi-na-laca. Svaki od osum-
- []
-
 [4
 
 ]
@@ -1085,43 +1099,43 @@ File: ts1stix2.fd 2018/04/02 v2.0.0-latex stix2 TS1 font definitions
 Poglavlje 3..
 [8
 
-] [9]
+] [9] [10]
 Poglavlje 4..
-[10
-
-]
-Poglavlje 5..
 [11
+
+] [12]
+Poglavlje 5..
+[13
 
 ]
 Poglavlje 6..
-[12
+[14
 
 ]
 Poglavlje 7..
-(./zavrsni_rad.bbl [13
+(./zavrsni_rad.bbl [15
 
-] [14
+]) [16
 
-]) [15]
-Overfull \hbox (9.77625pt too wide) in paragraph at lines 238--241
+]
+Overfull \hbox (9.77625pt too wide) in paragraph at lines 268--271
 \T1/stix2/b/n/12 Klju£ne ri-je£i:   \T1/stix2/m/n/12 Za-tvo-re-ni-kova di-lema,
  umjetna in-te-li-gen-cija, umjetne ne-uron-ske mreºe,
  []
 
-[16
+[17
 
-] [17
+] [18
 
 ]
 pdfTeX warning (ext4): destination with the same identifier (name{chapter.1}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.262 \chapter{The Code}
+l.292 \chapter{The Code}
                         
 Privitak A.
-[18
+[19
 
 
 ] (./zavrsni_rad.aux)
@@ -1254,17 +1268,20 @@ ts1stix2.fd    2018/04/02 v2.0.0-latex stix2 TS1 font definitions
 zavrsni_rad.bbl
  ***********
 
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `zavrsni_rad.out' has not changed.
-(rerunfilecheck)             Checksum: 4A986CEE5C0D8F4FDB75A51056D3661B;1629.
+(rerunfilecheck)             Checksum: 7C315D790FCB3E3775AE83950704E778;1839.
  ) 
 Here is how much of TeX's memory you used:
- 20708 strings out of 474503
- 344296 string characters out of 5756704
+ 20706 strings out of 474503
+ 344289 string characters out of 5756704
  1938043 words of memory out of 5000000
- 42294 multiletter control sequences out of 15000+600000
+ 42292 multiletter control sequences out of 15000+600000
  647414 words of font info for 143 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,17n,131p,803b,661s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 87i,17n,131p,827b,661s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Bold.pfb><
 c:/texlive/2023/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Regular.pfb><
 c:/texlive/2023/texmf-dist/fonts/type1/public/stix2-type1/STIX2Math.pfb><c:/tex
@@ -1273,10 +1290,10 @@ ive/2023/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-BoldItalic.pfb><c:
 /texlive/2023/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Italic.pfb><c
 :/texlive/2023/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Regular.pfb>
 <c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on zavrsni_rad.pdf (21 pages, 996325 bytes).
+Output written on zavrsni_rad.pdf (22 pages, 989204 bytes).
 PDF statistics:
- 307 PDF objects out of 1000 (max. 8388607)
- 251 compressed objects within 3 object streams
+ 320 PDF objects out of 1000 (max. 8388607)
+ 263 compressed objects within 3 object streams
  46 named destinations out of 1000 (max. 500000)
- 130 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 146 words of extra memory for PDF output out of 10000 (max. 10000000)
 

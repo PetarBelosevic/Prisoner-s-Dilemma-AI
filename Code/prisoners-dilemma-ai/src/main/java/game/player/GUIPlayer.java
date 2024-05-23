@@ -1,8 +1,5 @@
 package game.player;
 
-import game.GameObserver;
-
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 

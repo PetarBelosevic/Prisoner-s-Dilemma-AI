@@ -99,7 +99,7 @@ Jednadžba \eqref{jed:prvajednadzba} je moja prva jednadžba koja definira par $
 	
 	U korijenu Zatvorenikove dileme je napetost između individualnog racionalizma (u pogledu da je objema stranama smisleno biti sebičan) i grupnog racionalizma (objema stranama je isplativija obostrana suradnja nego obostrana izdaja) \cite{1980Axelrod1}.
 	
-	Mnogo je radova na pisano na temu optimalnog načina igranja Zatvorenikove dileme. Tako je Robert Axelrod iz Sveučilišta u Michiganu održao dva turnira u kojima su sudionici predavali svoje strategije za igranje igre u obliku računalnih programa \cite{1980Axelrod1} \cite{1980Axelrod2}. Analizom turnira došlo se zanimljivih zaključaka. Axelrod je proučavanjem strategija i njihovih rezultata izlučio nekoliko karakteristika koje imale tendenciju davati bolje rezultate. Te karakteristike su ljubaznost, opraštanje i provokabilnost \cite{1980Axelrod2}. \textit{\textbf{Možda izbaciti zadnju rečenicu?}}
+	Mnogo je radova na pisano na temu optimalnog načina igranja Zatvorenikove dileme. Tako je Robert Axelrod iz Sveučilišta u Michiganu održao dva turnira u kojima su sudionici predavali svoje strategije za igranje igre u obliku računalnih programa \cite{1980Axelrod1} \cite{1980Axelrod2}. Analizom turnira došlo se zanimljivih zaključaka. Axelrod je proučavanjem strategija i njihovih rezultata izlučio nekoliko karakteristika koje imale tendenciju davati bolje rezultate. Te karakteristike su ljubaznost, opraštanje i provokabilnost \cite{1980Axelrod2}.
 	
 	Glavni cilj ovog rada je napraviti model inteligentnog igrača koji će naučiti igrati iterirajuću Zatvorenikovu dilemu. Cilj ovoga je proučiti kakvo će ponašanje razviti inteligentni igrač i kako će igrati protiv nekih drugih poznatih strategija. Također će biti zanimljivo analizirati ponašanje inteligentnog igrača i vidjeti je li razvio karakteristike koje su se pokazale poželjnima u Axelrodovim turnirima.
 
@@ -168,33 +168,63 @@ Jednadžba \eqref{jed:prvajednadzba} je moja prva jednadžba koja definira par $
 
 	U svrhu implementacije inteligentnog igrača koji će igrati Zatvorenikovu dilemu korištene su umjetne neuronske mreže.
 	
-	\textit{\textbf{Odakle citirati?}}
+	Umjetne neuronske mreže su jedan od mnogih koncepata u strojnom učenju, koje je najpopularnija grana područja umjetne inteligencije. Neuronsku mrežu čine međusobno povezani umjetni neuroni. Područje koje se bavi umjetnim neuronskim mrežama zove se neuro-računarstvo, koje čini granu računarstva iz skupine mekog-računarstva. \cite{skriptaNeuronskeMreze} 
 	
-	Umjetne neuronske mreže su jedan od mnogih koncepata u strojnom učenju, koje je najpopularnija grana područja umjetne inteligencije. Neuronsku mrežu čine međusobno povezani umjetni neuroni. 
-	
-	Umjetni neuron je najmanja funkcionalna jedinka neuronske mreže i modelira biološki neuron u ljudskom mozgu. Umjetni neuroni mogu izvršavati vrlo jednostavnu obradu podataka. Svaki umjetni neuron na ulazu prima nekakve vrijednosti (izlazi drugih neurona ili ulazni podaci). Dobiveni ulazi se zbrajaju u jednu sumu koja se provlači kroz takozvanu prijenosnu funkciju. Rezultat prijenosne funkcije se postavlja na izlaz umjetnog neurona te se propagira dalje na ulaze drugih neurona ili na izlaz neuronske mreže. Postoje razne prijenosne funkcije različitih složenosti koje se mogu koristiti kod umjetnih neurona, a neke od njih su: funkcija identiteta, funkcija skoka, sigmoidalna funkcija, tangens hiperbolni, funkcija zglobnica, funkcija propusna zglobnica.
+	Umjetni neuron je najmanja funkcionalna jedinka neuronske mreže i modelira biološki neuron u ljudskom mozgu. Umjetni neuroni imaju ulogu jednostavne procesne jedinice. Svaki umjetni neuron na ulazu prima nekakve vrijednosti (izlazi drugih neurona ili ulazni podaci). Dobiveni ulazi se zbrajaju u jednu sumu koja se provlači kroz takozvanu prijenosnu funkciju. Rezultat prijenosne funkcije se postavlja na izlaz umjetnog neurona te se propagira dalje na ulaze drugih neurona ili na izlaz neuronske mreže. Postoje razne prijenosne funkcije različitih složenosti koje se mogu koristiti kod umjetnih neurona, a neke od njih su: funkcija identiteta, funkcija skoka, sigmoidna funkcija, tangens hiperbolni, funkcija zglobnica, funkcija propusna zglobnica \cite{skriptaNeuronskeMreze}.
 
 	\textit{\textbf{Neka slika neurona (i prijenosnih funkcija)}}
 	
+	Arhitektura umjetne neuronske mreže opisuje kako su povezani umjetni neuroni u mreži i koliko ih ima. Postoje razne arhitekture neuronskih mreža, što jednostavnih, što kompleksnih, a svaka ima svoje prednosti i područja u kojima su našle primjenu. Neke od generalnih vrsta umjetnih neuronskih mreža su unaprijedna, povratna, potpuno povezana, konvolucijska.
+	
 	Umjetni neuroni se u umjetnim neuronskim mrežama obično organiziraju u slojeve. Tako razlikujemo ulazni sloj, skrivene slojeve i izlazni sloj. Skriveni slojevi i izlazni sloj se sastoje od umjetnih neurona dok ulazni sloj zapravo ne sadrži umjetne neurone kakvi su opisani u odjeljku iznad. Neuroni ulaznog sloja na svoje ulaze samo primaju ulazne podatke neuronske mreže te ih dalje prosljeđuju neuronima prvog skrivenog sloja.
 	
-	Arhitektura umjetne neuronske mreže opisuje kako su povezani umjetni neuroni u mreži i koliko ih ima. Postoje razne arhitekture neuronskih mreža, što jednostavnih, što kompleksnih, a svaka ima svoje prednosti i područja u kojima su našle primjenu.
+	Umjetne neuronske mreže danas imaju vrlo široku primjenu, od obrade slika i signala, prepoznavanja uzoraka, kompresije slika, upravljanja, financija... \cite{skriptaNeuronskeMreze}. Glavne prednosti neuronskih mreža su vrlo dobra sposobnost generalizacije i učenja, dok im je glavna mana nemogućnost interpretacije njihovog ponašanja. Slično kao i kod ljudskog mozga, teško je razumjeti zašto je neuronska mreža za neki ulaz dala baš taj izraz. Također, još je teže prepoznati kakvu je konkretnu ulogu u sveukupnoj obradi ulaza imao pojedini neuron u mreži.
 	
-	U ovom radu koristit će se jednostavna Elmanova neuronska mreža sa potpuno povezanim slojevima.
+	U ovom radu koristit će se potpuno povezana Elmanova neuronska mreža \textit{\textbf{točno???}}. Kod potpuno povezane mreže svaki neuron ima vezu prema svakom neuronu iz slijedećeg sloja. 
 	
 	\section{Elmanova neuronska mreža}
 	
-		O Elmanovoj neuronskoj mreži...
+		Elmanova neuronska mreža je jednostavna povratna neuronska mreža (\textit{eng. Recurrent Neural Network}). Glavna karakteristika takvih mreža je da imaju neku vrstu povratne veze ili vremenski odgođene veze \cite{ElmanNetSite}.
+		
+		Elmanova neuronska mreža se sastoji od ulaznog sloja, jednog skrivenog sloja i izlaznog sloja. Skriveni sloj ove mreže dodatno ima skriveni kontekst. Kontekst čine neuroni koji služe za pohranu kontekstnih podataka. Dodatno postoje veze iz izlaza skrivenog sloja prema kontekstu i veze iz konteksta prema ulazu u skriveni sloj. Izlaz iz skrivenog sloja se preko tih veza sprema u kontekst. Kod obrade sljedećeg ulaza u neuronsku mrežu u skrivenom se sloju vrijednosti iz konteksta pribrajaju međurezultatu obrade prije primjene prijenosne funkcije.
+		
+		\textit{\textbf{Neka slika Elmanove mreže}}
+		
+		Ovime se omogućava da Elmanova mreža može pamtiti prošla stanja. na ovaj način prijašnji ulazi u neuronsku mrežu utječu na rezultat obrade nekog budućeg ulaza.
+		
+		Ovo je korisno svojstvo za model inteligentnog igrača Zatvorenikove dileme, s obzirom da je prirodno da prijašnje interakcije sa drugim igračem utječu na nove odluke.
 	
-\chapter{Treniranje inteligentnog igrača}
+\chapter{Evolucijsko računanje}
 
-	Dobro pitanje
+	Evolucijsko računanje je grana umjetne inteligencije koja se najčešće bavi rješavanjem optimizacijskih problema. Začeci ove grane sežu još u kasne 50-te godine prošlog stoljeća. Evolucijsko računanje se može podijeliti u tri grane \cite{skriptaEvolucijskoRacunarstvo}: 
+	\begin{itemize}
+		\item \textit{evolucijske algoritme}
+		\item \textit{algoritme rojeva}
+		\item \textit{ostale algoritme}
+	\end{itemize}
+	
+	Neki od algoritama iz grane evolucijskih algoritama su evolucijske strategije, evolucijsko programiranje, genetski algoritam i genetsko programiranje \cite{skriptaEvolucijskoRacunarstvo}.
+	
+	U grani algoritma rojeva nalaze se mravlji algoritmi, algoritam roja čestica, algoritmi pčela i drugi \cite{skriptaEvolucijskoRacunarstvo}.
+	
+	Neki do značajnih algoritama iz grane ostali algoritmi pripadaju umjetni imunološki algoritmi, algoritam diferencijske evolucije i algoritam harmonijske pretrage \cite{skriptaEvolucijskoRacunarstvo}.
+	
+	Područje evolucijskog računanja također pripada području metaheuristika. Metaheuristika je skup algoritamskih koncepata koji se koriste za definiranje heurističkih metoda primjenjivih na široki skup problema \cite{skriptaEvolucijskoRacunarstvo}. Heurističke metode su algoritmi koji pronalaze rješenja problema koja su zadovoljavajuće dobra, ali ne nužno optimalna. Heurističke metode obično imaju relativnu nisku računsku složenost \cite{skriptaEvolucijskoRacunarstvo}.
 
+	\section{Optimizacija}
+	
+		Kao što je ranije navedeno, algoritmi iz područja evolucijskog računanja se često koriste u problemima optimizacije. Optimizaciju možemo definirati kao postupak pronalaženja najboljeg rješenja problema. Uz svako rješenje se pridružuje funkcija dobrote ili funkcija kazne. Ako se rješenjima pridružuje funkcija dobrote, optimizacijski postupak će tražiti rješenje tako da pokuša maksimizirati funkciju dobrote. Ako se pak rješenjima pridružuje funkcija kazne, optimizacijski postupak će pokušati minimizirati funkciju kazne \cite{skriptaEvolucijskoRacunarstvo}.
+
+		Bitno je reći da kada gledamo optimizacijske algoritme iz područja evolucijskog računanja, niti jedan od njih se ne može istaknuti kao generalno najbolji algoritam. Svaki od tih algoritama je dobar u određenim primjenama, dok u drugim primjenama drugi optimizacijski algoritmi daju bolje rezultate. U prosjeku nema značajnih razlika u globalnim performansama kada se gleda prosjek po svim mogućim funkcijama cijene \cite{skriptaEvolucijskoRacunarstvo}.
+	
+	\section{Genetski algoritam}
+	
+		
+	
+	
 \chapter{Definiranje pokusa}
 
 	Jedna "iteracija" se sastoji od npr. 50 ponavljanja Zatvorenikove dileme.
-
-
 
 
 % \Blindtext

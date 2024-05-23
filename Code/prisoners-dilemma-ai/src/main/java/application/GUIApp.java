@@ -2,6 +2,7 @@ package application;
 
 import application.panels.*;
 import evolution.EvolutionGUI;
+import evolution.EvolutionLogs;
 import evolution.IEvolution;
 import evolution.SimpleEvolution;
 import evolution.manager.IEvolutionManager;
@@ -14,15 +15,16 @@ import evolution.specimen.factory.ISpecimenFactory;
 import game.IGame;
 import game.PDGame;
 import game.PDGameGUI;
+import game.observers.GameObserverAdapter;
 import game.player.AIPDPlayer;
 import game.player.GUIPlayer;
+import neuralNetwork.INeuralNetwork;
+import neuralNetwork.NeuralNetwork;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * <p>
@@ -85,6 +87,19 @@ public class GUIApp extends JFrame {
         mainPanel.getPlay().addActionListener((e -> {
             change(mainPanel, gameSetUpPanel);
         }));
+        mainPanel.getLoadNetwork().addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Load Neural Network");
+            if (fileChooser.showOpenDialog(this) != JFileChooser.APPROVE_OPTION) {
+                return;
+            }
+            SimpleNeuralNetworkSpecimen network = new SimpleNeuralNetworkSpecimen(fileChooser.getSelectedFile().toPath().toString());
+
+            PDGameGUI<GUIPlayer, AIPDPlayer> game = getGuiPlayerAIPDPlayerPDGameGUI(network);
+            gameLogsPanel.setGame(game);
+            change(mainPanel, gameLogsPanel);
+            gameThread = gameLogsPanel.startGame();
+        });
 
         evolutionSetUpPanel.getBackButton().addActionListener(e -> {
             change(evolutionSetUpPanel, mainPanel);
@@ -95,14 +110,15 @@ public class GUIApp extends JFrame {
             DefaultListModel<Integer> medianList = new DefaultListModel<>();
             DefaultListModel<Integer> worstList = new DefaultListModel<>();
 
+            int maxFitness = 5 * evolutionSetUpPanel.getGameIterations() * evolutionSetUpPanel.getGenerationSize();
             IEvolution<SimpleNeuralNetworkSpecimen> evolution = createEvolution(indexList, bestList, medianList, worstList);
             evolution.setOneParent(evolutionSetUpPanel.getNumberOfParents() == 1);
             IEvolutionManager<SimpleNeuralNetworkSpecimen> manager = new SimpleEvolutionManager<>(
                     evolution,
                     evolutionSetUpPanel.getMaxGenerationLimit(),
-                    5 * evolutionSetUpPanel.getGameIterations() * evolutionSetUpPanel.getGenerationSize() + 1
+                    maxFitness + 1
             );
-            evolutionLogsPanel.setManager(manager, indexList, bestList, medianList, worstList);
+            evolutionLogsPanel.setManager(manager, indexList, bestList, medianList, worstList, maxFitness);
 
             change(evolutionSetUpPanel, evolutionLogsPanel);
             evolutionThread = evolutionLogsPanel.startEvolution();
@@ -117,26 +133,52 @@ public class GUIApp extends JFrame {
             GUIPlayer player1 = new GUIPlayer();
             GUIPlayer player2 = new GUIPlayer();
             PDGameGUI<GUIPlayer, GUIPlayer> game = new PDGameGUI<>(player1, player2, 10, player1Scores, player2Scores);
-            game.addGameObserver(() -> player1.setStopFlag(true));
-            game.addGameObserver(() -> player2.setStopFlag(true));
+            game.addGameObserver(new GameObserverAdapter() {
+                @Override
+                public void gameStopped() {
+                    player1.setStopFlag(true);
+                }
+            });
+            game.addGameObserver(new GameObserverAdapter() {
+                @Override
+                public void gameStopped() {
+                    player2.setStopFlag(true);
+                }
+            });
             gameLogsPanel.setGame(game);
             change(gameSetUpPanel, gameLogsPanel);
             gameThread = gameLogsPanel.startGame();
         });
 
         evolutionLogsPanel.getNextButton().addActionListener(e -> {
-            // TODO setup game
-            DefaultListModel<Integer> player1Scores = new DefaultListModel<>();
-            DefaultListModel<Integer> player2Scores = new DefaultListModel<>();
-            GUIPlayer player = new GUIPlayer();
-            PDGameGUI<GUIPlayer, AIPDPlayer> game = new PDGameGUI<>(player, new AIPDPlayer(evolutionLogsPanel.getManager().getEvolution().getBestSpecimen()), 10, player1Scores, player2Scores);
-            game.addGameObserver(() -> player.setStopFlag(true));
+            PDGameGUI<GUIPlayer, AIPDPlayer> game = getGuiPlayerAIPDPlayerPDGameGUI(evolutionLogsPanel.getManager().getEvolution().getBestSpecimen());
             gameLogsPanel.setGame(game);
             change(evolutionLogsPanel, gameLogsPanel);
             gameThread = gameLogsPanel.startGame();
         });
 
         add(mainPanel);
+    }
+
+    /**
+     * <p>
+     *     Prepares PDGame for oe GUI player and one AI player.
+     * </p>
+     * @param network for AI player
+     * @return prepared game
+     */
+    private static PDGameGUI<GUIPlayer, AIPDPlayer> getGuiPlayerAIPDPlayerPDGameGUI(SimpleNeuralNetworkSpecimen network) {
+        DefaultListModel<Integer> player1Scores = new DefaultListModel<>();
+        DefaultListModel<Integer> player2Scores = new DefaultListModel<>();
+        GUIPlayer player = new GUIPlayer();
+        PDGameGUI<GUIPlayer, AIPDPlayer> game = new PDGameGUI<>(player, new AIPDPlayer(network), 10, player1Scores, player2Scores);
+        game.addGameObserver(new GameObserverAdapter() {
+            @Override
+            public void gameStopped() {
+                player.setStopFlag(true);
+            }
+        });
+        return game;
     }
 
     /**
@@ -147,14 +189,17 @@ public class GUIApp extends JFrame {
         IGame<AIPDPlayer, AIPDPlayer> game = new PDGame<>(new AIPDPlayer(), new AIPDPlayer(), evolutionSetUpPanel.getGameIterations());
         IEvaluator<SimpleNeuralNetworkSpecimen> evaluator = new PDEvaluator(game);
         return new EvolutionGUI<>(
-                new SimpleEvolution<>(
-                    evolutionSetUpPanel.getSmallMutationChance(),
-                    evolutionSetUpPanel.getSmallMutationMagnitude(),
-                    evolutionSetUpPanel.getBigMutationChance(),
-                    evolutionSetUpPanel.getBigMutationMagnitude(),
-                    evolutionSetUpPanel.getGenerationSize(),
-                    factory,
-                    evaluator
+                new EvolutionLogs<>(
+                        new SimpleEvolution<>(
+                                evolutionSetUpPanel.getSmallMutationChance(),
+                                evolutionSetUpPanel.getSmallMutationMagnitude(),
+                                evolutionSetUpPanel.getBigMutationChance(),
+                                evolutionSetUpPanel.getBigMutationMagnitude(),
+                                evolutionSetUpPanel.getGenerationSize(),
+                                factory,
+                                evaluator
+                        ),
+                        5
                 ),
                 1,
                 indexList,

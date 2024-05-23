@@ -18,6 +18,7 @@ public class MainJPanel extends JPanel {
     private final JButton trainAI = new MyJButton("Train AI", GUIApp.NORMAL_FONT_SIZE);
     private final JButton play = new MyJButton("2 players", GUIApp.NORMAL_FONT_SIZE);
     private final JButton info = new MyJButton("?", GUIApp.NORMAL_FONT_SIZE);
+    private final MyJButton loadNetwork = new MyJButton("Load Neural Network", GUIApp.NORMAL_FONT_SIZE);
     private final GridBagConstraints constraints = new GridBagConstraints();
 
     public MainJPanel() {
@@ -52,10 +53,13 @@ public class MainJPanel extends JPanel {
         addBlank(0, 6); addElement(play, 1, 6, 4); addBlank(5, 6);
         addBlank(0, 7);
 
-        addBlank(0, 8);
+        addBlank(0, 8); addElement(loadNetwork, 1, 8, 4); addBlank(5, 8);
+        addBlank(0, 9);
+
+        addBlank(0, 10);
         constraints.anchor = GridBagConstraints.SOUTHEAST;
         constraints.fill = GridBagConstraints.NONE;
-        addElement(info, 4, 9, 1);
+        addElement(info, 4, 11, 1);
 
         addBlank(0, 10);
     }
@@ -115,5 +119,12 @@ public class MainJPanel extends JPanel {
      */
     public JButton getPlay() {
         return play;
+    }
+
+    /**
+     * @return JButton for loading existing neural network
+     */
+    public JButton getLoadNetwork() {
+        return loadNetwork;
     }
 }

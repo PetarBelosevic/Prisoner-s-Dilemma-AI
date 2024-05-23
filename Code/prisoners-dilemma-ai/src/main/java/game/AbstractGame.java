@@ -1,5 +1,6 @@
 package game;
 
+import game.observers.GameObserver;
 import game.player.IPlayer;
 import utils.Pair;
 
@@ -62,6 +63,7 @@ public abstract class AbstractGame<T extends IPlayer, D extends IPlayer> impleme
     protected void updateScores(Pair<Integer, Integer> score) {
         player1.addPoints(score.getFirst());
         player2.addPoints(score.getSecond());
+        notifyNewScore(score);
     }
 
     /**
@@ -74,7 +76,7 @@ public abstract class AbstractGame<T extends IPlayer, D extends IPlayer> impleme
     @Override
     public synchronized void stopGame() {
         this.stop = true;
-        notifyGameObservers();
+        notifyGameStopped();
     }
 
     @Override
@@ -86,7 +88,11 @@ public abstract class AbstractGame<T extends IPlayer, D extends IPlayer> impleme
         observers.remove(go);
     }
     @Override
-    public void notifyGameObservers() {
+    public void notifyGameStopped() {
         observers.forEach(GameObserver::gameStopped);
+    }
+    @Override
+    public void notifyNewScore(Pair<Integer, Integer> scores) {
+        observers.forEach(go -> go.scoresAdded(scores));
     }
 }

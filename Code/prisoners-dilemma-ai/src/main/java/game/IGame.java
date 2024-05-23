@@ -1,6 +1,8 @@
 package game;
 
+import game.observers.GameObserver;
 import game.player.IPlayer;
+import utils.Pair;
 
 /**
  * <p>
@@ -59,8 +61,16 @@ public interface IGame<T extends IPlayer, D extends IPlayer> {
 
     /**
      * <p>
-     *     Notifies all game observers.
+     *     Notifies all game observers that the game is stopped.
      * </p>
      */
-    void notifyGameObservers();
+    void notifyGameStopped();
+
+    /**
+     * <p>
+     *     Notifies all game observers that the new score is added.
+     * </p>
+     * @param scores new score
+     */
+    void notifyNewScore(Pair<Integer, Integer> scores);
 }

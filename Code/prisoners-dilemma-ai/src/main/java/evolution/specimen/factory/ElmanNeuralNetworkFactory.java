@@ -14,10 +14,10 @@ public class ElmanNeuralNetworkFactory implements ISpecimenFactory<SimpleNeuralN
     @Override
     public SimpleNeuralNetworkSpecimen create() {
         return new SimpleNeuralNetworkSpecimen(
-                new ElmanNNLayer(1, 6, "sigmoid"),
-                new ElmanNNLayer(6, 10, "sigmoid"),
-                new ElmanNNLayer(10, 6, "sigmoid"),
-                new Layer(6, 1, "sigmoid")
+                new ElmanNNLayer(1, 8, "sigmoid"),
+//                new Layer(6, 8, "sigmoid"),
+//                new Layer(10, 6, "sigmoid"),
+                new Layer(8, 1, "sigmoid")
         );
     }
 }

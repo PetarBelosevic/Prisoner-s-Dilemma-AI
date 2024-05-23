@@ -10,44 +10,53 @@ Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 150 items from 100.
 Database file #1: literatura.bib
-You've used 11 entries,
+Warning--I didn't find a database entry for "6248073"
+Warning--I didn't find a database entry for "6247753"
+Warning--I didn't find a database entry for "ghiglia_pritt_phase_unwrapping"
+Warning--I didn't find a database entry for "hartley2003multiple"
+Warning--I didn't find a database entry for "4250461"
+Warning--I didn't find a database entry for "123DCatch"
+Warning--empty publisher in skriptaNeuronskeMreze
+Warning--empty publisher in skriptaEvolucijskoRacunarstvo
+You've used 8 entries,
             4225 wiz_defined-function locations,
-            899 strings with 9457 characters,
-and the built_in function-call counts, 7147 in all, are:
-= -- 555
-> -- 116
-< -- 55
-+ -- 71
-- -- 17
-* -- 314
-:= -- 1099
-add.period$ -- 27
-call.type$ -- 11
-change.case$ -- 9
-chr.to.int$ -- 123
-cite$ -- 11
-duplicate$ -- 512
-empty$ -- 630
-format.name$ -- 22
-if$ -- 1707
+            884 strings with 9051 characters,
+and the built_in function-call counts, 3975 in all, are:
+= -- 294
+> -- 39
+< -- 25
++ -- 26
+- -- 5
+* -- 164
+:= -- 637
+add.period$ -- 16
+call.type$ -- 8
+change.case$ -- 6
+chr.to.int$ -- 48
+cite$ -- 10
+duplicate$ -- 307
+empty$ -- 379
+format.name$ -- 5
+if$ -- 941
 int.to.chr$ -- 0
-int.to.str$ -- 11
-missing$ -- 90
-newline$ -- 70
-num.names$ -- 9
-pop$ -- 215
+int.to.str$ -- 8
+missing$ -- 57
+newline$ -- 55
+num.names$ -- 5
+pop$ -- 139
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 574
+skip$ -- 326
 stack$ -- 0
-substring$ -- 298
-swap$ -- 400
-text.length$ -- 14
+substring$ -- 120
+swap$ -- 217
+text.length$ -- 9
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 11
-warning$ -- 0
-while$ -- 27
-width$ -- 13
-write$ -- 135
+type$ -- 8
+warning$ -- 2
+while$ -- 14
+width$ -- 9
+write$ -- 95
+(There were 8 warnings)

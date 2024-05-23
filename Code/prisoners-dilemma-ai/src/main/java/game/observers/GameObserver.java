@@ -1,4 +1,6 @@
-package game;
+package game.observers;
+
+import utils.Pair;
 
 /**
  * <p>
@@ -12,4 +14,6 @@ public interface GameObserver {
      * </p>
      */
     void gameStopped();
+
+    void scoresAdded(Pair<Integer, Integer> scores);
 }

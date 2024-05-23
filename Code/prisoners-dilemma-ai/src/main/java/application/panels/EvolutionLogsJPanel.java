@@ -18,7 +18,7 @@ import java.awt.*;
  */
 public class EvolutionLogsJPanel<T extends ISpecimen<T>> extends JPanel {
     private final JButton nextButton = new MyJButton("Next", GUIApp.NORMAL_FONT_SIZE);
-
+    private final JLabel maxFitnessLabel = new MyJLabel("Maximum possible fitness: ", GUIApp.NORMAL_FONT_SIZE);
     private IEvolutionManager<T> manager;
     private final JPanel centerPanel = new JPanel(new GridLayout(0, 4));
 
@@ -48,6 +48,7 @@ public class EvolutionLogsJPanel<T extends ISpecimen<T>> extends JPanel {
 
         JPanel bottomPanel = new JPanel();
         bottomPanel.setBackground(Color.LIGHT_GRAY);
+        bottomPanel.add(maxFitnessLabel);
         bottomPanel.add(nextButton);
         nextButton.setEnabled(false);
         add(bottomPanel, BorderLayout.PAGE_END);
@@ -75,13 +76,14 @@ public class EvolutionLogsJPanel<T extends ISpecimen<T>> extends JPanel {
      * @param medianList JList for showing median score in generation
      * @param worstList JList for showing the worst score in generation
      */
-    public void setManager(IEvolutionManager<T> manager, DefaultListModel<Integer> indexList, DefaultListModel<Integer> bestList, DefaultListModel<Integer> medianList, DefaultListModel<Integer> worstList) {
+    public void setManager(IEvolutionManager<T> manager, DefaultListModel<Integer> indexList, DefaultListModel<Integer> bestList, DefaultListModel<Integer> medianList, DefaultListModel<Integer> worstList, int maxFitness) {
         this.manager = manager;
         centerPanel.removeAll();
         centerPanel.add(new MyJList<>(indexList, SwingConstants.CENTER, GUIApp.NORMAL_FONT_SIZE, BorderFactory.createLineBorder(Color.BLACK)));
         centerPanel.add(new MyJList<>(bestList, SwingConstants.CENTER, GUIApp.NORMAL_FONT_SIZE, BorderFactory.createLineBorder(Color.BLACK)));
         centerPanel.add(new MyJList<>(medianList, SwingConstants.CENTER, GUIApp.NORMAL_FONT_SIZE, BorderFactory.createLineBorder(Color.BLACK)));
         centerPanel.add(new MyJList<>(worstList, SwingConstants.CENTER, GUIApp.NORMAL_FONT_SIZE, BorderFactory.createLineBorder(Color.BLACK)));
+        maxFitnessLabel.setText(maxFitnessLabel.getText() + maxFitness);
     }
 
     /**
@@ -104,12 +106,5 @@ public class EvolutionLogsJPanel<T extends ISpecimen<T>> extends JPanel {
         });
         t.start();
         return t;
-//        try {
-//            t.join();
-//        }
-//        catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
-//        manager.runEvolution();
     }
 }

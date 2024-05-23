@@ -6,7 +6,9 @@ import application.components.MyJList;
 import application.components.PlayerAction;
 import game.IGame;
 import game.PDGameGUI;
+import game.observers.GameObserverAdapter;
 import game.player.GUIPlayer;
+import utils.Pair;
 
 import javax.swing.*;
 import java.awt.*;
@@ -115,6 +117,18 @@ public class GameLogsJPanel extends JPanel {
                 GUIApp.NORMAL_FONT_SIZE,
                 BorderFactory.createLineBorder(Color.BLACK)
         ));
+        game.addGameObserver(new GameObserverAdapter() {
+            int totalPlayer1 = Integer.parseInt(player1TotalScore.getText());
+            int totalPlayer2 = Integer.parseInt(player2TotalScore.getText());
+
+            @Override
+            public void scoresAdded(Pair<Integer, Integer> scores) {
+                totalPlayer1 += scores.getFirst();
+                totalPlayer2 += scores.getSecond();
+                player1TotalScore.setText(String.valueOf(totalPlayer1));
+                player2TotalScore.setText(String.valueOf(totalPlayer2));
+            }
+        });
 
         // TODO da nije hardcoded
         if (game.getPlayer1() instanceof GUIPlayer) {
