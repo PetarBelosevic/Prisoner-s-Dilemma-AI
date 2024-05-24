@@ -9,18 +9,20 @@
 \contentsline {chapter}{\numberline {4.}Evolucijsko računanje}{11}{chapter.4}%
 \contentsline {section}{\numberline {4.1.}Optimizacija}{11}{section.4.1}%
 \contentsline {section}{\numberline {4.2.}Genetski algoritam}{12}{section.4.2}%
-\contentsline {chapter}{\numberline {5.}Definiranje pokusa}{13}{chapter.5}%
-\contentsline {chapter}{\numberline {6.}Rezultati i rasprava}{14}{chapter.6}%
-\contentsline {chapter}{\numberline {7.}Zaključak}{15}{chapter.7}%
-\contentsline {chapter}{Literatura}{16}{chapter*.3}%
+\contentsline {chapter}{\numberline {5.}Implementacija inteligentnog igrača}{14}{chapter.5}%
+\contentsline {section}{\numberline {5.1.}Učenje inteligentnog igrača}{14}{section.5.1}%
+\contentsline {chapter}{\numberline {6.}Definiranje pokusa}{16}{chapter.6}%
+\contentsline {chapter}{\numberline {7.}Rezultati i rasprava}{17}{chapter.7}%
+\contentsline {chapter}{\numberline {8.}Zaključak}{18}{chapter.8}%
+\contentsline {chapter}{Literatura}{19}{chapter*.3}%
 \babel@toc {croatian}{}\relax 
-\contentsline {chapter}{Sa\v {z}etak}{17}{chapter*.4}%
+\contentsline {chapter}{Sa\v {z}etak}{21}{chapter*.4}%
 \babel@toc {croatian}{}\relax 
 \babel@toc {croatian}{}\relax 
 \babel@toc {croatian}{}\relax 
 \babel@toc {english}{}\relax 
-\contentsline {chapter}{Abstract}{18}{chapter*.5}%
+\contentsline {chapter}{Abstract}{22}{chapter*.5}%
 \babel@toc {croatian}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {croatian}{}\relax 
-\contentsline {chapter}{\numberline {A:}The Code}{19}{chapter.1}%
+\contentsline {chapter}{\numberline {A:}The Code}{23}{chapter.1}%

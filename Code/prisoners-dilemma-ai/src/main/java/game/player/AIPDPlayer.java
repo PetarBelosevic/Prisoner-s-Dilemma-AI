@@ -2,6 +2,7 @@ package game.player;
 
 import neuralNetwork.INeuralNetwork;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**

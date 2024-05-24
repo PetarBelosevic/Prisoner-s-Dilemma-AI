@@ -165,32 +165,32 @@ Jednadžba \eqref{jed:prvajednadzba} je moja prva jednadžba koja definira par $
 		Axelrod je također napomenuo da je kod kreiranja strategije potrebna analiza na barem 3 dubine \cite{1980Axelrod1}. Prva razina je direktna posljedica trenutne odluke, to jest, koliko bodova igrač dobiva na temelju svoje odluke. Druga razina je uzimanje u obzira da će drugi igrač možda odlučiti kazniti izdaju. Treća razina razmatra da reagiranje na izdaju može prouzrokovati eho efekt međusobnih izdaja koji će dugoročno štetiti i jednom i drugom igraču.
 
 \chapter{Umjetne neuronske mreže}
-
-	U svrhu implementacije inteligentnog igrača koji će igrati Zatvorenikovu dilemu korištene su umjetne neuronske mreže.
 	
-	Umjetne neuronske mreže su jedan od mnogih koncepata u strojnom učenju, koje je najpopularnija grana područja umjetne inteligencije. Neuronsku mrežu čine međusobno povezani umjetni neuroni. Područje koje se bavi umjetnim neuronskim mrežama zove se neuro-računarstvo, koje čini granu računarstva iz skupine mekog-računarstva. \cite{skriptaNeuronskeMreze} 
+	Umjetne neuronske mreže su jedan od mnogih koncepata u strojnom učenju, koje je jedno od najvećih grana umjetne inteligencije. Prvi puta su ih predložili Warren McCullough i Walter Pitts sa Sveučilišta u Chicagu davne 1944. Prva neuronska mreža koja se mogla trenirati je bila Perceptron, predložen od strane psihologa Franka Rosenblatta sa Sveučilišta Cornell 1957. \cite{MITNeuralNet}
 	
-	Umjetni neuron je najmanja funkcionalna jedinka neuronske mreže i modelira biološki neuron u ljudskom mozgu. Umjetni neuroni imaju ulogu jednostavne procesne jedinice. Svaki umjetni neuron na ulazu prima nekakve vrijednosti (izlazi drugih neurona ili ulazni podaci). Dobiveni ulazi se zbrajaju u jednu sumu koja se provlači kroz takozvanu prijenosnu funkciju. Rezultat prijenosne funkcije se postavlja na izlaz umjetnog neurona te se propagira dalje na ulaze drugih neurona ili na izlaz neuronske mreže. Postoje razne prijenosne funkcije različitih složenosti koje se mogu koristiti kod umjetnih neurona, a neke od njih su: funkcija identiteta, funkcija skoka, sigmoidna funkcija, tangens hiperbolni, funkcija zglobnica, funkcija propusna zglobnica \cite{skriptaNeuronskeMreze}.
+	Umjetne neuronske mreže su inspirirane ljudskim mozgom - sastoje se od velikog broja jednostavnih umjetnih neurona koji su gusto povezani. \cite{MITNeuralNet}
+	
+	Područje koje se bavi umjetnim neuronskim mrežama zove se neuro-računarstvo, koje čini granu računarstva iz skupine mekog-računarstva. Meko računarstvo objedinjuje pristupe čiji je cilj izgraditi tehničke sustave za rješavanje teških problema sa čestim šumom i nepouzdanošću u ulaznim podacima. \cite{skriptaNeuronskeMreze} 
+	
+	Umjetni neuron je najmanja funkcionalna jedinka neuronske mreže i modelira biološki neuron u ljudskom mozgu. Umjetni neuroni imaju ulogu jednostavne procesne jedinice. Svaki umjetni neuron na ulazu prima nekakve vrijednosti (izlazi drugih neurona ili ulazni podaci). Ulazni podaci u neuron se prvo množe sa težinama veza preko kojih su došli do trenutnog neurona. Dobiveni umnošci se zbrajaju, te im se dodatno pribraja takozvani pomak. Tako nastala suma se provlači kroz prijenosnu funkciju. Rezultat prijenosne funkcije se postavlja na izlaz umjetnog neurona te se propagira dalje na ulaze drugih neurona ili na izlaz neuronske mreže. Postoje razne prijenosne funkcije različitih složenosti koje se mogu koristiti kod umjetnih neurona, a neke od njih su: funkcija identiteta, funkcija skoka, sigmoidna funkcija, tangens hiperbolni, funkcija zglobnica, funkcija propusna zglobnica \cite{skriptaNeuronskeMreze}.
 
 	\textit{\textbf{Neka slika neurona (i prijenosnih funkcija)}}
 	
-	Arhitektura umjetne neuronske mreže opisuje kako su povezani umjetni neuroni u mreži i koliko ih ima. Postoje razne arhitekture neuronskih mreža, što jednostavnih, što kompleksnih, a svaka ima svoje prednosti i područja u kojima su našle primjenu. Neke od generalnih vrsta umjetnih neuronskih mreža su unaprijedna, povratna, potpuno povezana, konvolucijska.
+	Umjetni neuroni se povezuju u paralelne strukture različitih arhitektura koje omogućuju paralelnu obradu podataka \cite{skriptaNeuronskeMreze}. Arhitektura umjetne neuronske mreže opisuje kako su povezani umjetni neuroni u mreži i koliko ih ima. Postoje razne arhitekture neuronskih mreža, što jednostavnih, što kompleksnih, a svaka ima svoje prednosti i područja u kojima ima primjenu.
 	
 	Umjetni neuroni se u umjetnim neuronskim mrežama obično organiziraju u slojeve. Tako razlikujemo ulazni sloj, skrivene slojeve i izlazni sloj. Skriveni slojevi i izlazni sloj se sastoje od umjetnih neurona dok ulazni sloj zapravo ne sadrži umjetne neurone kakvi su opisani u odjeljku iznad. Neuroni ulaznog sloja na svoje ulaze samo primaju ulazne podatke neuronske mreže te ih dalje prosljeđuju neuronima prvog skrivenog sloja.
 	
-	Umjetne neuronske mreže danas imaju vrlo široku primjenu, od obrade slika i signala, prepoznavanja uzoraka, kompresije slika, upravljanja, financija... \cite{skriptaNeuronskeMreze}. Glavne prednosti neuronskih mreža su vrlo dobra sposobnost generalizacije i učenja, dok im je glavna mana nemogućnost interpretacije njihovog ponašanja. Slično kao i kod ljudskog mozga, teško je razumjeti zašto je neuronska mreža za neki ulaz dala baš taj izraz. Također, još je teže prepoznati kakvu je konkretnu ulogu u sveukupnoj obradi ulaza imao pojedini neuron u mreži.
-	
-	U ovom radu koristit će se potpuno povezana Elmanova neuronska mreža \textit{\textbf{točno???}}. Kod potpuno povezane mreže svaki neuron ima vezu prema svakom neuronu iz slijedećeg sloja. 
+	Umjetne neuronske mreže danas imaju vrlo široku primjenu, od obrade slika i signala, prepoznavanja uzoraka, kompresije slika, upravljanja, financija... \cite{skriptaNeuronskeMreze}. Glavne prednosti neuronskih mreža su vrlo dobra sposobnost generalizacije i učenja, čak i uz neprecizne ulazne podatke.Njihova glavna mana je nemogućnost interpretacije njihovog ponašanja, iako su računalni znanstvenici počeli razvijati metode za dedukciju strategija koje neuronske mreže nauče \cite{MITNeuralNet}. Znanje koje neuronske mreže nauče iz podataka je implicitno pohranjeno u način povezivanja neurone i težine veza između njih \cite{skriptaNeuronskeMreze}. Stoga je teško razumjeti zašto je neuronska mreža za neki ulaz dala baš taj izraz. Također, teško je prepoznati kakvu konkretnu ulogu u sveukupnoj obradi ulaza ima pojedini neuron u mreži.
 	
 	\section{Elmanova neuronska mreža}
 	
 		Elmanova neuronska mreža je jednostavna povratna neuronska mreža (\textit{eng. Recurrent Neural Network}). Glavna karakteristika takvih mreža je da imaju neku vrstu povratne veze ili vremenski odgođene veze \cite{ElmanNetSite}.
 		
-		Elmanova neuronska mreža se sastoji od ulaznog sloja, jednog skrivenog sloja i izlaznog sloja. Skriveni sloj ove mreže dodatno ima skriveni kontekst. Kontekst čine neuroni koji služe za pohranu kontekstnih podataka. Dodatno postoje veze iz izlaza skrivenog sloja prema kontekstu i veze iz konteksta prema ulazu u skriveni sloj. Izlaz iz skrivenog sloja se preko tih veza sprema u kontekst. Kod obrade sljedećeg ulaza u neuronsku mrežu u skrivenom se sloju vrijednosti iz konteksta pribrajaju međurezultatu obrade prije primjene prijenosne funkcije.
+		Elmanova neuronska mreža se sastoji od ulaznog sloja, jednog skrivenog sloja i izlaznog sloja. Skriveni sloj ove mreže ima dodatan skriveni kontekst. Kontekst čine neuroni koji služe za pohranu kontekstnih podataka. Dodatno postoje veze iz izlaza skrivenog sloja prema kontekstu i veze iz konteksta prema ulazu u skriveni sloj. Izlaz iz skrivenog sloja se preko tih veza sprema u kontekst. Kod obrade sljedećeg ulaza u neuronsku mrežu skrivenom se sloju na ulaz dodatno stavljaju vrijednosti iz konteksta preko pripadajućih veza te se ukupan ulaz mreže i konteksta dalje obrađuje. \cite{Elman}
 		
 		\textit{\textbf{Neka slika Elmanove mreže}}
 		
-		Ovime se omogućava da Elmanova mreža može pamtiti prošla stanja. na ovaj način prijašnji ulazi u neuronsku mrežu utječu na rezultat obrade nekog budućeg ulaza.
+		Ovime se omogućava da Elmanova mreža može pamtiti prošla stanja. Na ovaj način prijašnji ulazi u neuronsku mrežu utječu na rezultat obrade nekog budućeg ulaza.
 		
 		Ovo je korisno svojstvo za model inteligentnog igrača Zatvorenikove dileme, s obzirom da je prirodno da prijašnje interakcije sa drugim igračem utječu na nove odluke.
 	
@@ -213,18 +213,55 @@ Jednadžba \eqref{jed:prvajednadzba} je moja prva jednadžba koja definira par $
 
 	\section{Optimizacija}
 	
-		Kao što je ranije navedeno, algoritmi iz područja evolucijskog računanja se često koriste u problemima optimizacije. Optimizaciju možemo definirati kao postupak pronalaženja najboljeg rješenja problema. Uz svako rješenje se pridružuje funkcija dobrote ili funkcija kazne. Ako se rješenjima pridružuje funkcija dobrote, optimizacijski postupak će tražiti rješenje tako da pokuša maksimizirati funkciju dobrote. Ako se pak rješenjima pridružuje funkcija kazne, optimizacijski postupak će pokušati minimizirati funkciju kazne \cite{skriptaEvolucijskoRacunarstvo}.
+		Kao što je ranije navedeno, algoritmi iz područja evolucijskog računanja se često koriste u problemima optimizacije. Optimizaciju možemo definirati kao postupak pronalaženja najboljeg rješenja problema. Uz svako rješenje se pridružuje funkcija dobrote ili funkcija kazne. Ako se rješenjima pridružuje funkcija dobrote, optimizacijski postupak će tražiti rješenje tako da pokuša maksimizirati funkciju dobrote. Ako se pak rješenjima pridružuje funkcija kazne, optimizacijski postupak će pokušati minimizirati funkciju kazne.\cite{skriptaEvolucijskoRacunarstvo}
 
-		Bitno je reći da kada gledamo optimizacijske algoritme iz područja evolucijskog računanja, niti jedan od njih se ne može istaknuti kao generalno najbolji algoritam. Svaki od tih algoritama je dobar u određenim primjenama, dok u drugim primjenama drugi optimizacijski algoritmi daju bolje rezultate. U prosjeku nema značajnih razlika u globalnim performansama kada se gleda prosjek po svim mogućim funkcijama cijene \cite{skriptaEvolucijskoRacunarstvo}.
+		Bitno je reći da kada gledamo optimizacijske algoritme iz područja evolucijskog računanja, niti jedan od njih se ne može istaknuti kao generalno najbolji algoritam. Svaki od tih algoritama je dobar u određenim primjenama, dok u drugim primjenama drugi optimizacijski algoritmi daju bolje rezultate. U prosjeku nema značajnih razlika u globalnim performansama kada se gleda prosjek po svim mogućim funkcijama cijene.\cite{skriptaEvolucijskoRacunarstvo}
 	
 	\section{Genetski algoritam}
 	
+		Genetski algoritam je algoritam iz grane evolucijskih algoritama. Općenito, svi pristupi iz grane evolucijskih algoritama crpe inspiraciju iz Darwinove teorije o postanku vrsta, koja se temelji na pet pretpostavki \cite{skriptaEvolucijskoRacunarstvo}:
+		\begin{enumerate}
+			\item potomaka uvijek ima više nego je potrebno
+			\item veličina populacije je približno stalna u vremenu
+			\item hrana je ograničen resurs
+			\item ne postoje dvije potpuno identične jedinke kod vrsta koje se seksualno razmnožavaju - postoje varijacije
+			\item većina varijacija se prenosi nasljeđem
+		\end{enumerate}
 		
+		Genetski algoritam je jedan od algoritama koji rješavaju optimizacijske probleme, a koji izravno utjelovljuje navedene postavke. Genetski algoritam zapravo nije jedinstven, već se može implementirati na različite načine. \cite{skriptaEvolucijskoRacunarstvo}
+		
+		Ideja genetskog algoritma je modeliranje evolucijskog procesa. U algoritmu postoji populacija jedinki, koje zapravo predstavljaju neka od mogućih rješenja problema. Cilj algoritma je kroz selekciju roditelja, stvaranje novih jedinki korištenjem operatora križanja nad roditeljima i korištenje operatora mutiranja nad novim jedinkama. Selekcija roditelja bi trebala ovisiti o nekakvoj metrici uspješnosti - uspješniji roditelji bi trebali imati veće izglede da budu odabrani za križanje. Takvim postupkom se očekuje da će se kontinuiranim križanjem uspješnih roditelja i mutiranjem njihove djece stvarati bolja rješenja. Ovo je zapravo svojevrstan ekvivalent prirodnoj selekciji, to jest preživljavanju najboljih.
+	
+		Varijacije u implementaciji se mogu pojavljivati u načinu mutiranja, križanja, selekcije, ali i magnitudi izmjena u populaciji u jednoj iteraciji algoritma. 
+		
+		Tako u jednoj krajnosti imamo takozvani \textit{eliminacijski genetski algoritam} u kojem se u jednoj iteraciji samo jedna jedinka zamjenjuje jednim novonastalim djetetom. Novo dijete već u sljedećem koraku može biti roditelj.
+		
+		U drugoj krajnosti imamo \textit{generacijski genetski algoritam}. U njemu se u jednoj iteraciji iz jedne populacije biraju roditelji čija se djeca spremaju u novu populaciju sve dok nova populacije ne dosegne veličinu populacije roditelja. Tada populacija djece zamjenjuje populaciju roditelja. U ovoj varijanti dijete može biti roditelj tek kada populacija djece postane populacija roditelja, to jest u sljedećoj iteraciji. \cite{skriptaEvolucijskoRacunarstvo}
+		
+		Operator križanja se primjenjuje nad dvije jedinke (roditelji) i iz njih stvara dijete. Može se implementirati na razne načine, ali generalno ovaj operator često vrši kontrakciju nad populacijom. To znači da se primjenom ovog operatora obično gubi raznolikost između jedinki te one u prosjeku postaju sve sličnije. \cite{skriptaEvolucijskoRacunarstvo}
+		
+		Operator mutacije ima upravo suprotno svojstvo. On vrši nasumične izmjene nad jedinkama i time im vraća raznolikost. Njegova važna uloga je izbaciti populaciju iz lokalnih maksimuma u prostoru rješenja \cite{skriptaEvolucijskoRacunarstvo}.
+	
+\chapter{Implementacija inteligentnog igrača}
+
+	Inteligentni igrač Zatvorenikove dileme modeliran je jednostavnom Elmanovom neuronskom mrežom. Mreža se sastoji od ulaznog sloja, jednog skrivenog sloja sa kontekstom i izlaznog sloja. Svi slojevi su potpuno povezani. Veze između izlaza skrivenog sloja i konteksta su jedan-na-jedan, to jest izlaz jednog neurona se preslikava u "kopiju" tog neurona u kontekstu. To implicitno znači da skriveni kontekst ima jednak broj neurona kao i sam skriveni sloj. Veze između konteksta i ulaza u neurone skrivenog sloja su svaki-sa-svakim, isto kao i između ostalih slojeva u mreži.
+	
+	Korištena mreža je arhitekture 1 x 8 x 1. Ulaz u mrežu je brojčana vrijednost odluke suparničkog igrača iz prijašnje runde. Ako prijašnje runde još nije bilo, tada se na ulaz dovodi 0. Odluka o suradnji je brojčano kodirana vrijednošću 1, a odluka o izdaju vrijednošću -1. Izlaz mreže je brojčana vrijednost odluke koju će inteligentni igrač odigrati u ovoj rundi Zatvorenikove dileme.
+
+	\section{Učenje inteligentnog igrača}
+	
+	S obzirom na karakteristike Zatvorenikove dileme i dinamiku okruženja u kojem inteligentni igrač mora donositi odluke,često korišteno nadzirano učenje neuronske mreže algoritmom propagacije unazad ovdje nije praktično.
+	
+	Ako bismo koristili algoritam propagacije unazad, morali bismo za svaki ulaz definirati očekivani (najbolji) izlaz, to jest optimalnu odluku u toj situaciji. S obzirom da u ovom problemu postoje samo 3 moguća ulaza u mrežu (0 ako se radi o prvoj rundi, 1 ako je u prijašnjoj rundi suparnički igrač surađivao i -1 ako je izdao ovog igrača), skup za učenje bi bio premalen. Također, problem u tom pristupu je to što bismo time inteligentnom igraču zapravo predstavljali problem Zatvorenikove dileme sa samo jednom iteracijom, a taj problem ima potpuno različit pristup u odnosu na iterirajuću Zatvorenikovu dilemu, kao što je prije raspravljeno. Još jedan problem je u tome što je zapravo teško odrediti što je najbolji potez koji igrač može odigrati u nekom okruženju. 
+	
+	Bolji pristup je zato neka vrsta podržanog učenja. Općenito se kod podržanog učenja razmatra interakcija agenta i njegove okoline. Agent dobiva informacije iz okolina i na temelju njih vrši akcije. Za izvršene akcije agent dobiva nagrade ili kazne. Cilj podržanog učenja je razviti strategiju ponašanja agenta koja će maksimizirati njegovu nagradu. \textit{\textbf{???}}
+	
+	Zbog toga je za ovaj problem odlučeno koristiti jednu drugu tehniku, a to je učenje neuronske mreže genetskim algoritmom. Ideja ove tehnike je koristiti genetski algoritam kao algoritam optimizacije nad neuronskim mrežama. Cilj optimizacije je pronaći težine veza između neurona (i pomake svakog neurona) koje će davati najbolje (ili barem dovoljno dobre) performanse neuronske mreže u igri Zatvorenikove dileme.
+	
 	
 	
 \chapter{Definiranje pokusa}
 
-	Jedna "iteracija" se sastoji od npr. 50 ponavljanja Zatvorenikove dileme.
 
 
 % \Blindtext

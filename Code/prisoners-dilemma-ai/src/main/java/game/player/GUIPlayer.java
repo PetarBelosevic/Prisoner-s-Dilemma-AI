@@ -30,16 +30,18 @@ public class GUIPlayer extends AbstractPlayer {
             stop = stopFlag.compareAndSet(true, false);
         }
 
-        if (stop) {
-            return 0;
+        int decision = 0;
+        if (!stop) {
+            if (cooperate) {
+                decision = 1;
+            }
+            else {
+                decision = -1;
+            }
         }
+        getDecisionHistory().add(decision);
 
-        if (cooperate) {
-            return 1;
-        }
-        else {
-            return -1;
-        }
+        return decision;
     }
 
     public synchronized void setCooperateFlag(boolean value) {

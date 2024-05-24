@@ -22,6 +22,9 @@ public class ElmanNNLayer extends AbstractLayer {
     public ElmanNNLayer(int previousLayerSize, int currentLayerSize, String activationFunctionName) {
         super(previousLayerSize, currentLayerSize, activationFunctionName);
         context = Nd4j.create(currentLayerSize).castTo(DataType.DOUBLE);
+        for (int j = 0; j < context.length(); j++) {
+            context.putScalar(j, 0.5);
+        }
         setParameters(Arrays.copyOf(getParameters(), 3));
         getParameters()[2] = Nd4j.create(currentLayerSize, currentLayerSize).castTo(DataType.DOUBLE);
         randomizeContextWeights();

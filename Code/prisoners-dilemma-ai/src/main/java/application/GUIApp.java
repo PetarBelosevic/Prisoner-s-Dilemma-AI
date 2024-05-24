@@ -93,7 +93,15 @@ public class GUIApp extends JFrame {
             if (fileChooser.showOpenDialog(this) != JFileChooser.APPROVE_OPTION) {
                 return;
             }
-            SimpleNeuralNetworkSpecimen network = new SimpleNeuralNetworkSpecimen(fileChooser.getSelectedFile().toPath().toString());
+
+            SimpleNeuralNetworkSpecimen network = null;
+            try {
+                network = new SimpleNeuralNetworkSpecimen(fileChooser.getSelectedFile().toPath().toString());
+            }
+            catch (RuntimeException ex) {
+                JOptionPane.showMessageDialog(this, "Could not load neural network from selected file!", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
             PDGameGUI<GUIPlayer, AIPDPlayer> game = getGuiPlayerAIPDPlayerPDGameGUI(network);
             gameLogsPanel.setGame(game);
