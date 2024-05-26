@@ -62,6 +62,6 @@ public class ElmanNNLayer extends AbstractLayer {
 
     @Override
     public void clearLayer() {
-        context.assign(0);
+        context.assign(0.5);
     }
 }

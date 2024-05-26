@@ -28,6 +28,8 @@ public class PDGame<T extends IPlayer, D extends IPlayer> extends AbstractGame<T
         int x1 = getPlayer1().getDecision(getPlayer2().getDecisionHistory());
         int x2 = getPlayer2().getDecision(getPlayer1().getDecisionHistory());
         Pair<Integer, Integer> score;
+        getPlayer1().getDecisionHistory().add(x1);
+        getPlayer2().getDecisionHistory().add(x2);
 
         if (x1 > 0 && x2 > 0) {
             score = COOP_COOP;

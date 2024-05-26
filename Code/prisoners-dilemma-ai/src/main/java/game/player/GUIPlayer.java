@@ -39,8 +39,6 @@ public class GUIPlayer extends AbstractPlayer {
                 decision = -1;
             }
         }
-        getDecisionHistory().add(decision);
-
         return decision;
     }
 

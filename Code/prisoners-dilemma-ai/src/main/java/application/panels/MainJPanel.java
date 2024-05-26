@@ -27,7 +27,11 @@ public class MainJPanel extends JPanel {
                 """
                         This application lets you play Prisoner's Dilemma.
                         You can play this game in two modes:
-                           1. Against AI player - in this case you can first train artificial neural network using evolutionary computing.
+                           1. Against AI player
+                                In this case you can train your neural network using genetic algorithm. In this case
+                                AI player will use trained network against you.
+                                Other option is to load existing neural network from a file which will be used by the
+                                AI player.
                            2. Against other player
                         Enjoy the game!""",
                 "About the application",

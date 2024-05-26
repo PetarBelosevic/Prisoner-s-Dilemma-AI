@@ -18,8 +18,6 @@ import game.PDGameGUI;
 import game.observers.GameObserverAdapter;
 import game.player.AIPDPlayer;
 import game.player.GUIPlayer;
-import neuralNetwork.INeuralNetwork;
-import neuralNetwork.NeuralNetwork;
 
 import javax.swing.*;
 import java.awt.*;
@@ -94,7 +92,7 @@ public class GUIApp extends JFrame {
                 return;
             }
 
-            SimpleNeuralNetworkSpecimen network = null;
+            SimpleNeuralNetworkSpecimen network;
             try {
                 network = new SimpleNeuralNetworkSpecimen(fileChooser.getSelectedFile().toPath().toString());
             }
@@ -179,7 +177,7 @@ public class GUIApp extends JFrame {
         DefaultListModel<Integer> player1Scores = new DefaultListModel<>();
         DefaultListModel<Integer> player2Scores = new DefaultListModel<>();
         GUIPlayer player = new GUIPlayer();
-        PDGameGUI<GUIPlayer, AIPDPlayer> game = new PDGameGUI<>(player, new AIPDPlayer(network), 10, player1Scores, player2Scores);
+        PDGameGUI<GUIPlayer, AIPDPlayer> game = new PDGameGUI<>(player, new AIPDPlayer(network), 16, player1Scores, player2Scores);
         game.addGameObserver(new GameObserverAdapter() {
             @Override
             public void gameStopped() {

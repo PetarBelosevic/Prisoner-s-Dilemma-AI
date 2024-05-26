@@ -55,6 +55,13 @@ M.~E. I.~Barković~Bojanić, ``Teorija igara i pravo'', \emph{Pravni vjesnik},
   \url{https://hrcak.srce.hr/111004}
 \BIBentrySTDinterwordspacing
 
+\bibitem{TheEvolutionOfCooperation}
+\BIBentryALTinterwordspacing
+L.~A. Dugatkin, ``The evolution of cooperation'', \emph{BioScience}, sv.~47,
+  br.~6, str. 355--362, 1997. [Mre\v zno]. Adresa:
+  \url{http://www.jstor.org/stable/1313150}
+\BIBentrySTDinterwordspacing
+
 \bibitem{MITNeuralNet}
 Explained: Neural networks. MIT News, 2017.
   https://news.mit.edu/2017/explained-neural-networks-deep-learning-0414;

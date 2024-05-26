@@ -17,7 +17,6 @@ public class ConsolePDPlayer extends AbstractPlayer {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
 
-        getDecisionHistory().add(input.equalsIgnoreCase("c") ? 1 : -1);
         return input.equalsIgnoreCase("c") ? 1 : -1;
     }
 }

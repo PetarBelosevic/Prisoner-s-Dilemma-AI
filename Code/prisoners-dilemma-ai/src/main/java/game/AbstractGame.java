@@ -70,6 +70,7 @@ public abstract class AbstractGame<T extends IPlayer, D extends IPlayer> impleme
      * <p>
      *     Runs 1 round of a game.
      * </p>
+     * Method must update decision history of every player.
      */
     protected abstract void evaluateDecisions();
 

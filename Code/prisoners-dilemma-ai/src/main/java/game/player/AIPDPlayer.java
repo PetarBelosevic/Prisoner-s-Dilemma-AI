@@ -31,7 +31,6 @@ public class AIPDPlayer extends AbstractPlayer {
         double[] result = neuralNetwork.process(inputArray);
         boolean decision = result[0] >= 0.5;
 
-        getDecisionHistory().add(decision ? 1 : -1);
         return decision ? 1 : -1;
     }
 

@@ -16,45 +16,45 @@ Warning--I didn't find a database entry for "ghiglia_pritt_phase_unwrapping"
 Warning--I didn't find a database entry for "hartley2003multiple"
 Warning--I didn't find a database entry for "4250461"
 Warning--I didn't find a database entry for "123DCatch"
-You've used 10 entries,
+You've used 11 entries,
             4225 wiz_defined-function locations,
-            894 strings with 9690 characters,
-and the built_in function-call counts, 4881 in all, are:
-= -- 361
-> -- 45
-< -- 35
-+ -- 33
-- -- 4
-* -- 186
-:= -- 756
-add.period$ -- 18
-call.type$ -- 10
-change.case$ -- 10
-chr.to.int$ -- 69
-cite$ -- 10
-duplicate$ -- 387
-empty$ -- 443
-format.name$ -- 4
-if$ -- 1158
+            904 strings with 9912 characters,
+and the built_in function-call counts, 5791 in all, are:
+= -- 445
+> -- 57
+< -- 46
++ -- 41
+- -- 5
+* -- 231
+:= -- 902
+add.period$ -- 21
+call.type$ -- 11
+change.case$ -- 11
+chr.to.int$ -- 93
+cite$ -- 11
+duplicate$ -- 446
+empty$ -- 506
+format.name$ -- 5
+if$ -- 1372
 int.to.chr$ -- 0
-int.to.str$ -- 10
-missing$ -- 74
-newline$ -- 65
-num.names$ -- 4
-pop$ -- 192
+int.to.str$ -- 11
+missing$ -- 82
+newline$ -- 70
+num.names$ -- 5
+pop$ -- 202
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 396
+skip$ -- 470
 stack$ -- 0
-substring$ -- 176
-swap$ -- 272
-text.length$ -- 12
+substring$ -- 233
+swap$ -- 328
+text.length$ -- 15
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 10
+type$ -- 11
 warning$ -- 0
-while$ -- 16
-width$ -- 12
-write$ -- 112
+while$ -- 21
+width$ -- 13
+write$ -- 126
 (There were 6 warnings)
