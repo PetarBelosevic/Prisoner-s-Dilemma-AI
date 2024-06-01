@@ -12,7 +12,6 @@ import utils.Pair;
 
 import javax.swing.*;
 import java.awt.*;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * <p>
@@ -130,7 +129,6 @@ public class GameLogsJPanel extends JPanel {
             }
         });
 
-        // TODO da nije hardcoded
         if (game.getPlayer1() instanceof GUIPlayer) {
             PlayerAction player1Cooperate = new PlayerAction((GUIPlayer) game.getPlayer1(), "W", true);
             PlayerAction player1Deflect = new PlayerAction((GUIPlayer) game.getPlayer1(), "S", false);

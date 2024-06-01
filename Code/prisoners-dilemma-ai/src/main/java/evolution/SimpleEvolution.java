@@ -1,8 +1,8 @@
 package evolution;
 
 import evolution.specimen.ISpecimen;
-import evolution.specimen.factory.ISpecimenFactory;
 import evolution.specimen.evaulator.IEvaluator;
+import evolution.specimen.factory.ISpecimenFactory;
 
 /**
  * <p>
@@ -14,12 +14,13 @@ import evolution.specimen.evaulator.IEvaluator;
  * @param <T> extends ISpecimen
  */
 public class SimpleEvolution<T extends ISpecimen<T>> extends AbstractEvolution<T> {
-    private int totalFitness = 0;
-    private final IEvaluator<T> evaluator;
+    private double totalFitness = 0;
+    private final IEvaluator<T>[] evaluators;
 
-    public SimpleEvolution(double smallMutationChance, int smallMutationMagnitude, double bigMutationChance, int bigMutationMagnitude, int generationSize, ISpecimenFactory<T> factory, IEvaluator<T> evaluator) {
+    @SafeVarargs
+    public SimpleEvolution(double smallMutationChance, double smallMutationMagnitude, double bigMutationChance, double bigMutationMagnitude, int generationSize, ISpecimenFactory<T> factory, IEvaluator<T>... evaluators) {
         super(smallMutationChance, smallMutationMagnitude, bigMutationChance, bigMutationMagnitude, generationSize, factory);
-        this.evaluator = evaluator;
+        this.evaluators = evaluators;
     }
 
     @Override
@@ -29,11 +30,11 @@ public class SimpleEvolution<T extends ISpecimen<T>> extends AbstractEvolution<T
             getNextGeneration().get(i).resetFitness();
         }
 
-        for (int i = 0; i < getGenerationSize(); i++) {
-            for (int j = i; j < getGenerationSize(); j++) {
-                totalFitness += evaluator.evaluate(getNextGeneration().get(i), getNextGeneration().get(j));
-            }
+        for (var evaluator: evaluators) {
+            totalFitness += evaluator.evaluate(getNextGeneration());
         }
+
+
         getNextGeneration().sort(null);
         totalFitness -= getNextGeneration().get(getGenerationSize() - 1).getFitness() * getGenerationSize();
 
@@ -42,14 +43,20 @@ public class SimpleEvolution<T extends ISpecimen<T>> extends AbstractEvolution<T
 
     @Override
     public void generateNextGeneration() {
-        getNextGeneration().set(0, getCurrentGeneration().get(0));
+//        System.out.println(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss,SSS")));
+
+        if (getCurrentGenerationIndex() == -1) {
+            evaluateNextGeneration();
+            incrementCurrentGenerationIndex();
+            return;
+        }
+        getNextGeneration().get(0).copyFrom(getCurrentGeneration().get(0));
         for (int i = 1; i < getGenerationSize(); i++) {
-            if (!isOneParent()) {
-                getNextGeneration().get(i).createOffspring(selectParent(), selectParent());
-            }
-            else {
-                getNextGeneration().get(i).copyFrom(selectParent());
-            }
+            T p1 = selectParent();
+            T p2 = selectParent();
+            getNextGeneration().get(i).createOffspring(p1, p2);
+            visited.put(p1, false);
+            visited.put(p2, false);
             getNextGeneration().get(i).mutate(getSmallMutationChance(), getSmallMutationMagnitude(), getBigMutationChance(), getBigMutationMagnitude());
         }
         evaluateNextGeneration();
@@ -66,15 +73,18 @@ public class SimpleEvolution<T extends ISpecimen<T>> extends AbstractEvolution<T
      */
     private T selectParent() {
         double random = Math.random() * totalFitness;
-        int currentFitnessSum = 0;
+        double currentFitnessSum = 0;
         for (T specimen: getCurrentGeneration()) {
-            if (currentFitnessSum < random) {
-                currentFitnessSum += specimen.getFitness() - getWorstSpecimen().getFitness();
+            currentFitnessSum += specimen.getFitness() - getWorstSpecimen().getFitness();
+            if (visited.get(specimen)) {
+                continue;
             }
-            if (currentFitnessSum >= random) {
+            if (random <= currentFitnessSum) {
+                visited.put(specimen, true);
                 return specimen;
             }
         }
+        visited.put(getBestSpecimen(), true);
         return getBestSpecimen();
     }
 }

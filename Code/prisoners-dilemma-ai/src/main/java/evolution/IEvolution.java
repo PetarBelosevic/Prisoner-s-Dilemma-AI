@@ -48,22 +48,6 @@ public interface IEvolution<T extends ISpecimen<T>> {
     int getCurrentGenerationIndex();
 
     /**
-     * <p>
-     *     Sets if offsprings will be produced from two parents or one parent.
-     * </p>
-     * @param oneParent true of one-parent offspring is desired, false if two-parent offspring is desired
-     */
-    void setOneParent(boolean oneParent);
-
-    /**
-     * <p>
-     *     Default value is false.
-     * </p>
-     * @return true if offsprings have only one parent, false otherwise
-     */
-    boolean isOneParent();
-
-    /**
      * @return number between 0.0 and 1.0, represents a chance of a small mutation to occur
      */
     double getSmallMutationChance();

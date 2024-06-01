@@ -26,7 +26,7 @@ public interface IEvolutionManager<T extends ISpecimen<T>> {
      * </p>
      * @return fitness history of the best, median and the worst specimens
      */
-    List<INTuple<Integer>> getGenerationsHistory();
+    List<INTuple<Double>> getGenerationsHistory();
 
     /**
      * @return evolution used in this manager

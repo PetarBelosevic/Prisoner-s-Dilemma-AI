@@ -24,4 +24,9 @@ public class Layer extends AbstractLayer {
 
     @Override
     public void clearLayer() {}
+
+    @Override
+    public ILayer copy() {
+        return new Layer(getNumberOfInputs(), getNumberOfOutputs(), getActivationFunctionName());
+    }
 }

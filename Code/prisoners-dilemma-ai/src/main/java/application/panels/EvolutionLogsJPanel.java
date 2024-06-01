@@ -18,6 +18,7 @@ import java.awt.*;
  */
 public class EvolutionLogsJPanel<T extends ISpecimen<T>> extends JPanel {
     private final JButton nextButton = new MyJButton("Next", GUIApp.NORMAL_FONT_SIZE);
+    private final JButton stopButton = new MyJButton("Stop", GUIApp.NORMAL_FONT_SIZE);
     private final JLabel maxFitnessLabel = new MyJLabel("Maximum possible fitness: ", GUIApp.NORMAL_FONT_SIZE);
     private IEvolutionManager<T> manager;
     private final JPanel centerPanel = new JPanel(new GridLayout(0, 4));
@@ -49,6 +50,7 @@ public class EvolutionLogsJPanel<T extends ISpecimen<T>> extends JPanel {
         JPanel bottomPanel = new JPanel();
         bottomPanel.setBackground(Color.LIGHT_GRAY);
         bottomPanel.add(maxFitnessLabel);
+        bottomPanel.add(stopButton);
         bottomPanel.add(nextButton);
         nextButton.setEnabled(false);
         add(bottomPanel, BorderLayout.PAGE_END);
@@ -68,6 +70,18 @@ public class EvolutionLogsJPanel<T extends ISpecimen<T>> extends JPanel {
 
     /**
      * <p>
+     *     JButton for stopping evolution.
+     * </p>
+     * It gets disabled when evolution ends or it's stopped.
+     *
+     * @return JButton for stopping evolution
+     */
+    public JButton getStopButton() {
+        return stopButton;
+    }
+
+    /**
+     * <p>
      *     Sets evolution manager and table that will show logs from evolution.
      * </p>
      * @param manager new evolution manager
@@ -76,7 +90,7 @@ public class EvolutionLogsJPanel<T extends ISpecimen<T>> extends JPanel {
      * @param medianList JList for showing median score in generation
      * @param worstList JList for showing the worst score in generation
      */
-    public void setManager(IEvolutionManager<T> manager, DefaultListModel<Integer> indexList, DefaultListModel<Integer> bestList, DefaultListModel<Integer> medianList, DefaultListModel<Integer> worstList, int maxFitness) {
+    public void setManager(IEvolutionManager<T> manager, DefaultListModel<Integer> indexList, DefaultListModel<Double> bestList, DefaultListModel<Double> medianList, DefaultListModel<Double> worstList, int maxFitness) {
         this.manager = manager;
         centerPanel.removeAll();
         centerPanel.add(new MyJList<>(indexList, SwingConstants.CENTER, GUIApp.NORMAL_FONT_SIZE, BorderFactory.createLineBorder(Color.BLACK)));
@@ -102,6 +116,7 @@ public class EvolutionLogsJPanel<T extends ISpecimen<T>> extends JPanel {
     public Thread startEvolution() {
         Thread t = new Thread(() -> {
             manager.runEvolution();
+            stopButton.setEnabled(false);
             nextButton.setEnabled(true);
         });
         t.start();

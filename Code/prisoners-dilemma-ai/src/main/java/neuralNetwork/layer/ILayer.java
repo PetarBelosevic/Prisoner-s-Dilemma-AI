@@ -58,4 +58,9 @@ public interface ILayer {
      * </p>
      */
     void clearLayer();
+
+    /**
+     * @return exact copy of this object
+     */
+    ILayer copy();
 }

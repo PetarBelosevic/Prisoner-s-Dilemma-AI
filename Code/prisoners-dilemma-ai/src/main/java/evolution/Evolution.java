@@ -41,16 +41,6 @@ public class Evolution<T extends ISpecimen<T>> implements IEvolution<T> {
     }
 
     @Override
-    public void setOneParent(boolean oneParent) {
-        evolution.setOneParent(oneParent);
-    }
-
-    @Override
-    public boolean isOneParent() {
-        return evolution.isOneParent();
-    }
-
-    @Override
     public double getSmallMutationChance() {
         return evolution.getSmallMutationChance();
     }

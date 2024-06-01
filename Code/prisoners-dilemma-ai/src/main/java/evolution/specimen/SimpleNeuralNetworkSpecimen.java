@@ -4,8 +4,8 @@ import neuralNetwork.IllegalArchitectureException;
 import neuralNetwork.NeuralNetwork;
 import neuralNetwork.layer.ILayer;
 import org.nd4j.linalg.api.ndarray.INDArray;
-import utilities.Constants;
-import utilities.UtilityFunctions;
+import utils.Constants;
+import utils.UtilityFunctions;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
@@ -13,7 +13,7 @@ import java.nio.file.Path;
 
 
 public class SimpleNeuralNetworkSpecimen extends NeuralNetwork implements ISpecimen<SimpleNeuralNetworkSpecimen> {
-    private int fitness = 0;
+    private double fitness = 0;
 
     public SimpleNeuralNetworkSpecimen(ILayer... layers) {
         super(layers);
@@ -35,7 +35,7 @@ public class SimpleNeuralNetworkSpecimen extends NeuralNetwork implements ISpeci
             for (INDArray parameter: layer.getParameters()) {
                 for (int i = 0; i < parameter.length(); i++) {
                     change = UtilityFunctions.generateMutation(smallMutationChance, smallMutationMagnitude, bigMutationChance, bigMutationMagnitude);
-                    if (change != 0) {
+                    if (change != 0.0) {
                         parameter.putScalar(i, parameter.getDouble(i) + change);
                     }
                 }
@@ -45,7 +45,7 @@ public class SimpleNeuralNetworkSpecimen extends NeuralNetwork implements ISpeci
 
     @Override
     public void createOffspring(SimpleNeuralNetworkSpecimen parent1, SimpleNeuralNetworkSpecimen parent2) {
-        int totalFitness = parent1.getFitness() + parent2.getFitness();
+        double totalFitness = parent1.getFitness() + parent2.getFitness();
         for (int i = 0; i < getDepth()-1; i++) {
             for (int j = 0; j < getLayer(i).getParameters().length; j++) {
                 for (int k = 0; k < getLayer(i).getParameters()[j].length(); k++) {
@@ -55,18 +55,22 @@ public class SimpleNeuralNetworkSpecimen extends NeuralNetwork implements ISpeci
                     else {
                         getLayer(i).getParameters()[j].putScalar(k, parent2.getLayer(i).getParameters()[j].getDouble(k));
                     }
+//                    getLayer(i).getParameters()[j].putScalar(
+//                            k,
+//                            (parent1.getLayer(i).getParameters()[j].getDouble(k) + parent2.getLayer(i).getParameters()[j].getDouble(k)) / 2
+//                    );
                 }
             }
         }
     }
 
     @Override
-    public int getFitness() {
+    public double getFitness() {
         return fitness;
     }
 
     @Override
-    public void addToFitness(int fitness) {
+    public void addToFitness(double fitness) {
         this.fitness += fitness;
     }
 

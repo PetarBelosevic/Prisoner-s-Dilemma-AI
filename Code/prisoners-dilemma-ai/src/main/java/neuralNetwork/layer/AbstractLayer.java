@@ -4,7 +4,8 @@ import neuralNetwork.layer.activationFunctions.ActivationFunctions;
 import org.nd4j.linalg.api.buffer.DataType;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
-import utilities.Constants;
+import utils.Constants;
+import utils.UtilityFunctions;
 
 import java.util.function.UnaryOperator;
 
@@ -68,7 +69,7 @@ abstract class AbstractLayer implements ILayer {
     private void randomizeWeightsAndBiases() {
         for (INDArray parameter: parameters) {
             for (int j = 0; j < parameter.length(); j++) {
-                parameter.putScalar(j, (Math.random() * Constants.RANDOMNESS_LEVEL) - Constants.RANDOMNESS_LEVEL / 2);
+                parameter.putScalar(j, UtilityFunctions.getRandom(Constants.RANDOMNESS_LEVEL));
             }
         }
     }

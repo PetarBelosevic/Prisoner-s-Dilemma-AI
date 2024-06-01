@@ -14,11 +14,11 @@ public class EvolutionGUI<T extends ISpecimen<T>> extends Evolution<T> {
     private final int step;
 
     private final DefaultListModel<Integer> indexList;
-    private final DefaultListModel<Integer> bestList;
-    private final DefaultListModel<Integer> medianList;
-    private final DefaultListModel<Integer> worstList;
+    private final DefaultListModel<Double> bestList;
+    private final DefaultListModel<Double> medianList;
+    private final DefaultListModel<Double> worstList;
 
-    public EvolutionGUI(IEvolution<T> evolution, int step, DefaultListModel<Integer> indexList, DefaultListModel<Integer> bestList, DefaultListModel<Integer> medianList, DefaultListModel<Integer> worstList) {
+    public EvolutionGUI(IEvolution<T> evolution, int step, DefaultListModel<Integer> indexList, DefaultListModel<Double> bestList, DefaultListModel<Double> medianList, DefaultListModel<Double> worstList) {
         super(evolution);
         this.step = step;
         this.indexList = indexList;
@@ -27,7 +27,7 @@ public class EvolutionGUI<T extends ISpecimen<T>> extends Evolution<T> {
         this.worstList = worstList;
     }
 
-    public EvolutionGUI(IEvolution<T> evolution, DefaultListModel<Integer> indexList, DefaultListModel<Integer> bestList, DefaultListModel<Integer> medianList, DefaultListModel<Integer> worstList) {
+    public EvolutionGUI(IEvolution<T> evolution, DefaultListModel<Integer> indexList, DefaultListModel<Double> bestList, DefaultListModel<Double> medianList, DefaultListModel<Double> worstList) {
         this(evolution, 10, indexList, bestList, medianList, worstList);
     }
 

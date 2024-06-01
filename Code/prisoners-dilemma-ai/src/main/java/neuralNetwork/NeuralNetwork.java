@@ -17,7 +17,11 @@ public class NeuralNetwork implements INeuralNetwork {
     private double[] outputArray;
 
     public NeuralNetwork(ILayer... layers) {
-        this.layers = layers;
+//        this.layers = layers;
+        this.layers = new ILayer[layers.length];
+        for (int i = 0; i < layers.length; i++) {
+            this.layers[i] = layers[i].copy();
+        }
         this.input = Nd4j.create(layers[0].getNumberOfInputs()).castTo(DataType.DOUBLE);
         this.outputArray = new double[layers[layers.length-1].getNumberOfOutputs()];
     }
@@ -43,7 +47,7 @@ public class NeuralNetwork implements INeuralNetwork {
     }
 
     @Override
-    public double[] process(double[] inputArray) {
+    public double[] process(Double[] inputArray) {
         for(int i = 0; i < inputArray.length; i++) {
             input.putScalar(i, inputArray[i]);
         }

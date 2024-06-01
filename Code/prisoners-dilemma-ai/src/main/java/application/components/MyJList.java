@@ -2,6 +2,8 @@ package application.components;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import java.awt.*;
+import java.text.DecimalFormat;
 
 public class MyJList<T> extends JList<T> {
     public MyJList(ListModel<T> dataModel) {
@@ -21,6 +23,7 @@ public class MyJList<T> extends JList<T> {
         this.setAlignmentX(horizontalAlignment);
         ((DefaultListCellRenderer) this.getCellRenderer()).setHorizontalAlignment(horizontalAlignment);
         this.setFont(this.getFont().deriveFont(fontSize));
+        this.setCellRenderer(new DoubleListCellRenderer());
     }
 
     public MyJList(ListModel<T> dataModel, int horizontalAlignment, float fontSize, Border border) {

@@ -14,10 +14,9 @@ public class ElmanNeuralNetworkFactory implements ISpecimenFactory<SimpleNeuralN
     @Override
     public SimpleNeuralNetworkSpecimen create() {
         return new SimpleNeuralNetworkSpecimen(
-                new ElmanNNLayer(1, 6, "sigmoid"),
-//                new Layer(6, 8, "sigmoid"),
-//                new Layer(10, 6, "sigmoid"),
-                new Layer(6, 1, "sigmoid")
+                new ElmanNNLayer(1, 4, "sigmoid"),
+                new Layer(4, 2, "sigmoid"),
+                new Layer(2, 1, "sigmoid")
         );
     }
 }

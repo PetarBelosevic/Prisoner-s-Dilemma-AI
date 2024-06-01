@@ -20,9 +20,19 @@ public interface IGame<T extends IPlayer, D extends IPlayer> {
     T getPlayer1();
 
     /**
+     * @param player1 new player 1
+     */
+    void setPlayer1(T player1);
+
+    /**
      * @return player 2
      */
     D getPlayer2();
+
+    /**
+     * @param player2 new player 2
+     */
+    void setPlayer2(D player2);
 
     /**
      * @return number of iterations of game played between two players in one run

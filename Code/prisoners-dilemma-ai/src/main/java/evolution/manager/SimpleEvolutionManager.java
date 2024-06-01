@@ -17,7 +17,7 @@ public class SimpleEvolutionManager<T extends ISpecimen<T>> implements IEvolutio
     private final IEvolution<T> evolution;
     private final int maxGenerationLimit;
     private final int acceptableFitness;
-    private final List<INTuple<Integer>> generationsHistory = new LinkedList<>();
+    private final List<INTuple<Double>> generationsHistory = new LinkedList<>();
     private volatile boolean stop = false;
 
     public SimpleEvolutionManager(IEvolution<T> evolution, int maxGenerationLimit, int acceptableFitness) {
@@ -39,7 +39,7 @@ public class SimpleEvolutionManager<T extends ISpecimen<T>> implements IEvolutio
     }
 
     @Override
-    public List<INTuple<Integer>> getGenerationsHistory() {
+    public List<INTuple<Double>> getGenerationsHistory() {
         return generationsHistory;
     }
 

@@ -3,7 +3,8 @@ package neuralNetwork.layer;
 import org.nd4j.linalg.api.buffer.DataType;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
-import utilities.Constants;
+import utils.Constants;
+import utils.UtilityFunctions;
 
 import java.util.Arrays;
 
@@ -37,7 +38,7 @@ public class ElmanNNLayer extends AbstractLayer {
      */
     private void randomizeContextWeights() {
         for (int j = 0; j < getParameters()[2].length(); j++) {
-            getParameters()[2].putScalar(j, (Math.random() * Constants.RANDOMNESS_LEVEL) - Constants.RANDOMNESS_LEVEL / 2);
+            getParameters()[2].putScalar(j, UtilityFunctions.getRandom(Constants.RANDOMNESS_LEVEL));
         }
     }
 
@@ -63,5 +64,10 @@ public class ElmanNNLayer extends AbstractLayer {
     @Override
     public void clearLayer() {
         context.assign(0.5);
+    }
+
+    @Override
+    public ILayer copy() {
+        return new ElmanNNLayer(getNumberOfInputs(), getNumberOfOutputs(), getActivationFunctionName());
     }
 }

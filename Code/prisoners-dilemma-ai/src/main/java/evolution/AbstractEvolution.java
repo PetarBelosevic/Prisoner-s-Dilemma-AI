@@ -4,7 +4,9 @@ import evolution.specimen.ISpecimen;
 import evolution.specimen.factory.ISpecimenFactory;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -17,13 +19,13 @@ public abstract class AbstractEvolution<T extends ISpecimen<T>> implements IEvol
     private double smallMutationMagnitude;
     private double bigMutationChance;
     private double bigMutationMagnitude;
-    private boolean oneParent = false;
-    private int currentGenerationIndex = 0;
+    private int currentGenerationIndex = -1;
     private final int generationSize;
     private List<T> currentGeneration;
     private List<T> nextGeneration;
+    protected final Map<T, Boolean> visited = new HashMap<>();
 
-    protected AbstractEvolution(double smallMutationChance, int smallMutationMagnitude, double bigMutationChance, int bigMutationMagnitude, int generationSize, ISpecimenFactory<T> factory) {
+    protected AbstractEvolution(double smallMutationChance, double smallMutationMagnitude, double bigMutationChance, double bigMutationMagnitude, int generationSize, ISpecimenFactory<T> factory) {
         this.smallMutationChance = smallMutationChance;
         this.smallMutationMagnitude = smallMutationMagnitude;
         this.bigMutationChance = bigMutationChance;
@@ -36,6 +38,8 @@ public abstract class AbstractEvolution<T extends ISpecimen<T>> implements IEvol
      * <p>
      *     Initializes lists for storing specimens and creates initial specimens.
      * </p>
+     * Also sets visited value to false for all given specimens
+     *
      * @param factory for creating specimens.
      */
     private void initialize(ISpecimenFactory<T> factory) {
@@ -45,6 +49,8 @@ public abstract class AbstractEvolution<T extends ISpecimen<T>> implements IEvol
         for (int i = 0; i < generationSize; i++) {
             currentGeneration.add(factory.create());
             nextGeneration.add(factory.create());
+            visited.put(currentGeneration.get(i), false);
+            visited.put(nextGeneration.get(i), false);
         }
     }
 
@@ -73,16 +79,6 @@ public abstract class AbstractEvolution<T extends ISpecimen<T>> implements IEvol
     @Override
     public int getCurrentGenerationIndex() {
         return currentGenerationIndex;
-    }
-
-    @Override
-    public void setOneParent(boolean oneParent) {
-        this.oneParent = oneParent;
-    }
-
-    @Override
-    public boolean isOneParent() {
-        return oneParent;
     }
 
     @Override

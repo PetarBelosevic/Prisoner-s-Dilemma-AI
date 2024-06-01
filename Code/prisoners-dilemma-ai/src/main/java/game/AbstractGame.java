@@ -15,8 +15,8 @@ import java.util.List;
  * @param <D> type of second player
  */
 public abstract class AbstractGame<T extends IPlayer, D extends IPlayer> implements IGame<T, D> {
-    private final T player1;
-    private final D player2;
+    private T player1;
+    private D player2;
     private final int iterations; // number of rounds in game
     volatile boolean stop = false;
     private final List<GameObserver> observers = new LinkedList<>();
@@ -35,8 +35,20 @@ public abstract class AbstractGame<T extends IPlayer, D extends IPlayer> impleme
     }
 
     @Override
+    public void setPlayer1(T player1) {
+        this.player1 = player1;
+        player1.reset();
+    }
+
+    @Override
     public D getPlayer2() {
         return player2;
+    }
+
+    @Override
+    public void setPlayer2(D player2) {
+        this.player2 = player2;
+        player2.reset();
     }
 
     @Override

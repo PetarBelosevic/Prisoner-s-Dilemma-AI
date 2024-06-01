@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.23)  26 MAY 2024 22:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.23)  29 MAY 2024 13:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1108,7 +1108,7 @@ Package pdftex.def Info: Extra/modelUmjetnogNeurona.png  used on input line 198
 (pdftex.def)             Requested size: 441.01773pt x 176.55157pt.
  [10{c:/texlive/2023/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-mathex.enc} <
 ./Extra/modelUmjetnogNeurona.png>]
-<Extra/ElmanovaMreza.png, id=245, 405.31425pt x 567.3195pt>
+<Extra/ElmanovaMreza.png, id=247, 405.31425pt x 567.3195pt>
 File: Extra/ElmanovaMreza.png Graphic file (type png)
 <use Extra/ElmanovaMreza.png>
 Package pdftex.def Info: Extra/ElmanovaMreza.png  used on input line 218.
@@ -1372,7 +1372,7 @@ Here is how much of TeX's memory you used:
  42715 multiletter control sequences out of 15000+600000
  700042 words of font info for 182 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,17n,131p,931b,1013s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 87i,17n,131p,931b,1015s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Bold.pfb><
 c:/texlive/2023/texmf-dist/fonts/type1/ascender/opensans/OpenSans-Regular.pfb><
 c:/texlive/2023/texmf-dist/fonts/type1/public/stix2-type1/STIX2Math.pfb><c:/tex
@@ -1381,10 +1381,10 @@ ive/2023/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-BoldItalic.pfb><c:
 /texlive/2023/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Italic.pfb><c
 :/texlive/2023/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Regular.pfb>
 <c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on zavrsni_rad.pdf (32 pages, 1109456 bytes).
+Output written on zavrsni_rad.pdf (32 pages, 1109514 bytes).
 PDF statistics:
- 439 PDF objects out of 1000 (max. 8388607)
- 366 compressed objects within 4 object streams
+ 443 PDF objects out of 1000 (max. 8388607)
+ 368 compressed objects within 4 object streams
  76 named destinations out of 1000 (max. 500000)
  188 words of extra memory for PDF output out of 10000 (max. 10000000)
 

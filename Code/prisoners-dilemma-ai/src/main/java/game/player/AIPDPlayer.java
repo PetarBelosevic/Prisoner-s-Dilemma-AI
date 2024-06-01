@@ -2,7 +2,6 @@ package game.player;
 
 import neuralNetwork.INeuralNetwork;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,11 +11,11 @@ import java.util.List;
  */
 public class AIPDPlayer extends AbstractPlayer {
     private INeuralNetwork neuralNetwork;
-    private double[] inputArray;
+    private Double[] inputArray;
 
     public AIPDPlayer(INeuralNetwork neuralNetwork) {
         this.neuralNetwork = neuralNetwork;
-        this.inputArray = new double[neuralNetwork.getLayer(0).getNumberOfInputs()];
+        this.inputArray = new Double[neuralNetwork.getLayer(0).getNumberOfInputs()];
     }
 
     public AIPDPlayer() {}
@@ -25,7 +24,7 @@ public class AIPDPlayer extends AbstractPlayer {
     public int getDecision(List<Integer> otherDecisionHistory) {
         int n = otherDecisionHistory.size() - 1;
         for (int i = 0; i < inputArray.length; i++) {
-            inputArray[i] = i <= n ? otherDecisionHistory.get(n - i) : 0;
+            inputArray[i] = (double) (i <= n ? otherDecisionHistory.get(n - i) : 0);
         }
 
         double[] result = neuralNetwork.process(inputArray);
@@ -47,7 +46,7 @@ public class AIPDPlayer extends AbstractPlayer {
     public void setNeuralNetwork(INeuralNetwork network) {
         this.neuralNetwork = network;
         if (inputArray == null || inputArray.length != neuralNetwork.getLayer(0).getNumberOfInputs()) {
-            this.inputArray = new double[neuralNetwork.getLayer(0).getNumberOfInputs()];
+            this.inputArray = new Double[neuralNetwork.getLayer(0).getNumberOfInputs()];
         }
     }
 

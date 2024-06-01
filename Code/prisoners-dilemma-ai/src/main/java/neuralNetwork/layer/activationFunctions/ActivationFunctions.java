@@ -19,7 +19,7 @@ public class ActivationFunctions {
 
     static {
         FUNCTIONS.put("sigmoid", (x) -> Transforms.sigmoid(x, false));
-        FUNCTIONS.put("identitiy", (x) -> Transforms.identity(x, false));
+        FUNCTIONS.put("identity", (x) -> Transforms.identity(x, false));
     }
 
     /**

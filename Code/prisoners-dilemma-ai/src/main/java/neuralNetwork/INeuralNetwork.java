@@ -3,9 +3,6 @@ package neuralNetwork;
 import neuralNetwork.layer.ILayer;
 import org.nd4j.linalg.api.ndarray.INDArray;
 
-import java.util.Collection;
-import java.util.List;
-
 /**
  * <p>
  *     Interface for fully connected neural network.
@@ -21,9 +18,8 @@ public interface INeuralNetwork {
      * @return output of a neural network
      */
     INDArray process(INDArray input);
-    double[] process(double[] input);
+    double[] process(Double[] input);
 
-    // TODO remove?
     /**
      * @return array of layers from this network
      */

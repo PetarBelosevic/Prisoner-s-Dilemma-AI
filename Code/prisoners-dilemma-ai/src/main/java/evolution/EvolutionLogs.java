@@ -12,7 +12,7 @@ import evolution.specimen.ISpecimen;
  * @param <T> type of specimen
  */
 public class EvolutionLogs<T extends ISpecimen<T>> extends Evolution<T> {
-    private static final String FORMAT = "Generation %d:\n\tBest score: %d\n\tMedian score: %d\n\tWorst score: %d\n------------------------------\n";
+    private static final String FORMAT = "Generation %d:\n\tBest score: %f\n\tMedian score: %f\n\tWorst score: %f\n------------------------------\n";
     private final int step;
 
     public EvolutionLogs(IEvolution<T> evolution, int step) {

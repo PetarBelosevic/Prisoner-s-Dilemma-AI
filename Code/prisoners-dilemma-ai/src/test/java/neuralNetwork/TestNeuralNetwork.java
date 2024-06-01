@@ -11,14 +11,14 @@ public class TestNeuralNetwork {
     @Test
     void testNeuralNetworkWorks1() {
         INeuralNetwork network = new NeuralNetwork(2, 2, 1);
-        INDArray array = Nd4j.createFromArray((float) 1.0, (float) 1.0);
+        INDArray array = Nd4j.createFromArray(1.0, 1.0);
         assertDoesNotThrow(() -> System.out.println(network.process(array)));
     }
 
     @Test
     void testNeuralNetworkWorks2() {
         INeuralNetwork network = new NeuralNetwork(3, 2, 5);
-        double[] array = {2.0, 1.0, 1.0};
+        Double[] array = {2.0, 1.0, 1.0};
         assertDoesNotThrow(() -> System.out.println(Arrays.toString(network.process(array))));
     }
 }

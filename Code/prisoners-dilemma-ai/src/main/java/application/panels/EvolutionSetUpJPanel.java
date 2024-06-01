@@ -23,7 +23,6 @@ public class EvolutionSetUpJPanel extends JPanel {
     private final JSpinner smallMutationMagnitudeSpinner = createJSpinner(1, 0, -1, -1);
     private final JSpinner bigMutationChanceSpinner = createJSpinner(0.01, 0.0, 1.0, 0.001);
     private final JSpinner bigMutationMagnitudeSpinner = createJSpinner(6, 0, -1, -1);
-    private final JSpinner numberOfParentsSpinner = createJSpinner(1, 1, 2, 1);
     private final JSpinner generationSizeSpinner = createJSpinner(40, 0, -1, -1);
     private final JSpinner maxGenerationLimitSpinner = createJSpinner(40, 0, -1, -1);
     private final JSpinner gameIterationsSpinner = createJSpinner(40, 0, -1, -1);
@@ -45,9 +44,6 @@ public class EvolutionSetUpJPanel extends JPanel {
 
         centerPanel.add(createJLabel("big mutation magnitude: "));
         centerPanel.add(bigMutationMagnitudeSpinner);
-
-        centerPanel.add(createJLabel("number of parents: "));
-        centerPanel.add(numberOfParentsSpinner);
 
         centerPanel.add(createJLabel("generation size: "));
         centerPanel.add(generationSizeSpinner);
@@ -150,14 +146,6 @@ public class EvolutionSetUpJPanel extends JPanel {
      */
     public int getBigMutationMagnitude() {
         double x = (double) bigMutationMagnitudeSpinner.getValue();
-        return (int) x;
-    }
-
-    /**
-     * @return number of parents (1 or 2) on input
-     */
-    public int getNumberOfParents() {
-        double x = (double) numberOfParentsSpinner.getValue();
         return (int) x;
     }
 

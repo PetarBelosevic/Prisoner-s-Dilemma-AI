@@ -9,7 +9,7 @@ import evolution.manager.IEvolutionManager;
 import evolution.manager.SimpleEvolutionManager;
 import evolution.specimen.SimpleNeuralNetworkSpecimen;
 import evolution.specimen.evaulator.IEvaluator;
-import evolution.specimen.evaulator.PDEvaluator;
+import evolution.specimen.evaulator.PDEvaluatorNetVsNet;
 import evolution.specimen.factory.ElmanNeuralNetworkFactory;
 import evolution.specimen.factory.ISpecimenFactory;
 import game.IGame;
@@ -60,9 +60,7 @@ public class GUIApp extends JFrame {
                         gameThread.join();
                     }
                 }
-                catch (InterruptedException ex) {
-                    throw new RuntimeException(ex);
-                }
+                catch (InterruptedException ignored) {}
                 System.exit(0);
             }
         });
@@ -112,13 +110,12 @@ public class GUIApp extends JFrame {
         });
         evolutionSetUpPanel.getStartButton().addActionListener(e -> {
             DefaultListModel<Integer> indexList = new DefaultListModel<>();
-            DefaultListModel<Integer> bestList = new DefaultListModel<>();
-            DefaultListModel<Integer> medianList = new DefaultListModel<>();
-            DefaultListModel<Integer> worstList = new DefaultListModel<>();
+            DefaultListModel<Double> bestList = new DefaultListModel<>();
+            DefaultListModel<Double> medianList = new DefaultListModel<>();
+            DefaultListModel<Double> worstList = new DefaultListModel<>();
 
             int maxFitness = 5 * evolutionSetUpPanel.getGameIterations() * evolutionSetUpPanel.getGenerationSize();
             IEvolution<SimpleNeuralNetworkSpecimen> evolution = createEvolution(indexList, bestList, medianList, worstList);
-            evolution.setOneParent(evolutionSetUpPanel.getNumberOfParents() == 1);
             IEvolutionManager<SimpleNeuralNetworkSpecimen> manager = new SimpleEvolutionManager<>(
                     evolution,
                     evolutionSetUpPanel.getMaxGenerationLimit(),
@@ -162,6 +159,15 @@ public class GUIApp extends JFrame {
             change(evolutionLogsPanel, gameLogsPanel);
             gameThread = gameLogsPanel.startGame();
         });
+        evolutionLogsPanel.getStopButton().addActionListener(e -> {
+            if (evolutionThread != null) {
+                evolutionLogsPanel.getManager().stopEvolution();
+                try {
+                    evolutionThread.join();
+                }
+                catch (InterruptedException ignored) {}
+            }
+        });
 
         add(mainPanel);
     }
@@ -190,10 +196,10 @@ public class GUIApp extends JFrame {
     /**
      * @return new IEvolution based on the parameters set on the input
      */
-    private IEvolution<SimpleNeuralNetworkSpecimen> createEvolution(DefaultListModel<Integer> indexList, DefaultListModel<Integer> bestList, DefaultListModel<Integer> medianList, DefaultListModel<Integer> worstList) {
+    private IEvolution<SimpleNeuralNetworkSpecimen> createEvolution(DefaultListModel<Integer> indexList, DefaultListModel<Double> bestList, DefaultListModel<Double> medianList, DefaultListModel<Double> worstList) {
         ISpecimenFactory<SimpleNeuralNetworkSpecimen> factory = new ElmanNeuralNetworkFactory();
         IGame<AIPDPlayer, AIPDPlayer> game = new PDGame<>(new AIPDPlayer(), new AIPDPlayer(), evolutionSetUpPanel.getGameIterations());
-        IEvaluator<SimpleNeuralNetworkSpecimen> evaluator = new PDEvaluator(game);
+        IEvaluator<SimpleNeuralNetworkSpecimen> evaluator = new PDEvaluatorNetVsNet(game);
         return new EvolutionGUI<>(
                 new EvolutionLogs<>(
                         new SimpleEvolution<>(

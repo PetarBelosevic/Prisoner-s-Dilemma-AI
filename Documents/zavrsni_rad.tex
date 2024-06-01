@@ -196,7 +196,7 @@ Jednadžba \eqref{jed:prvajednadzba} je moja prva jednadžba koja definira par $
 	\begin{figure}[htb]
 		\centering
 		\includegraphics[width=\textwidth]{Extra/modelUmjetnogNeurona.png} 
-		\caption{Model umjetnog neurona}
+		\caption{Model umjetnog neuron (preuzeto iz \cite{skriptaNeuronskeMreze})}
 		\label{modelUmjetnogNeurona}
 	\end{figure}
 	
@@ -211,12 +211,12 @@ Jednadžba \eqref{jed:prvajednadzba} je moja prva jednadžba koja definira par $
 	
 		Elmanova neuronska mreža je jednostavna povratna neuronska mreža (\textit{eng. Recurrent Neural Network}). Glavna karakteristika takvih mreža je da imaju neku vrstu povratne veze ili vremenski odgođene veze \cite{ElmanNetSite}.
 		
-		Elmanova neuronska mreža se sastoji od ulaznog sloja, jednog skrivenog sloja i izlaznog sloja. Skriveni sloj ove mreže ima dodatan skriveni kontekst. Kontekst čine neuroni koji služe za pohranu kontekstnih podataka. Dodatno postoje veze iz izlaza skrivenog sloja prema kontekstu i veze iz konteksta prema ulazu u skriveni sloj. Izlaz iz skrivenog sloja se preko tih veza sprema u kontekst. Kod obrade sljedećeg ulaza u neuronsku mrežu skrivenom se sloju na ulaz dodatno stavljaju vrijednosti iz konteksta preko pripadajućih veza te se ukupan ulaz mreže i konteksta dalje obrađuje \cite{Elman}. Jednostavna shema Elmanove mreže prikazana je na slici \ref{ElmanovaMreza}.
+		Elmanova neuronska mreža se u osnovnoj varijanti sastoji od ulaznog sloja, jednog skrivenog sloja i izlaznog sloja. Skriveni sloj ove mreže ima dodatan skriveni kontekst. Kontekst čine neuroni koji služe za pohranu kontekstnih podataka. Dodatno postoje veze iz izlaza skrivenog sloja prema kontekstu i veze iz konteksta prema ulazu u skriveni sloj. Izlaz iz skrivenog sloja se preko tih veza sprema u kontekst. Kod obrade sljedećeg ulaza u neuronsku mrežu skrivenom se sloju na ulaz dodatno stavljaju vrijednosti iz konteksta preko pripadajućih veza te se ukupan ulaz mreže i konteksta dalje obrađuje \cite{Elman}. Jednostavna shema Elmanove mreže prikazana je na slici \ref{ElmanovaMreza}.
 		
 		\begin{figure}[htb]
 			\centering
 			\includegraphics[width=0.9\textwidth]{Extra/ElmanovaMreza.png} 
-			\caption{Shema Elmanove mreže \\
+			\caption{Shema Elmanove mreže (preuzeto iz \cite{Elman}) \\
 					 Napomena: iscrtkane linije označuju veze koje se mogu trenirati}
 			\label{ElmanovaMreza}
 		\end{figure}
@@ -350,9 +350,9 @@ Jednadžba \eqref{jed:prvajednadzba} je moja prva jednadžba koja definira par $
 		\textbf{5} & ne &ne oprašta & stalno izdaje & 16:16 \\ \hline
 		\textbf{6} & da & oprašta sve & nikada ne izdaje & 80:0 \\ \hline
 		\textbf{7} & da & oprašta sve & nikada ne izdaje & 80:0 \\ \hline
-		\textbf{8} & - & - & - & - \\ \hline
-		\textbf{9} & - & - & - & - \\ \hline
-		\textbf{10} & - & - & - & - \\ \hline
+		\textbf{8} & ne & ne oprašta & stalno izdaje & 16:16 \\ \hline
+		\textbf{9} & ne & ne oprašta & stalno izdaje & 16:16 \\ \hline
+		\textbf{10} & da & oprašta sve & nikada ne izdaje & 80:0 \\ \hline
 		\textbf{11} & - & - & - & - \\ \hline
 		\textbf{12} & - & - & - & - \\ \hline
 		\textbf{13} & - & - & - & - \\ \hline

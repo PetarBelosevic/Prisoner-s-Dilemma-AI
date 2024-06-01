@@ -58,12 +58,12 @@ public interface ISpecimen<T extends ISpecimen<T>> extends Comparable<ISpecimen<
     /**
      * @return fitness of this specimen
      */
-    int getFitness();
+    double getFitness();
 
     /**
      * @param fitness value that is to be added to total fitness of this specimen
      */
-    void addToFitness(int fitness);
+    void addToFitness(double fitness);
 
     /**
      * <p>
@@ -74,6 +74,16 @@ public interface ISpecimen<T extends ISpecimen<T>> extends Comparable<ISpecimen<
 
     @Override
     default int compareTo(ISpecimen o) {
-        return o.getFitness() - getFitness();
+        double d = o.getFitness() - getFitness();
+        if (d < 0) {
+            return -1;
+        }
+        else if (d > 0) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+//        return o.getFitness() - getFitness();
     }
 }

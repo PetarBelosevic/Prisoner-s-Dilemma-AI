@@ -29,6 +29,44 @@
             <version>1.0.0-M2.1</version> <!-- Or the latest version available -->
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>org.nd4j</groupId>-->
+<!--            <artifactId>nd4j-cuda-11.4-platform</artifactId>-->
+<!--            <version>1.0.0-M2.1</version>-->
+<!--        </dependency>-->
+
+
+<!--        &lt;!&ndash; ND4J core dependency &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.nd4j</groupId>-->
+<!--            <artifactId>nd4j-api</artifactId>-->
+<!--            <version>1.0.0-beta7</version>-->
+<!--        </dependency>-->
+
+<!--        &lt;!&ndash; ND4J backend for CUDA 11.0 &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.nd4j</groupId>-->
+<!--            <artifactId>nd4j-cuda-11.0-platform</artifactId>-->
+<!--            <version>1.0.0-beta7</version>-->
+<!--        </dependency>-->
+
+        <!-- JavaCPP dependency -->
+<!--        <dependency>-->
+<!--            <groupId>org.bytedeco</groupId>-->
+<!--            <artifactId>javacpp</artifactId>-->
+<!--            <version>1.5.6</version>-->
+<!--        </dependency>-->
+
+<!--        &lt;!&ndash; CUDA dependency &ndash;&gt;-->
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.bytedeco/cuda-platform &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.bytedeco</groupId>-->
+<!--            <artifactId>cuda-platform</artifactId>-->
+<!--            <version>11.4-8.2-1.5.6</version>-->
+<!--        </dependency>-->
+
+
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
