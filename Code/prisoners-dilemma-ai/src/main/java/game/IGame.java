@@ -1,6 +1,6 @@
 package game;
 
-import game.observers.GameObserver;
+import game.observers.IGameObserver;
 import game.player.IPlayer;
 import utils.Pair;
 
@@ -10,8 +10,8 @@ import utils.Pair;
  * </p>
  * This model is also subject for GameObservers.
  *
- * @param <T> type of player1
- * @param <D> type of player2
+ * @param <T> type of player 1
+ * @param <D> type of player 2
  */
 public interface IGame<T extends IPlayer, D extends IPlayer> {
     /**
@@ -59,7 +59,7 @@ public interface IGame<T extends IPlayer, D extends IPlayer> {
      * </p>
      * @param go GameObserver
      */
-    void addGameObserver(GameObserver go);
+    void addGameObserver(IGameObserver go);
 
     /**
      * <p>
@@ -67,7 +67,7 @@ public interface IGame<T extends IPlayer, D extends IPlayer> {
      * </p>
      * @param go GameObserver
      */
-    void removeGameObserver(GameObserver go);
+    void removeGameObserver(IGameObserver go);
 
     /**
      * <p>

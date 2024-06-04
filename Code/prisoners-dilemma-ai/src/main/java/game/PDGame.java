@@ -13,16 +13,23 @@ import utils.Pair;
  */
 public class PDGame<T extends IPlayer, D extends IPlayer> extends AbstractGame<T, D> {
     // defined payoffs based on the decisions of both players
-    private static final Pair<Integer, Integer> COOP_COOP = new Pair<>(3, 3);
-    private static final Pair<Integer, Integer> DEFLECT_DEFLECT = new Pair<>(1, 1);
-    private static final Pair<Integer, Integer> COOP_DEFLECT = new Pair<>(0, 5);
-    private static final Pair<Integer, Integer> DEFLECT_COOP = new Pair<>(5, 0);
-    private static final Pair<Integer, Integer> IGNORE_PLAY = new Pair<>(0, 0);
+    private static final Pair<Integer, Integer> COOP_COOP = new Pair<>(PDConstants.C_C, PDConstants.C_C);
+    private static final Pair<Integer, Integer> DEFECT_DEFECT = new Pair<>(PDConstants.D_D, PDConstants.D_D);
+    private static final Pair<Integer, Integer> COOP_DEFECT = new Pair<>(PDConstants.C_D, PDConstants.D_C);
+    private static final Pair<Integer, Integer> DEFECT_COOP = new Pair<>(PDConstants.D_C, PDConstants.C_D);
+    private static final Pair<Integer, Integer> IGNORE_PLAY = new Pair<>(PDConstants.ERROR, PDConstants.ERROR);
 
     public PDGame(T player1, D player2, int iterations) {
         super(player1, player2, iterations);
     }
 
+    /**
+     * {@inheritDoc}
+     * Valid decisions of each player are PDConstants.COOPERATE and PDConstants.DEFECT.
+     * If the game was stopped players decisions are ignored.
+     *
+     * @throws IllegalDecisionException if any of the players return invalid decisions
+     */
     @Override
     protected void evaluateDecisions() {
         int x1 = getPlayer1().getDecision(getPlayer2().getDecisionHistory());
@@ -35,13 +42,13 @@ public class PDGame<T extends IPlayer, D extends IPlayer> extends AbstractGame<T
             score = COOP_COOP;
         }
         else if (x1 > 0 && x2 < 0) {
-            score = COOP_DEFLECT;
+            score = COOP_DEFECT;
         }
         else if (x1 < 0 && x2 > 0) {
-            score = DEFLECT_COOP;
+            score = DEFECT_COOP;
         }
         else if (x1 < 0 && x2 < 0) {
-            score = DEFLECT_DEFLECT;
+            score = DEFECT_DEFECT;
         }
         else if (stop) {
             score = IGNORE_PLAY;

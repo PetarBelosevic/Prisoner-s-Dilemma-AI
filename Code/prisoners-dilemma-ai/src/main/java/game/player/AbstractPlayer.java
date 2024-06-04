@@ -9,19 +9,12 @@ import java.util.List;
  * </p>
  */
 public abstract class AbstractPlayer implements IPlayer {
-    private final List<Integer> scoreHistory;
-    private final List<Integer> decisionHistory;
+    private final List<Integer> scoreHistory = new ArrayList<>();
+    private final List<Integer> decisionHistory = new ArrayList<>();
     private int score = 0;
     private int index = 0;
 
-    protected AbstractPlayer() {
-        this(16);
-    }
-
-    protected AbstractPlayer(int initialSize) {
-        this.scoreHistory = new ArrayList<>(initialSize);
-        this.decisionHistory = new ArrayList<>(initialSize);
-    }
+    protected AbstractPlayer() {}
 
     @Override
     public void addPoints(int points) {

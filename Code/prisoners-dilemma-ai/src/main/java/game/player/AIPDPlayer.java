@@ -1,5 +1,6 @@
 package game.player;
 
+import game.PDConstants;
 import neuralNetwork.INeuralNetwork;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class AIPDPlayer extends AbstractPlayer {
         double[] result = neuralNetwork.process(inputArray);
         boolean decision = result[0] >= 0.5;
 
-        return decision ? 1 : -1;
+        return decision ? PDConstants.COOPERATE : PDConstants.DEFECT;
     }
 
     /**

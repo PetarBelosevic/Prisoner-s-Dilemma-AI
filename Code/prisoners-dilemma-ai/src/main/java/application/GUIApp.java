@@ -10,14 +10,18 @@ import evolution.manager.SimpleEvolutionManager;
 import evolution.specimen.SimpleNeuralNetworkSpecimen;
 import evolution.specimen.evaulator.IEvaluator;
 import evolution.specimen.evaulator.PDEvaluatorNetVsNet;
+import evolution.specimen.evaulator.PDEvaluatorNetVsStrat;
 import evolution.specimen.factory.ElmanNeuralNetworkFactory;
 import evolution.specimen.factory.ISpecimenFactory;
 import game.IGame;
 import game.PDGame;
-import game.PDGameGUI;
-import game.observers.GameObserverAdapter;
+import game.observers.IGameObserver;
 import game.player.AIPDPlayer;
 import game.player.GUIPlayer;
+import game.player.strategies.AbstractStrategyPlayer;
+import game.player.strategies.RandomPlayer;
+import utils.Constants;
+import utils.Pair;
 
 import javax.swing.*;
 import java.awt.*;
@@ -77,12 +81,21 @@ public class GUIApp extends JFrame {
      * </p>
      */
     private void initGUI() {
-        mainPanel.getTrainAI().addActionListener(e -> {
-            change(mainPanel, evolutionSetUpPanel);
-        });
-        mainPanel.getPlay().addActionListener((e -> {
-            change(mainPanel, gameSetUpPanel);
-        }));
+        initMainPanel();
+        initEvolutionSetUpPanel();
+        initGameSetUpPanel();
+        initEvolutionLogsPanel();
+        add(mainPanel);
+    }
+
+    /**
+     * <p>
+     *     Initialization of MainPanel.
+     * </p>
+     */
+    private void initMainPanel() {
+        mainPanel.getTrainAI().addActionListener(e -> change(mainPanel, evolutionSetUpPanel));
+        mainPanel.getPlay().addActionListener((e -> change(mainPanel, gameSetUpPanel)));
         mainPanel.getLoadNetwork().addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setDialogTitle("Load Neural Network");
@@ -92,70 +105,98 @@ public class GUIApp extends JFrame {
 
             SimpleNeuralNetworkSpecimen network;
             try {
-                network = new SimpleNeuralNetworkSpecimen(fileChooser.getSelectedFile().toPath().toString());
+                network = new SimpleNeuralNetworkSpecimen(Constants.DEFAULT_STORAGE.resolve(fileChooser.getSelectedFile().toPath()));
             }
             catch (RuntimeException ex) {
                 JOptionPane.showMessageDialog(this, "Could not load neural network from selected file!", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            PDGameGUI<GUIPlayer, AIPDPlayer> game = getGuiPlayerAIPDPlayerPDGameGUI(network);
-            gameLogsPanel.setGame(game);
+            DefaultListModel<Integer> player1Scores = new DefaultListModel<>();
+            DefaultListModel<Integer> player2Scores = new DefaultListModel<>();
+            DefaultListModel<Integer> gameRound = new DefaultListModel<>();
+            PDGame<GUIPlayer, AIPDPlayer> game = getGUIPlayerAIPDPlayerPDGame(network, player1Scores, player2Scores, gameRound);
+            gameLogsPanel.setGame(game, player1Scores, player2Scores, gameRound);
             change(mainPanel, gameLogsPanel);
             gameThread = gameLogsPanel.startGame();
         });
+    }
 
-        evolutionSetUpPanel.getBackButton().addActionListener(e -> {
-            change(evolutionSetUpPanel, mainPanel);
-        });
+    /**
+     * <p>
+     *     Initialization of EvolutionSetUpPanel.
+     * </p>
+     */
+    private void initEvolutionSetUpPanel() {
+        evolutionSetUpPanel.getBackButton().addActionListener(e -> change(evolutionSetUpPanel, mainPanel));
         evolutionSetUpPanel.getStartButton().addActionListener(e -> {
             DefaultListModel<Integer> indexList = new DefaultListModel<>();
             DefaultListModel<Double> bestList = new DefaultListModel<>();
             DefaultListModel<Double> medianList = new DefaultListModel<>();
             DefaultListModel<Double> worstList = new DefaultListModel<>();
 
-            int maxFitness = 5 * evolutionSetUpPanel.getGameIterations() * evolutionSetUpPanel.getGenerationSize();
             IEvolution<SimpleNeuralNetworkSpecimen> evolution = createEvolution(indexList, bestList, medianList, worstList);
             IEvolutionManager<SimpleNeuralNetworkSpecimen> manager = new SimpleEvolutionManager<>(
                     evolution,
-                    evolutionSetUpPanel.getMaxGenerationLimit(),
-                    maxFitness + 1
+                    evolutionSetUpPanel.getMaxGenerationLimit()
             );
-            evolutionLogsPanel.setManager(manager, indexList, bestList, medianList, worstList, maxFitness);
+            evolutionLogsPanel.setManager(manager, indexList, bestList, medianList, worstList);
 
             change(evolutionSetUpPanel, evolutionLogsPanel);
             evolutionThread = evolutionLogsPanel.startEvolution();
         });
+    }
 
-        gameSetUpPanel.getBackButton().addActionListener(e -> {
-            change(gameSetUpPanel, mainPanel);
-        });
+    /**
+     * <p>
+     *     Initialization of GameSetUpPanel.
+     * </p>
+     */
+    private void initGameSetUpPanel() {
+        gameSetUpPanel.getBackButton().addActionListener(e -> change(gameSetUpPanel, mainPanel));
         gameSetUpPanel.getStartButton().addActionListener(e -> {
             DefaultListModel<Integer> player1Scores = new DefaultListModel<>();
             DefaultListModel<Integer> player2Scores = new DefaultListModel<>();
+            DefaultListModel<Integer> gameRound = new DefaultListModel<>();
             GUIPlayer player1 = new GUIPlayer();
             GUIPlayer player2 = new GUIPlayer();
-            PDGameGUI<GUIPlayer, GUIPlayer> game = new PDGameGUI<>(player1, player2, 10, player1Scores, player2Scores);
-            game.addGameObserver(new GameObserverAdapter() {
+            PDGame<GUIPlayer, GUIPlayer> game = new PDGame<>(player1, player2, 10);
+            game.addGameObserver(new IGameObserver() {
                 @Override
                 public void gameStopped() {
                     player1.setStopFlag(true);
-                }
-            });
-            game.addGameObserver(new GameObserverAdapter() {
-                @Override
-                public void gameStopped() {
                     player2.setStopFlag(true);
                 }
+
+                @Override
+                public void scoresAdded(Pair<Integer, Integer> scores) {
+                    player1.setCooperateFlag(false);
+                    player1.setDefectFlag(false);
+                    player2.setCooperateFlag(false);
+                    player2.setDefectFlag(false);
+                    player1Scores.addElement(scores.getFirst());
+                    player2Scores.addElement(scores.getSecond());
+                    gameRound.addElement(player1.getScoreHistory().size());
+                }
             });
-            gameLogsPanel.setGame(game);
+            gameLogsPanel.setGame(game, player1Scores, player2Scores, gameRound);
             change(gameSetUpPanel, gameLogsPanel);
             gameThread = gameLogsPanel.startGame();
         });
+    }
 
+    /**
+     * <p>
+     *     Initialization of EvolutionLogsPanel
+     * </p>
+     */
+    private void initEvolutionLogsPanel() {
         evolutionLogsPanel.getNextButton().addActionListener(e -> {
-            PDGameGUI<GUIPlayer, AIPDPlayer> game = getGuiPlayerAIPDPlayerPDGameGUI(evolutionLogsPanel.getManager().getEvolution().getBestSpecimen());
-            gameLogsPanel.setGame(game);
+            DefaultListModel<Integer> player1Scores = new DefaultListModel<>();
+            DefaultListModel<Integer> player2Scores = new DefaultListModel<>();
+            DefaultListModel<Integer> gameRound = new DefaultListModel<>();
+            PDGame<GUIPlayer, AIPDPlayer> game = getGUIPlayerAIPDPlayerPDGame(evolutionLogsPanel.getManager().getEvolution().getBestSpecimen(), player1Scores, player2Scores, gameRound);
+            gameLogsPanel.setGame(game, player1Scores, player2Scores, gameRound);
             change(evolutionLogsPanel, gameLogsPanel);
             gameThread = gameLogsPanel.startGame();
         });
@@ -168,26 +209,35 @@ public class GUIApp extends JFrame {
                 catch (InterruptedException ignored) {}
             }
         });
-
-        add(mainPanel);
     }
 
     /**
      * <p>
-     *     Prepares PDGame for oe GUI player and one AI player.
+     * Prepares PDGame for one GUI player and one AI player.
      * </p>
+     *
      * @param network for AI player
+     * @param player1Scores list model of player 1's previous scores
+     * @param player2Scores list model of player 2's previous scores
+     * @param gameRound list of game round indexes
      * @return prepared game
      */
-    private static PDGameGUI<GUIPlayer, AIPDPlayer> getGuiPlayerAIPDPlayerPDGameGUI(SimpleNeuralNetworkSpecimen network) {
-        DefaultListModel<Integer> player1Scores = new DefaultListModel<>();
-        DefaultListModel<Integer> player2Scores = new DefaultListModel<>();
+    private static PDGame<GUIPlayer, AIPDPlayer> getGUIPlayerAIPDPlayerPDGame(SimpleNeuralNetworkSpecimen network, DefaultListModel<Integer> player1Scores, DefaultListModel<Integer> player2Scores, DefaultListModel<Integer> gameRound) {
         GUIPlayer player = new GUIPlayer();
-        PDGameGUI<GUIPlayer, AIPDPlayer> game = new PDGameGUI<>(player, new AIPDPlayer(network), 16, player1Scores, player2Scores);
-        game.addGameObserver(new GameObserverAdapter() {
+        PDGame<GUIPlayer, AIPDPlayer> game = new PDGame<>(player, new AIPDPlayer(network), 16);
+        game.addGameObserver(new IGameObserver() {
             @Override
             public void gameStopped() {
                 player.setStopFlag(true);
+            }
+
+            @Override
+            public void scoresAdded(Pair<Integer, Integer> scores) {
+                player.setCooperateFlag(false);
+                player.setDefectFlag(false);
+                player1Scores.addElement(scores.getFirst());
+                player2Scores.addElement(scores.getSecond());
+                gameRound.addElement(player.getScoreHistory().size());
             }
         });
         return game;
@@ -198,8 +248,10 @@ public class GUIApp extends JFrame {
      */
     private IEvolution<SimpleNeuralNetworkSpecimen> createEvolution(DefaultListModel<Integer> indexList, DefaultListModel<Double> bestList, DefaultListModel<Double> medianList, DefaultListModel<Double> worstList) {
         ISpecimenFactory<SimpleNeuralNetworkSpecimen> factory = new ElmanNeuralNetworkFactory();
-        IGame<AIPDPlayer, AIPDPlayer> game = new PDGame<>(new AIPDPlayer(), new AIPDPlayer(), evolutionSetUpPanel.getGameIterations());
-        IEvaluator<SimpleNeuralNetworkSpecimen> evaluator = new PDEvaluatorNetVsNet(game);
+        IGame<AIPDPlayer, AIPDPlayer> netVsNetGame = new PDGame<>(new AIPDPlayer(), new AIPDPlayer(), evolutionSetUpPanel.getGameIterations());
+        IGame<AIPDPlayer, AbstractStrategyPlayer> netVsStratGame = new PDGame<>(new AIPDPlayer(), new RandomPlayer(), evolutionSetUpPanel.getGameIterations());
+        IEvaluator<SimpleNeuralNetworkSpecimen> netVsNetEvaluator = new PDEvaluatorNetVsNet(netVsNetGame);
+        IEvaluator<SimpleNeuralNetworkSpecimen> netVsStratEvaluator = new PDEvaluatorNetVsStrat(Constants.PD_STRATEGIES, netVsStratGame);
         return new EvolutionGUI<>(
                 new EvolutionLogs<>(
                         new SimpleEvolution<>(
@@ -209,9 +261,8 @@ public class GUIApp extends JFrame {
                                 evolutionSetUpPanel.getBigMutationMagnitude(),
                                 evolutionSetUpPanel.getGenerationSize(),
                                 factory,
-                                evaluator
-                        ),
-                        5
+                                netVsNetEvaluator, netVsStratEvaluator
+                        ), 5, Constants.DEFAULT_STORAGE
                 ),
                 1,
                 indexList,

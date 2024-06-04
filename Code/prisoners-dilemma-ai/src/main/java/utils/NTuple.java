@@ -1,6 +1,12 @@
 package utils;
 
-public class NTuple<T> implements INTuple<T> {
+/**
+ * <p>
+ *     Basic tuple implementation.
+ * </p>
+ * @param <T> type stored in n-tuple
+ */
+public class NTuple<T> {
     private final T[] values;
     StringBuilder builder = new StringBuilder();
 
@@ -9,17 +15,28 @@ public class NTuple<T> implements INTuple<T> {
         this.values = values;
     }
 
-    @Override
+    /**
+     * @return number of elements stored in this tuple
+     */
     public int getN() {
         return values.length;
     }
 
-    @Override
+    /**
+     * @param index index of requested element in tuple
+     * @return element of this tuple at given index
+     */
     public T getElementAt(int index) {
         return values[index];
     }
 
-    @Override
+    /**
+     * <p>
+     *     Sets value of element at given index.
+     * </p>
+     * @param index index of element whose value will be changed
+     * @param value new value of element
+     */
     public void setElementAt(int index, T value) {
         values[index] = value;
     }

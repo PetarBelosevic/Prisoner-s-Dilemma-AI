@@ -1,6 +1,7 @@
 package evolution;
 
 import evolution.specimen.ISpecimen;
+import evolution.specimen.evaulator.IEvaluator;
 import evolution.specimen.factory.ISpecimenFactory;
 
 import java.util.ArrayList;
@@ -24,13 +25,16 @@ public abstract class AbstractEvolution<T extends ISpecimen<T>> implements IEvol
     private List<T> currentGeneration;
     private List<T> nextGeneration;
     protected final Map<T, Boolean> visited = new HashMap<>();
+    private IEvaluator<T>[] evaluators;
 
-    protected AbstractEvolution(double smallMutationChance, double smallMutationMagnitude, double bigMutationChance, double bigMutationMagnitude, int generationSize, ISpecimenFactory<T> factory) {
+    @SafeVarargs
+    protected AbstractEvolution(double smallMutationChance, double smallMutationMagnitude, double bigMutationChance, double bigMutationMagnitude, int generationSize, ISpecimenFactory<T> factory, IEvaluator<T>... evaluators) {
         this.smallMutationChance = smallMutationChance;
         this.smallMutationMagnitude = smallMutationMagnitude;
         this.bigMutationChance = bigMutationChance;
         this.bigMutationMagnitude = bigMutationMagnitude;
         this.generationSize = generationSize;
+        this.evaluators = evaluators;
         initialize(factory);
     }
 
@@ -38,7 +42,7 @@ public abstract class AbstractEvolution<T extends ISpecimen<T>> implements IEvol
      * <p>
      *     Initializes lists for storing specimens and creates initial specimens.
      * </p>
-     * Also sets visited value to false for all given specimens
+     * Also sets visited value to false for all given specimens.
      *
      * @param factory for creating specimens.
      */
@@ -124,6 +128,17 @@ public abstract class AbstractEvolution<T extends ISpecimen<T>> implements IEvol
     @Override
     public int getGenerationSize() {
         return generationSize;
+    }
+
+    @Override
+    public IEvaluator<T>[] getEvaluators() {
+        return evaluators;
+    }
+
+    @SafeVarargs
+    @Override
+    public final void setEvaluators(IEvaluator<T>... evaluators) {
+        this.evaluators = evaluators;
     }
 
     /**

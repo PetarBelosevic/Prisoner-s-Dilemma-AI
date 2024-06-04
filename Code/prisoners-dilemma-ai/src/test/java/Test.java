@@ -3,7 +3,13 @@ import org.nd4j.linalg.factory.Nd4j;
 
 import java.io.*;
 
+/**
+ * <p>
+ *     Simple test for testing functionalities of ObjectStreams on INDArray objects.
+ * </p>
+ */
 public class Test {
+
     public static void main(String[] args) {
         INDArray matrix = Nd4j.create(3, 3);
         try (ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("testFile.txt"))) {

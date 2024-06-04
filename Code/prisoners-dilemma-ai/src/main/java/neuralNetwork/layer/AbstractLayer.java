@@ -80,6 +80,9 @@ abstract class AbstractLayer implements ILayer {
     }
 
     @Override
+    public void clearLayer() {}
+
+    @Override
     public int getNumberOfInputs() {
         return (int) parameters[1].size(1);
     }

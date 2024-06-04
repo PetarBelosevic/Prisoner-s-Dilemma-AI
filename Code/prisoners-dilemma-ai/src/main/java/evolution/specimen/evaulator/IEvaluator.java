@@ -21,4 +21,10 @@ public interface IEvaluator<T extends ISpecimen<T>> {
      * @return total calculated fitness
      */
     double evaluate(List<T> population);
+
+    /**
+     * @param populationSize number of specimens in population
+     * @return maximum possible fitness that this evaluator can give to one specimen in population of given size
+     */
+    double maxPossibleScore(int populationSize);
 }

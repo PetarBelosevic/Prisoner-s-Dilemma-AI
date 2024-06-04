@@ -13,6 +13,7 @@ import game.IGame;
 import game.PDGame;
 import game.player.AIPDPlayer;
 import neuralNetwork.layer.Layer;
+import utils.Constants;
 import utils.Pair;
 
 import java.io.IOException;
@@ -23,7 +24,7 @@ import java.util.List;
 
 /**
  * <p>
- *     Simple application for running evolution for training neural networks to play Prisoner's Dilemma.
+ *     Simple application for running generational genetic algorithm for training neural networks in the console.
  * </p>
  */
 public class ConsoleTrainingApp {
@@ -32,8 +33,8 @@ public class ConsoleTrainingApp {
     private static final double BIG_MUTATION_CHANCE = 0.01;
     private static final double BIG_MUTATION_MAGNITUDE = 6;
     private static final int GENERATION_SIZE = 20;
-    private static final int MAX_GENERATION_LIMIT = 4000;
-    private static final int GAME_ITERATIONS = 30;
+    private static final int MAX_GENERATION_LIMIT = 20;
+    private static final int GAME_ITERATIONS = 40;
     private static final int ACCEPTABLE_FITNESS = 5 * GAME_ITERATIONS * GENERATION_SIZE + 1;
 
     public static void main(String[] args) {
@@ -85,12 +86,20 @@ public class ConsoleTrainingApp {
                 GENERATION_SIZE,
                 factory,
                 evaluator
-        ), 100);
+        ), 100, Constants.DEFAULT_TEST_STORAGE);
         return new SimpleEvolutionManager<>(evolution, MAX_GENERATION_LIMIT, ACCEPTABLE_FITNESS);
     }
 
+    /**
+     * <p>
+     *     Loads file in cvs format.
+     * </p>
+     * @param file path of file to be loaded
+     * @return list of lines in loaded line (except the first line
+     * @throws IOException if error occurs while reading the file
+     */
     private static List<Pair<Double[], Double>> loadFile(Path file) throws IOException {
-        List<String> lines = Files.readAllLines(file);
+        List<String> lines = Files.readAllLines(Constants.DEFAULT_TEST_STORAGE.resolve("math").resolve(file));
         List<Pair<Double[], Double>> ret = new LinkedList<>();
         int n = lines.get(0).split(",").length - 1;
 

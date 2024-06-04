@@ -1,5 +1,7 @@
 package evolution.specimen;
 
+import java.nio.file.Path;
+
 /**
  * <p>
  *     Model for specimen in evolution.
@@ -39,21 +41,19 @@ public interface ISpecimen<T extends ISpecimen<T>> extends Comparable<ISpecimen<
      * <p>
      *     Saves all relevant properties of this object in the given file.
      * </p>
-     * File will be stored in resources directory.
      *
-     * @param fileName name of the file where information will be saved
+     * @param filePath full path of the file where information will be saved
      */
-    void saveInFile(String fileName);
+    void saveInFile(Path filePath);
 
     /**
      * <p>
      *     Loads all relevant properties for this object form given file.
      * </p>
-     * File is expected to be stored in resources directory.
      *
-     * @param fileName name of the file where relevant information is stored
+     * @param filePath full path of the file where relevant information is stored
      */
-    void loadFromFile(String fileName);
+    void loadFromFile(Path filePath);
 
     /**
      * @return fitness of this specimen
@@ -84,6 +84,5 @@ public interface ISpecimen<T extends ISpecimen<T>> extends Comparable<ISpecimen<
         else {
             return 0;
         }
-//        return o.getFitness() - getFitness();
     }
 }

@@ -9,6 +9,7 @@ import evolution.specimen.ISpecimen;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Locale;
 
 /**
  * <p>
@@ -82,7 +83,7 @@ public class EvolutionLogsJPanel<T extends ISpecimen<T>> extends JPanel {
 
     /**
      * <p>
-     *     Sets evolution manager and table that will show logs from evolution.
+     *     Sets evolution manager, table that will show logs from evolution and label that shows maximal possible score.
      * </p>
      * @param manager new evolution manager
      * @param indexList JList for showing index of generation
@@ -90,14 +91,14 @@ public class EvolutionLogsJPanel<T extends ISpecimen<T>> extends JPanel {
      * @param medianList JList for showing median score in generation
      * @param worstList JList for showing the worst score in generation
      */
-    public void setManager(IEvolutionManager<T> manager, DefaultListModel<Integer> indexList, DefaultListModel<Double> bestList, DefaultListModel<Double> medianList, DefaultListModel<Double> worstList, int maxFitness) {
+    public void setManager(IEvolutionManager<T> manager, DefaultListModel<Integer> indexList, DefaultListModel<Double> bestList, DefaultListModel<Double> medianList, DefaultListModel<Double> worstList) {
         this.manager = manager;
         centerPanel.removeAll();
         centerPanel.add(new MyJList<>(indexList, SwingConstants.CENTER, GUIApp.NORMAL_FONT_SIZE, BorderFactory.createLineBorder(Color.BLACK)));
         centerPanel.add(new MyJList<>(bestList, SwingConstants.CENTER, GUIApp.NORMAL_FONT_SIZE, BorderFactory.createLineBorder(Color.BLACK)));
         centerPanel.add(new MyJList<>(medianList, SwingConstants.CENTER, GUIApp.NORMAL_FONT_SIZE, BorderFactory.createLineBorder(Color.BLACK)));
         centerPanel.add(new MyJList<>(worstList, SwingConstants.CENTER, GUIApp.NORMAL_FONT_SIZE, BorderFactory.createLineBorder(Color.BLACK)));
-        maxFitnessLabel.setText(maxFitnessLabel.getText() + maxFitness);
+        maxFitnessLabel.setText(maxFitnessLabel.getText() + String.format(Locale.GERMAN, "%.2f", manager.getAcceptableFitness()));
     }
 
     /**

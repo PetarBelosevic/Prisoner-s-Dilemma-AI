@@ -8,8 +8,9 @@ import utils.Pair;
  *     Prisoner's Dilemma simulator with logs.
  * </p>
  * Simulator prints in console players' choices after every move and total score with history of moves at the end of game.
- * @param <T> type of player1
- * @param <D> type of player2
+ *
+ * @param <T> type of player 1
+ * @param <D> type of player 2
  */
 public class PDGameLogs<T extends IPlayer, D extends IPlayer> extends PDGame<T, D> {
     public PDGameLogs(T player1, D player2, int iterations) {
@@ -26,7 +27,7 @@ public class PDGameLogs<T extends IPlayer, D extends IPlayer> extends PDGame<T, 
      * <p>
      *     Prints game results.
      * </p>
-     * Method should be called only after game finished.
+     * Method should be called only after the game has finished.
      */
     private void printResults() {
         int iterations = getIterations();

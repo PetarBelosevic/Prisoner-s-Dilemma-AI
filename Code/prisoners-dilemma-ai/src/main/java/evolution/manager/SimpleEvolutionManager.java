@@ -2,7 +2,6 @@ package evolution.manager;
 
 import evolution.IEvolution;
 import evolution.specimen.ISpecimen;
-import utils.INTuple;
 import utils.NTuple;
 
 import java.util.LinkedList;
@@ -16,14 +15,24 @@ import java.util.List;
 public class SimpleEvolutionManager<T extends ISpecimen<T>> implements IEvolutionManager<T> {
     private final IEvolution<T> evolution;
     private final int maxGenerationLimit;
-    private final int acceptableFitness;
-    private final List<INTuple<Double>> generationsHistory = new LinkedList<>();
+    private final double acceptableFitness;
+    private final List<NTuple<Double>> generationsHistory = new LinkedList<>();
     private volatile boolean stop = false;
 
-    public SimpleEvolutionManager(IEvolution<T> evolution, int maxGenerationLimit, int acceptableFitness) {
+    public SimpleEvolutionManager(IEvolution<T> evolution, int maxGenerationLimit, double acceptableFitness) {
         this.evolution = evolution;
         this.maxGenerationLimit = maxGenerationLimit;
         this.acceptableFitness = acceptableFitness;
+    }
+
+    public SimpleEvolutionManager(IEvolution<T> evolution, int maxGenerationLimit) {
+        this.evolution = evolution;
+        this.maxGenerationLimit = maxGenerationLimit;
+        double totalMaxFitness = 0;
+        for (var evaluator: evolution.getEvaluators()) {
+            totalMaxFitness += evaluator.maxPossibleScore(evolution.getGenerationSize());
+        }
+        this.acceptableFitness = totalMaxFitness;
     }
 
     @Override
@@ -39,7 +48,7 @@ public class SimpleEvolutionManager<T extends ISpecimen<T>> implements IEvolutio
     }
 
     @Override
-    public List<INTuple<Double>> getGenerationsHistory() {
+    public List<NTuple<Double>> getGenerationsHistory() {
         return generationsHistory;
     }
 
@@ -51,5 +60,10 @@ public class SimpleEvolutionManager<T extends ISpecimen<T>> implements IEvolutio
     @Override
     public synchronized void stopEvolution() {
         this.stop = true;
+    }
+
+    @Override
+    public double getAcceptableFitness() {
+        return acceptableFitness;
     }
 }

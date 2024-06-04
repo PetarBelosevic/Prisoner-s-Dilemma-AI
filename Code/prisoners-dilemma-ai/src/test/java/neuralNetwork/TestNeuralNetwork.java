@@ -7,6 +7,11 @@ import org.nd4j.linalg.factory.Nd4j;
 
 import java.util.Arrays;
 
+/**
+ * <p>
+ *     Simple tests for testing if neural network calculates right outputs.
+ * </p>
+ */
 public class TestNeuralNetwork {
     @Test
     void testNeuralNetworkWorks1() {

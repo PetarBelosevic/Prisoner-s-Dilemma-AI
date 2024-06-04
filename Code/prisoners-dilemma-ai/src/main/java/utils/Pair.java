@@ -20,16 +20,36 @@ public class Pair<T, D> {
     public Pair() {
     }
 
+    /**
+     * @return first element of this pair.
+     */
     public T getFirst() {
         return first;
     }
+
+    /**
+     * @return second element of this pair.
+     */
     public D getSecond() {
         return second;
     }
 
+    /**
+     * <p>
+     *     Sets new value of the first element of this pair.
+     * </p>
+     * @param first new value of the first element
+     */
     public void setFirst(T first) {
         this.first = first;
     }
+
+    /**
+     * <p>
+     *     Sets new value of the second element of this pair.
+     * </p>
+     * @param second new value of the second element
+     */
     public void setSecond(D second) {
         this.second = second;
     }

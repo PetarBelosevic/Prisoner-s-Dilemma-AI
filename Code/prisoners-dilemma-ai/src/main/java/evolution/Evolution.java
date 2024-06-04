@@ -1,10 +1,11 @@
 package evolution;
 
 import evolution.specimen.ISpecimen;
+import evolution.specimen.evaulator.IEvaluator;
 
 /**
  * <p>
- *     Basic decorator for IEvolution
+ *     Basic decorator for IEvolution.
  * </p>
  * @param <T> type of specimen
  */
@@ -83,5 +84,16 @@ public class Evolution<T extends ISpecimen<T>> implements IEvolution<T> {
     @Override
     public int getGenerationSize() {
         return evolution.getGenerationSize();
+    }
+
+    @Override
+    public IEvaluator<T>[] getEvaluators() {
+        return evolution.getEvaluators();
+    }
+
+    @SafeVarargs
+    @Override
+    public final void setEvaluators(IEvaluator<T>... evaluators) {
+        evolution.setEvaluators(evaluators);
     }
 }

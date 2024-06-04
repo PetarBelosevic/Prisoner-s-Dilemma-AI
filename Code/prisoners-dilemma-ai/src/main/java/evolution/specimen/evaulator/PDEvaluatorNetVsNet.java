@@ -2,6 +2,7 @@ package evolution.specimen.evaulator;
 
 import evolution.specimen.SimpleNeuralNetworkSpecimen;
 import game.IGame;
+import game.PDConstants;
 import game.player.AIPDPlayer;
 
 import java.util.List;
@@ -10,6 +11,8 @@ import java.util.List;
  * <p>
  *     Evaluator for neural networks that play Prisoner's Dilemma.
  * </p>
+ * Evaluator puts every neural network in Prisoner's Dilemma game against each other neural network and itself.
+ * Fitness of each neural network is calculated as combined score that network accumulated playing the game.
  */
 public class PDEvaluatorNetVsNet implements IEvaluator<SimpleNeuralNetworkSpecimen> {
     private final IGame<? extends AIPDPlayer, ? extends AIPDPlayer> game;
@@ -48,5 +51,10 @@ public class PDEvaluatorNetVsNet implements IEvaluator<SimpleNeuralNetworkSpecim
             }
         }
         return totalFitness;
+    }
+
+    @Override
+    public double maxPossibleScore(int populationSize) {
+        return PDConstants.D_C * populationSize * game.getIterations();
     }
 }

@@ -46,4 +46,9 @@ public class MathFunctionEvaluator implements IEvaluator<SimpleNeuralNetworkSpec
         }
         return totalFitness;
     }
+
+    @Override
+    public double maxPossibleScore(int populationSize) {
+        return 0.0;
+    }
 }

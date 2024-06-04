@@ -18,8 +18,10 @@ public class ActivationFunctions {
     private static final Map<String, UnaryOperator<INDArray>> FUNCTIONS = new HashMap<>();
 
     static {
-        FUNCTIONS.put("sigmoid", (x) -> Transforms.sigmoid(x, false));
-        FUNCTIONS.put("identity", (x) -> Transforms.identity(x, false));
+        FUNCTIONS.put("sigmoid", x -> Transforms.sigmoid(x, false));
+        FUNCTIONS.put("identity", x -> Transforms.identity(x, false));
+        FUNCTIONS.put("tanh", x -> Transforms.tanh(x, false));
+        FUNCTIONS.put("step", x -> Transforms.step(x, false));
     }
 
     /**

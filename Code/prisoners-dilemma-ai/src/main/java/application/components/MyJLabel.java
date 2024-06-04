@@ -3,6 +3,11 @@ package application.components;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+/**
+ * <p>
+ *     Extension of JLabel that can specify font size, border and horizontal alignment in the constructor.
+ * </p>
+ */
 public class MyJLabel extends JLabel {
     public MyJLabel(String text, float fontSize) {
         this(text, SwingConstants.LEADING, fontSize);

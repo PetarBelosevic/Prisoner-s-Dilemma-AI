@@ -1,6 +1,6 @@
 package game;
 
-import game.observers.GameObserver;
+import game.observers.IGameObserver;
 import game.player.IPlayer;
 import utils.Pair;
 
@@ -17,9 +17,9 @@ import java.util.List;
 public abstract class AbstractGame<T extends IPlayer, D extends IPlayer> implements IGame<T, D> {
     private T player1;
     private D player2;
-    private final int iterations; // number of rounds in game
+    private final int iterations; // number of rounds in a game
     volatile boolean stop = false;
-    private final List<GameObserver> observers = new LinkedList<>();
+    private final List<IGameObserver> observers = new LinkedList<>();
 
     protected AbstractGame(T player1, D player2, int iterations) {
         player1.setIndex(1);
@@ -93,16 +93,16 @@ public abstract class AbstractGame<T extends IPlayer, D extends IPlayer> impleme
     }
 
     @Override
-    public void addGameObserver(GameObserver go) {
+    public void addGameObserver(IGameObserver go) {
         observers.add(go);
     }
     @Override
-    public void removeGameObserver(GameObserver go) {
+    public void removeGameObserver(IGameObserver go) {
         observers.remove(go);
     }
     @Override
     public void notifyGameStopped() {
-        observers.forEach(GameObserver::gameStopped);
+        observers.forEach(IGameObserver::gameStopped);
     }
     @Override
     public void notifyNewScore(Pair<Integer, Integer> scores) {

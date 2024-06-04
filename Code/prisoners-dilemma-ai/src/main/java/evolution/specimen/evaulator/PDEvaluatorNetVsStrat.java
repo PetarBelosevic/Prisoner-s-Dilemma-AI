@@ -2,6 +2,7 @@ package evolution.specimen.evaulator;
 
 import evolution.specimen.SimpleNeuralNetworkSpecimen;
 import game.IGame;
+import game.PDConstants;
 import game.player.AIPDPlayer;
 import game.player.strategies.AbstractStrategyPlayer;
 
@@ -10,8 +11,10 @@ import java.util.List;
 
 /**
  * <p>
- *
+ *     Evaluator for neural networks that play Prisoner's Dilemma.
  * </p>
+ * Evaluator puts each neural network in Prisoner's Dilemma game against every strategy that evaluator has.
+ * Fitness of each network is calculated as combined score that network accumulated playing the game.
  */
 public class PDEvaluatorNetVsStrat implements IEvaluator<SimpleNeuralNetworkSpecimen> {
     private final Collection<AbstractStrategyPlayer> strategies;
@@ -24,7 +27,7 @@ public class PDEvaluatorNetVsStrat implements IEvaluator<SimpleNeuralNetworkSpec
 
     /**
      * <p>
-     *     Runs game with given neural network against given strategy.
+     *     Runs a game with given neural network against given strategy.
      * </p>
      * @param network network to play the game
      * @param strategy strategy player to play the game
@@ -48,5 +51,10 @@ public class PDEvaluatorNetVsStrat implements IEvaluator<SimpleNeuralNetworkSpec
             }
         }
         return totalFitness;
+    }
+
+    @Override
+    public double maxPossibleScore(int populationSize) {
+        return PDConstants.D_C * strategies.size() * game.getIterations();
     }
 }

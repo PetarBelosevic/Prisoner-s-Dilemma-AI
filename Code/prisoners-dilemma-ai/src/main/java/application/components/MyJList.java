@@ -2,9 +2,13 @@ package application.components;
 
 import javax.swing.*;
 import javax.swing.border.Border;
-import java.awt.*;
-import java.text.DecimalFormat;
 
+/**
+ * <p>
+ *     Extension of JList that can specify font size, border and horizontal alignment in constructor.
+ * </p>
+ * @param <T> type stored in list model
+ */
 public class MyJList<T> extends JList<T> {
     public MyJList(ListModel<T> dataModel) {
         super(dataModel);

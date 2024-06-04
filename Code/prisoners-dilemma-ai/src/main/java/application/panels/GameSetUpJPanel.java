@@ -15,11 +15,11 @@ import java.awt.*;
 public class GameSetUpJPanel extends JPanel {
     private final JLabel player1Label = new MyJLabel("Player 1", SwingConstants.CENTER, GUIApp.BIG_FONT_SIZE);
     private final JLabel player1CoopLabel = new MyJLabel("cooperate key: W", SwingConstants.CENTER, GUIApp.NORMAL_FONT_SIZE);
-    private final JLabel player1DeflectLabel = new MyJLabel("deflect key: S", SwingConstants.CENTER, GUIApp.NORMAL_FONT_SIZE);
+    private final JLabel player1DefectLabel = new MyJLabel("defect key: S", SwingConstants.CENTER, GUIApp.NORMAL_FONT_SIZE);
 
     private final JLabel player2Label = new MyJLabel("Player 2", SwingConstants.CENTER, GUIApp.BIG_FONT_SIZE);
     private final JLabel player2CoopLabel = new MyJLabel("cooperate key: P", SwingConstants.CENTER, GUIApp.NORMAL_FONT_SIZE);
-    private final JLabel player2DeflectLabel = new MyJLabel("deflect key: L", SwingConstants.CENTER, GUIApp.NORMAL_FONT_SIZE);
+    private final JLabel player2DefectLabel = new MyJLabel("defect key: L", SwingConstants.CENTER, GUIApp.NORMAL_FONT_SIZE);
 
     private final JButton backButton = new MyJButton("Back", GUIApp.NORMAL_FONT_SIZE);
     private final JButton startButton = new MyJButton("Start", GUIApp.NORMAL_FONT_SIZE);
@@ -45,7 +45,7 @@ public class GameSetUpJPanel extends JPanel {
         constraints.gridy++;
         leftPanel.add(new JLabel(""), constraints);
         constraints.gridy++;
-        leftPanel.add(player1DeflectLabel, constraints);
+        leftPanel.add(player1DefectLabel, constraints);
         centerPanel.add(leftPanel);
 
         JPanel rightPanel = new JPanel(new GridBagLayout());
@@ -61,7 +61,7 @@ public class GameSetUpJPanel extends JPanel {
         constraints.gridy++;
         rightPanel.add(new JLabel(""), constraints);
         constraints.gridy++;
-        rightPanel.add(player2DeflectLabel, constraints);
+        rightPanel.add(player2DefectLabel, constraints);
         centerPanel.add(rightPanel);
 
         add(centerPanel, BorderLayout.CENTER);

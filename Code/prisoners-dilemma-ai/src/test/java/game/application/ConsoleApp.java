@@ -2,15 +2,12 @@ package game.application;
 
 import game.PDGame;
 import game.PDGameLogs;
-import game.player.ConsolePDPlayer;
-import game.player.strategies.AbstractStrategyPlayer;
 import game.player.strategies.DowningPlayer;
-import game.player.strategies.RandomPlayer;
-import game.player.strategies.TitForTatPlayer;
+import game.player.strategies.NydeggerPlayer;
 
 /**
  * <p>
- *      Simple console app for Prisoner's Dilemma game.
+ *      Simple console app for playing Prisoner's Dilemma game.
  * </p>
  */
 public class ConsoleApp {
@@ -21,10 +18,19 @@ public class ConsoleApp {
         double pl1Avg = 0;
         double pl2Avg = 0;
         PDGame<?, ?> game = new PDGameLogs<>(
-//                new TitForTatPlayer(),
-                new RandomPlayer(),
 //                new ConsolePDPlayer(),
+//                new TitForTatPlayer(),
+                new NydeggerPlayer(),
+//                new GrofmanPlayer(),
+//                new ShubikPlayer(),
+//                new FriedmanPlayer(),
+//                new DavisPlayer(),
                 new DowningPlayer(),
+//                new JossPlayer(),
+//                new TullockPlayer(),
+//                new RandomPlayer(),
+
+//                new DetectivePlayer(),
                 ITERATIONS
         );
         for (int i = 0; i < n; i++) {

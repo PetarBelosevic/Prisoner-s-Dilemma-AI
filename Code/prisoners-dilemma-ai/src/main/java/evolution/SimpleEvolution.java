@@ -15,12 +15,10 @@ import evolution.specimen.factory.ISpecimenFactory;
  */
 public class SimpleEvolution<T extends ISpecimen<T>> extends AbstractEvolution<T> {
     private double totalFitness = 0;
-    private final IEvaluator<T>[] evaluators;
 
     @SafeVarargs
     public SimpleEvolution(double smallMutationChance, double smallMutationMagnitude, double bigMutationChance, double bigMutationMagnitude, int generationSize, ISpecimenFactory<T> factory, IEvaluator<T>... evaluators) {
-        super(smallMutationChance, smallMutationMagnitude, bigMutationChance, bigMutationMagnitude, generationSize, factory);
-        this.evaluators = evaluators;
+        super(smallMutationChance, smallMutationMagnitude, bigMutationChance, bigMutationMagnitude, generationSize, factory, evaluators);
     }
 
     @Override
@@ -30,7 +28,7 @@ public class SimpleEvolution<T extends ISpecimen<T>> extends AbstractEvolution<T
             getNextGeneration().get(i).resetFitness();
         }
 
-        for (var evaluator: evaluators) {
+        for (var evaluator: getEvaluators()) {
             totalFitness += evaluator.evaluate(getNextGeneration());
         }
 
@@ -43,8 +41,6 @@ public class SimpleEvolution<T extends ISpecimen<T>> extends AbstractEvolution<T
 
     @Override
     public void generateNextGeneration() {
-//        System.out.println(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss,SSS")));
-
         if (getCurrentGenerationIndex() == -1) {
             evaluateNextGeneration();
             incrementCurrentGenerationIndex();

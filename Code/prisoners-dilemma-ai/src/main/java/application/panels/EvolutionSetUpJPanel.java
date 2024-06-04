@@ -12,13 +12,12 @@ import java.awt.*;
  *     JPanel for configuration of parameters for evolution of artificial neural networks.
  * </p>
  * Parameters for configuration are:
- * small mutation chance, small mutation magnitude, big mutation chance, big mutation magnitude, number of parents,
+ * small mutation chance, small mutation magnitude, big mutation chance, big mutation magnitude,
  * generation size, max generation limit and number of game iterations.
  */
 public class EvolutionSetUpJPanel extends JPanel {
     private final JButton backButton = new MyJButton("Back", GUIApp.NORMAL_FONT_SIZE);
     private final JButton startButton = new MyJButton("Start", GUIApp.NORMAL_FONT_SIZE);
-
     private final JSpinner smallMutationChanceSpinner = createJSpinner(0.05, 0.0, 1.0, 0.01);
     private final JSpinner smallMutationMagnitudeSpinner = createJSpinner(1, 0, -1, -1);
     private final JSpinner bigMutationChanceSpinner = createJSpinner(0.01, 0.0, 1.0, 0.001);

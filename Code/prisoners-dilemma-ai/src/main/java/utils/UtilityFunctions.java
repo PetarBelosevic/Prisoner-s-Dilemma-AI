@@ -2,13 +2,21 @@ package utils;
 
 import java.util.Random;
 
+/**
+ * <p>
+ *     Class with commonly shared functionalities.
+ * </p>
+ */
 public class UtilityFunctions {
     private static final Random RANDOM = new Random();
+
     /**
      * <p>
      *     Generates random mutation.
      * </p>
      * Mutation can be big, small or can be 0.
+     *
+     * Mutation is based on the Gaussian normal distribution.
      *
      * @param smallMutationChance chance for small mutation to occur
      * @param smallMutationMagnitude magnitude of small mutation
@@ -32,6 +40,9 @@ public class UtilityFunctions {
     }
 
     /**
+     * <p>
+     *     Generates random number form Gaussian normal distribution.
+     * </p>
      * @param dev spread of the distribution
      * @return random number
      */

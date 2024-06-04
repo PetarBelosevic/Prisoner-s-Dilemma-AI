@@ -7,8 +7,9 @@ import java.awt.event.ActionEvent;
 
 /**
  * <p>
- *     Action for making binary decisions for non-AI player.
+ *     Action for making binary decisions for non-AI GUI player.
  * </p>
+ * Action specifies accelerator key and player's move.
  */
 public class PlayerAction extends AbstractAction {
     private final GUIPlayer player;
@@ -26,7 +27,7 @@ public class PlayerAction extends AbstractAction {
             player.setCooperateFlag(true);
         }
         else {
-            player.setDeflectFlag(true);
+            player.setDefectFlag(true);
         }
     }
 }

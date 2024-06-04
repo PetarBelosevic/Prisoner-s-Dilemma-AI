@@ -11,7 +11,8 @@ import java.awt.*;
  * <p>
  *     JPanel for starting view of application.
  * </p>
- * Panel contains button for starting AI training process, starting two-player game and additional information button.
+ * Panel contains button for starting AI training process, starting two-player game,
+ * loading existing neural network and additional information button.
  */
 public class MainJPanel extends JPanel {
     private final JLabel title = new MyJLabel("Prisoner's Dilemma", 2 * GUIApp.BIG_FONT_SIZE);

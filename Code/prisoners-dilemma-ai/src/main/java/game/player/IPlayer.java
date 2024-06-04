@@ -10,8 +10,8 @@ public interface IPlayer {
      * <p>
      *     Gives decision based on the game history (past decisions of other player).
      * </p>
-     * In games with two opposite decisions available this method should return 1 or -1.
-     * o is returned in case of interruptions or error.
+     * In games with two opposite decisions available this method should return PDGMoves.COOPERATE (1) or PDGMoves.DEFECT (-1).
+     * PGMoves.ERROR (0) is returned in case of interruptions or an error.
      *
      * @param otherDecisionHistory decisions of other player
      * @return decision value
@@ -22,7 +22,7 @@ public interface IPlayer {
      * <p>
      *     Add points to the player.
      * </p>
-     * Points should also be added in the score history of this player.
+     * Points are also added in the score history of this player.
      *
      * @param points to be added
      */

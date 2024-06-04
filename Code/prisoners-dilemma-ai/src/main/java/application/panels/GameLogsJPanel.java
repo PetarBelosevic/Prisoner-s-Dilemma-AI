@@ -5,7 +5,7 @@ import application.components.MyJLabel;
 import application.components.MyJList;
 import application.components.PlayerAction;
 import game.IGame;
-import game.PDGameGUI;
+import game.PDGame;
 import game.observers.GameObserverAdapter;
 import game.player.GUIPlayer;
 import utils.Pair;
@@ -15,7 +15,7 @@ import java.awt.*;
 
 /**
  * <p>
- *     Panel that shows results for each round of the Prisoner's Dilemma game.
+ *     Panel that shows results of each round of the Prisoner's Dilemma game and the total score of both players.
  * </p>
  */
 public class GameLogsJPanel extends JPanel {
@@ -89,29 +89,32 @@ public class GameLogsJPanel extends JPanel {
 
     /**
      * <p>
-     *  Sets up GUI game.
+     * Sets up GUI game.
      * </p>
      * Method adds proper JLists to the central panel and sets up controls for non-AI players.
      *
      * @param game game engine
+     * @param player1Scores list model of player 1's previous scores
+     * @param player2Scores list model of player 2's previous scores
+     * @param gameRound list of game round indexes
      */
-    public void setGame(PDGameGUI<?, ?> game) {
+    public void setGame(PDGame<?, ?> game, DefaultListModel<Integer> player1Scores, DefaultListModel<Integer> player2Scores, DefaultListModel<Integer> gameRound) {
         this.game = game;
         centerPanel.removeAll();
         centerPanel.add(new MyJList<>(
-                game.getGameRound(),
+                gameRound,
                 SwingConstants.CENTER,
                 GUIApp.NORMAL_FONT_SIZE,
                 BorderFactory.createLineBorder(Color.BLACK)
         ));
         centerPanel.add(new MyJList<>(
-                game.getPlayer1Scores(),
+                player1Scores,
                 SwingConstants.CENTER,
                 GUIApp.NORMAL_FONT_SIZE,
                 BorderFactory.createLineBorder(Color.BLACK)
         ));
         centerPanel.add(new MyJList<>(
-                game.getPlayer2Scores(),
+                player2Scores,
                 SwingConstants.CENTER,
                 GUIApp.NORMAL_FONT_SIZE,
                 BorderFactory.createLineBorder(Color.BLACK)
@@ -131,21 +134,21 @@ public class GameLogsJPanel extends JPanel {
 
         if (game.getPlayer1() instanceof GUIPlayer) {
             PlayerAction player1Cooperate = new PlayerAction((GUIPlayer) game.getPlayer1(), "W", true);
-            PlayerAction player1Deflect = new PlayerAction((GUIPlayer) game.getPlayer1(), "S", false);
+            PlayerAction player1Defect = new PlayerAction((GUIPlayer) game.getPlayer1(), "S", false);
 
             getInputMap(WHEN_IN_FOCUSED_WINDOW).put((KeyStroke) player1Cooperate.getValue(Action.ACCELERATOR_KEY), "player1 cooperate");
             getActionMap().put("player1 cooperate", player1Cooperate);
-            getInputMap(WHEN_IN_FOCUSED_WINDOW).put((KeyStroke) player1Deflect.getValue(Action.ACCELERATOR_KEY), "player1 deflect");
-            getActionMap().put("player1 deflect", player1Deflect);
+            getInputMap(WHEN_IN_FOCUSED_WINDOW).put((KeyStroke) player1Defect.getValue(Action.ACCELERATOR_KEY), "player1 defect");
+            getActionMap().put("player1 defect", player1Defect);
         }
         if (game.getPlayer2() instanceof GUIPlayer) {
             PlayerAction player2Cooperate = new PlayerAction((GUIPlayer) game.getPlayer2(), "P", true);
-            PlayerAction player2Deflect = new PlayerAction((GUIPlayer) game.getPlayer2(), "L", false);
+            PlayerAction player2Defect = new PlayerAction((GUIPlayer) game.getPlayer2(), "L", false);
 
             getInputMap(WHEN_IN_FOCUSED_WINDOW).put((KeyStroke) player2Cooperate.getValue(Action.ACCELERATOR_KEY), "player2 cooperate");
             getActionMap().put("player2 cooperate", player2Cooperate);
-            getInputMap(WHEN_IN_FOCUSED_WINDOW).put((KeyStroke) player2Deflect.getValue(Action.ACCELERATOR_KEY), "player2 deflect");
-            getActionMap().put("player2 deflect", player2Deflect);
+            getInputMap(WHEN_IN_FOCUSED_WINDOW).put((KeyStroke) player2Defect.getValue(Action.ACCELERATOR_KEY), "player2 defect");
+            getActionMap().put("player2 defect", player2Defect);
         }
     }
 
@@ -160,6 +163,7 @@ public class GameLogsJPanel extends JPanel {
      * <p>
      *     Starts game engine in new thread.
      * </p>
+     * @return thread in which game is started.
      */
     public Thread startGame() {
         Thread t = new Thread(() -> {

@@ -4,6 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.text.DecimalFormat;
 
+/**
+ * <p>
+ *     List renderer that formats double values displayed in cells.
+ * </p>
+ */
 public class DoubleListCellRenderer extends DefaultListCellRenderer {
     private final DecimalFormat decimalFormat = new DecimalFormat("0.00");
 

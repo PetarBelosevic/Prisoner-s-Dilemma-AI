@@ -11,7 +11,11 @@ import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Path;
 
-
+/**
+ * <p>
+ *     Neural network fitted for evolution (genetic algorithm).
+ * </p>
+ */
 public class SimpleNeuralNetworkSpecimen extends NeuralNetwork implements ISpecimen<SimpleNeuralNetworkSpecimen> {
     private double fitness = 0;
 
@@ -23,7 +27,7 @@ public class SimpleNeuralNetworkSpecimen extends NeuralNetwork implements ISpeci
         super(layerSizes);
     }
 
-    public SimpleNeuralNetworkSpecimen(String fileName) {
+    public SimpleNeuralNetworkSpecimen(Path fileName) {
         super();
         loadFromFile(fileName);
     }
@@ -101,9 +105,8 @@ public class SimpleNeuralNetworkSpecimen extends NeuralNetwork implements ISpeci
     }
 
     @Override
-    public void saveInFile(String fileName) {
-        Path destination = Constants.DEFAULT_STORAGE.resolve(fileName);
-        try (ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(destination.toString(), false))) {
+    public void saveInFile(Path filePath) {
+        try (ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(filePath.toString(), false))) {
             os.writeInt(getDepth()-1);
 
             for (ILayer layer: getLayers()) {
@@ -122,9 +125,8 @@ public class SimpleNeuralNetworkSpecimen extends NeuralNetwork implements ISpeci
     }
 
     @Override
-    public void loadFromFile(String fileName) {
-        Path destination = Constants.DEFAULT_STORAGE.resolve(fileName);
-        try(ObjectInputStream is = new ObjectInputStream(new FileInputStream(destination.toString()))) {
+    public void loadFromFile(Path filePath) {
+        try(ObjectInputStream is = new ObjectInputStream(new FileInputStream(filePath.toString()))) {
             int depth = is.readInt();
             ILayer[] layers = new ILayer[depth];
 

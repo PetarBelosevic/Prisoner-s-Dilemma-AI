@@ -1,17 +1,26 @@
 package game.player.strategies;
 
+import game.PDConstants;
+
 import java.util.List;
 
+/**
+ * <p>
+ *     Strategy in Axelrod's first tournament submitted by Leslie Downing of the Department of Psychology, Union College.
+ * </p>
+ * Strategy is not nice.
+ * Strategy selects its choice to maximize its own long term expected payoff.
+ * It assumes that the other player cooperates with fixed probability which depends on whether this strategy cooperated of defected on the previous move.
+ * Implementation based on
+ * <a href="https://axelrod.readthedocs.io/en/fix-documentation/_modules/axelrod/strategies/axelrod_first.html#FirstByDowning.strategy">this</a>
+ * Python source code.
+ */
 public class DowningPlayer extends AbstractStrategyPlayer {
-    double pCC = 0.5;
-    double pCD = 0.5;
-    int nDC = 0;
-    int nDX = 0;
-    int nCC = 0;
-    int nCX = 0;
-    int lastMove = -1;
-    int nC = 0;
-    int nD = 0;
+    private int nDC = 0;
+    private int nCC = 0;
+    private int lastMove = PDConstants.DEFECT;
+    private int nC = 0;
+    private int nD = 0;
 
     @Override
     public int getDecision(List<Integer> otherDecisionHistory) {
@@ -20,16 +29,16 @@ public class DowningPlayer extends AbstractStrategyPlayer {
             return returnDefection();
         }
         else if (nGames == 1) {
-            if (otherDecisionHistory.get(0) == 1) {
+            if (otherDecisionHistory.get(0) == PDConstants.COOPERATE) {
                 nCC++;
             }
             return returnDefection();
         }
 
-        if (getDecisionHistory().get(nGames - 2) == 1 && otherDecisionHistory.get(nGames - 1) == 1) {
+        if (getDecisionHistory().get(nGames - 2) == PDConstants.COOPERATE && otherDecisionHistory.get(nGames - 1) == PDConstants.COOPERATE) {
             nCC++;
         }
-        else if (getDecisionHistory().get(nGames - 2) == -1 && otherDecisionHistory.get(nGames - 1) == 1) {
+        else if (getDecisionHistory().get(nGames - 2) == PDConstants.DEFECT && otherDecisionHistory.get(nGames - 1) == PDConstants.COOPERATE) {
             nDC++;
         }
 
@@ -46,7 +55,7 @@ public class DowningPlayer extends AbstractStrategyPlayer {
             return returnDefection();
         }
 
-        if (lastMove == 1) {
+        if (lastMove == PDConstants.COOPERATE) {
             return returnDefection();
         }
         else {
@@ -57,26 +66,22 @@ public class DowningPlayer extends AbstractStrategyPlayer {
     @Override
     public void reset() {
         super.reset();
-        pCC = 0.5;
-        pCD = 0.5;
         nDC = 0;
-        nDX = 0;
         nCC = 0;
-        nCX = 0;
-        lastMove = -1;
+        lastMove = PDConstants.DEFECT;
         nC = 0;
         nD = 0;
     }
 
     private int returnCooperation() {
         nC++;
-        lastMove = 1;
-        return 1;
+        lastMove = PDConstants.COOPERATE;
+        return PDConstants.COOPERATE;
     }
 
     private int returnDefection() {
         nD++;
-        lastMove = -1;
-        return -1;
+        lastMove = PDConstants.DEFECT;
+        return PDConstants.DEFECT;
     }
 }

@@ -1,10 +1,11 @@
 package evolution;
 
 import evolution.specimen.ISpecimen;
+import evolution.specimen.evaulator.IEvaluator;
 
 /**
  * <p>
- *     Model for an evolution in evolutionary computing.
+ *     Model for an evolution in generational genetic algorithm.
  * </p>
  * Every implementations of this interface needs to initialize its first generation of specimens after its construction.
  *
@@ -99,4 +100,17 @@ public interface IEvolution<T extends ISpecimen<T>> {
      * @return size of one generation
      */
     int getGenerationSize();
+
+    /**
+     * @return all evaluators used by this evolution
+     */
+    IEvaluator<T>[] getEvaluators();
+
+    /**
+     * <p>
+     *     Sets new evaluators to use by this evolution.
+     * </p>
+     * @param evaluators new evaluators
+     */
+    void setEvaluators(IEvaluator<T>... evaluators);
 }
