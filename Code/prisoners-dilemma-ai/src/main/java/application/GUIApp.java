@@ -27,6 +27,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.nio.file.Path;
 
 /**
  * <p>
@@ -97,7 +98,7 @@ public class GUIApp extends JFrame {
         mainPanel.getTrainAI().addActionListener(e -> change(mainPanel, evolutionSetUpPanel));
         mainPanel.getPlay().addActionListener((e -> change(mainPanel, gameSetUpPanel)));
         mainPanel.getLoadNetwork().addActionListener(e -> {
-            JFileChooser fileChooser = new JFileChooser();
+            JFileChooser fileChooser = new JFileChooser(String.valueOf(Constants.DEFAULT_STORAGE.resolve(Path.of("selected"))));
             fileChooser.setDialogTitle("Load Neural Network");
             if (fileChooser.showOpenDialog(this) != JFileChooser.APPROVE_OPTION) {
                 return;
@@ -251,14 +252,12 @@ public class GUIApp extends JFrame {
         IGame<AIPDPlayer, AIPDPlayer> netVsNetGame = new PDGame<>(new AIPDPlayer(), new AIPDPlayer(), evolutionSetUpPanel.getGameIterations());
         IGame<AIPDPlayer, AbstractStrategyPlayer> netVsStratGame = new PDGame<>(new AIPDPlayer(), new RandomPlayer(), evolutionSetUpPanel.getGameIterations());
         IEvaluator<SimpleNeuralNetworkSpecimen> netVsNetEvaluator = new PDEvaluatorNetVsNet(netVsNetGame);
-        IEvaluator<SimpleNeuralNetworkSpecimen> netVsStratEvaluator = new PDEvaluatorNetVsStrat(Constants.PD_STRATEGIES, netVsStratGame);
+        IEvaluator<SimpleNeuralNetworkSpecimen> netVsStratEvaluator = new PDEvaluatorNetVsStrat(Constants.PD_STRATEGIES, netVsStratGame, 4);
         return new EvolutionGUI<>(
                 new EvolutionLogs<>(
                         new SimpleEvolution<>(
-                                evolutionSetUpPanel.getSmallMutationChance(),
-                                evolutionSetUpPanel.getSmallMutationMagnitude(),
-                                evolutionSetUpPanel.getBigMutationChance(),
-                                evolutionSetUpPanel.getBigMutationMagnitude(),
+                                evolutionSetUpPanel.getMutationChance(),
+                                evolutionSetUpPanel.getMutationMagnitude(),
                                 evolutionSetUpPanel.getGenerationSize(),
                                 factory,
                                 netVsNetEvaluator, netVsStratEvaluator

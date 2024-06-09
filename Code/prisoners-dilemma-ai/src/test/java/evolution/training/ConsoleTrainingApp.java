@@ -28,10 +28,8 @@ import java.util.List;
  * </p>
  */
 public class ConsoleTrainingApp {
-    private static final double SMALL_MUTATION_CHANCE = 0.1;
-    private static final double SMALL_MUTATION_MAGNITUDE = 0.1;
-    private static final double BIG_MUTATION_CHANCE = 0.01;
-    private static final double BIG_MUTATION_MAGNITUDE = 6;
+    private static final double MUTATION_CHANCE = 0.1;
+    private static final double MUTATION_MAGNITUDE = 0.1;
     private static final int GENERATION_SIZE = 20;
     private static final int MAX_GENERATION_LIMIT = 20;
     private static final int GAME_ITERATIONS = 40;
@@ -79,10 +77,8 @@ public class ConsoleTrainingApp {
         }
 
         IEvolution<SimpleNeuralNetworkSpecimen> evolution = new EvolutionLogs<>(new SimpleEvolution<>(
-                SMALL_MUTATION_CHANCE,
-                SMALL_MUTATION_MAGNITUDE,
-                BIG_MUTATION_CHANCE,
-                BIG_MUTATION_MAGNITUDE,
+                MUTATION_CHANCE,
+                MUTATION_MAGNITUDE,
                 GENERATION_SIZE,
                 factory,
                 evaluator

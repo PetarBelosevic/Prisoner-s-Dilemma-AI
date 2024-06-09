@@ -16,23 +16,20 @@ import java.util.Map;
  * @param <T> extends ISpecimen
  */
 public abstract class AbstractEvolution<T extends ISpecimen<T>> implements IEvolution<T> {
-    private double smallMutationChance;
-    private double smallMutationMagnitude;
-    private double bigMutationChance;
-    private double bigMutationMagnitude;
+    private double mutationChance;
+    private double mutationMagnitude;
     private int currentGenerationIndex = -1;
     private final int generationSize;
     private List<T> currentGeneration;
     private List<T> nextGeneration;
     protected final Map<T, Boolean> visited = new HashMap<>();
     private IEvaluator<T>[] evaluators;
+    protected double totalFitness = 0;
 
     @SafeVarargs
-    protected AbstractEvolution(double smallMutationChance, double smallMutationMagnitude, double bigMutationChance, double bigMutationMagnitude, int generationSize, ISpecimenFactory<T> factory, IEvaluator<T>... evaluators) {
-        this.smallMutationChance = smallMutationChance;
-        this.smallMutationMagnitude = smallMutationMagnitude;
-        this.bigMutationChance = bigMutationChance;
-        this.bigMutationMagnitude = bigMutationMagnitude;
+    protected AbstractEvolution(double mutationChance, double mutationMagnitude, int generationSize, ISpecimenFactory<T> factory, IEvaluator<T>... evaluators) {
+        this.mutationChance = mutationChance;
+        this.mutationMagnitude = mutationMagnitude;
         this.generationSize = generationSize;
         this.evaluators = evaluators;
         initialize(factory);
@@ -63,7 +60,28 @@ public abstract class AbstractEvolution<T extends ISpecimen<T>> implements IEvol
      *     Evaluates fitness for every specimen of next generation and transfers those specimens in current generation.
      * </p>
      */
-    protected abstract void evaluateNextGeneration();
+    protected void evaluateNextGeneration() {
+        totalFitness = 0;
+        for (int i = 0; i < getGenerationSize(); i++) {
+            getNextGeneration().get(i).resetFitness();
+        }
+        for (var evaluator: getEvaluators()) {
+            totalFitness += evaluator.evaluate(getNextGeneration());
+        }
+        getNextGeneration().sort(null);
+        totalFitness -= getNextGeneration().get(getGenerationSize() - 1).getFitness() * getGenerationSize();
+        swapGenerations();
+    }
+
+    /**
+     * <p>
+     *     Parent is selected based on its fitness.
+     * </p>
+     * Greater fitness means greater chance of being selected.
+     *
+     * @return specimen selected for reproduction
+     */
+    protected abstract T selectParent();
 
     @Override
     public T getBestSpecimen() {
@@ -86,43 +104,23 @@ public abstract class AbstractEvolution<T extends ISpecimen<T>> implements IEvol
     }
 
     @Override
-    public double getSmallMutationChance() {
-        return smallMutationChance;
+    public double getMutationChance() {
+        return mutationChance;
     }
 
     @Override
-    public void setSmallMutationChance(double smallMutationChance) {
-        this.smallMutationChance = smallMutationChance;
+    public void setMutationChance(double mutationChance) {
+        this.mutationChance = mutationChance;
     }
 
     @Override
-    public double getSmallMutationMagnitude() {
-        return smallMutationMagnitude;
+    public double getMutationMagnitude() {
+        return mutationMagnitude;
     }
 
     @Override
-    public void setSmallMutationMagnitude(double smallMutationMagnitude) {
-        this.smallMutationMagnitude = smallMutationMagnitude;
-    }
-
-    @Override
-    public double getBigMutationChance() {
-        return bigMutationChance;
-    }
-
-    @Override
-    public void setBigMutationChance(double bigMutationChance) {
-        this.bigMutationChance = bigMutationChance;
-    }
-
-    @Override
-    public double getBigMutationMagnitude() {
-        return bigMutationMagnitude;
-    }
-
-    @Override
-    public void setBigMutationMagnitude(double bigMutationMagnitude) {
-        this.bigMutationMagnitude = bigMutationMagnitude;
+    public void setMutationMagnitude(double mutationMagnitude) {
+        this.mutationMagnitude = mutationMagnitude;
     }
 
     @Override

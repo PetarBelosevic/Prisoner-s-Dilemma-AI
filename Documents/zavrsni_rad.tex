@@ -8,6 +8,9 @@
 \usepackage{xltabular} % for xltabular environment
 \usepackage{amsmath} % for mathematical symbols and formatting
 \usepackage{graphicx} % Include the graphicx package
+% \usepackage{enumitem} % Include the enumitem package
+
+% \setlist[itemize]{itemsep=0.01em, topsep=0.01em} % Adjust the spacing as needed
 
 
 %--- PODACI O RADU / THESIS INFORMATION ----------------------------------------
@@ -69,53 +72,29 @@
 \chapter{Uvod}
 \label{pog:uvod}
 
-Neki od radova koje ćemo citirati su \cite{6248073,6247753,ghiglia_pritt_phase_unwrapping,hartley2003multiple,4250461,123DCatch}.
-Trebaju nam samo radi testiranja kako izgleda referenciranje rada s konferencije, rada iz časopisa, knjige i Internetske stranice.
-
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=0.38\linewidth]{Extra/lenovo_yoga_tab3_pro_front.png} 
-  \caption{Moja prva slika}
-  \label{slk:prvaslika}
-\end{figure}
-
-Referenciramo se na sliku \ref{slk:prvaslika} u sredini rečenice, zatim prije zareza \ref{slk:prvaslika}, te zatim na kraju rečenice \ref{slk:prvaslika}.
-Upravo smo testirali radi li naredba \verb|\ref| ispravno u slučaju kada nakon nje slijedi točka.
-
-Sada slijedi jedna jednadžba:
-\begin{equation}
-  \label{jed:prvajednadzba}
-  \int_{-\infty}^{+\infty}f(t)\,dt=F(\omega)
-\end{equation}
-Jednadžba \eqref{jed:prvajednadzba} je moja prva jednadžba koja definira par $f(t)\ufrek F(\omega)$ ili $F(\omega)\uvrem f(t)$.
-
-\cite{1980Axelrod1}
-\cite{1980Axelrod2}
-\cite{igraHrEnc}
-
-\break
-
 	Zatvorenikova dilema jedan je od najpoznatijih problema iz područja teorije igara. Dilema proučava interakciju između dvaju pojedinaca kroz igru suradnje i izdaje. Zatvorenikova dilema se može pronaći u korijenu mnogih interakcija koje se pojavljuju u društvu, ali i u životinjskom svijetu. Glavno pitanje je kako ta interakcija utječe na dobrobit oba igrača. Paradoks u Zatvorenikove dileme je činjenica da racionalno razmišljanje navodi svakog pojedinca da odabire opciju koja ne odgovara niti jednom od igrača \cite{PrisDilemmaHrEnc}.
 	
-	U stvarnom životu su takve interakcije često ponavljajuće prirode. Tada je potrebno imati na umu da će druga strana vjerojatno imati iskustvo prošlih interakcija što može utjecati na njihovu odluku u novoj interakciji. Stoga je interesantno razmatranje malo složenijeg problema iterirajuće Zatvorenikove dileme. Zanimljivo je da se u iterirajućem problemu mijenja pristup optimalnoj strategiji u odnosu na jednokratnu Zatvorenikovu dilemu.
+	U stvarnom životu su takve interakcije često ponavljajuće prirode. Tada je potrebno imati na umu da će druga strana vjerojatno imati iskustvo prošlih interakcija što može utjecati na njihovu odluku u novoj interakciji. Stoga je interesantno razmatranje malo složenijeg problema ponavljajuće Zatvorenikove dileme. Zanimljivo je da se u ponavljajućem problemu mijenja pristup optimalnoj strategiji u odnosu na jednu Zatvorenikovu dilemu.
 	
-	U korijenu Zatvorenikove dileme je napetost između individualnog racionalizma (u pogledu da je objema stranama smisleno biti sebičan) i grupnog racionalizma (objema stranama je isplativija obostrana suradnja nego obostrana izdaja) \cite{1980Axelrod1}.
+	U korijenu Zatvorenikove dileme je napetost između individualnog racionalizma (u pogledu da je objema stranama smisleno biti sebičan) i grupnog racionalizma (objema stranama je isplativija suradnja nego obostrana izdaja) \cite{1980Axelrod1}.
 	
 	Mnogo je radova na pisano na temu optimalnog načina igranja Zatvorenikove dileme. Tako je Robert Axelrod iz Sveučilišta u Michiganu održao dva turnira u kojima su sudionici predavali svoje strategije za igranje igre u obliku računalnih programa \cite{1980Axelrod1} \cite{1980Axelrod2}. Analizom turnira došlo se zanimljivih zaključaka. Axelrod je proučavanjem strategija i njihovih rezultata izlučio nekoliko karakteristika koje imale tendenciju davati bolje rezultate. Te karakteristike su ljubaznost, opraštanje i provokabilnost \cite{1980Axelrod2}.
 	
-	Glavni cilj ovog rada je napraviti model inteligentnog igrača koji će naučiti igrati iterirajuću Zatvorenikovu dilemu. Cilj ovoga je proučiti kakvo će ponašanje razviti inteligentni igrač i kako će igrati protiv nekih drugih poznatih strategija. Također će biti zanimljivo analizirati ponašanje inteligentnog igrača i vidjeti je li razvio karakteristike koje su se pokazale poželjnima u Axelrodovim turnirima.
+	Glavni cilj ovog rada je napraviti model inteligentnog igrača koji će naučiti kvalitetno igrati ponavljajuću Zatvorenikovu dilemu. Kod dobivenog modela će se proučiti njegovo ponašanje te će biti zanimljivo vidjeti je li dobiveni inteligentni igrač razvio karakteristike koje su se pokazale poželjnima u Axelrodovim turnirima.
+	
+%	Glavni cilj ovog rada je napraviti model inteligentnog igrača koji će naučiti igrati ponavljajuću Zatvorenikovu dilemu. Cilj ovoga je proučiti kakvo će ponašanje razviti inteligentni igrač i kako će igrati protiv nekih drugih poznatih strategija. Također će biti zanimljivo analizirati ponašanje inteligentnog igrača i vidjeti je li razvio karakteristike koje su se pokazale poželjnima u Axelrodovim turnirima.
 
 %-------------------------------------------------------------------------------
 \chapter{Zatvorenikova dilema}
 \label{pog:ZatvorenikovaDilema}
 
-	Zatvorenikova dilema je poznati problem iz područja teorije igara koji proučava odnose između pojedinaca. Radi se o igri sa dva igrača koji imaju na izboru dva poteza: suradnja sa drugim igračem ili izdaja drugog igrača. S obzirom na odabir oba igrača, svakom od njih se daje određena kazna ili nagrada. 
+	Zatvorenikova dilema je poznati problem iz područja teorije igara koji proučava odnose između pojedinaca. Radi se o igri s dva igrača koji imaju na izboru dva poteza: suradnja s drugim igračem ili izdaja drugog igrača. S obzirom na odabir oba igrača, svakom od njih se daje određena kazna ili nagrada. 
 	
-	Dilema je dobila naziv po ilustrativnom opisu Alberta Tuckera \cite{TeorijaIgaraIPravo}. Dilema je opisana u kontekstu odvojenog ispitivanja dvojice osumnjičenih kriminalaca. Svaki od osumnjičenih može priznati krivnju (ekvivalentno izdaji) ili šutjeti (ekvivalentno suradnji). Sukladno njihovim potezima dodjeljuju im se zatvorske kazne. Ako i jedan i drugi osumnjičenik šute, dobivanju male zatvorske kazne zbog nedostatka dokaza. Ako i jedan i drugi priznaju krivnju, svatko od njih dobiva veće zatvorske kazne jer su priznali krivnju. Ako pak jedan od njih prizna krivnju a drugi šuti, ovaj koji je priznao krivnju biva oslobođen optužbi kao nagrada za suradnju, a drugi dobiva još veću zatvorsku kaznu zbog toga što je odugovlačio postupak odbijanjem priznavanja krivice \cite{TeorijaIgaraIPravo}.
+	Zatvorenikova dilema je dobila naziv po ilustrativnom opisu Alberta Tuckera \cite{TeorijaIgaraIPravo}. Dilema je opisana u kontekstu odvojenog ispitivanja dvojice osumnjičenih kriminalaca. Svaki od osumnjičenih može priznati krivnju (ekvivalentno izdaji) ili šutjeti (ekvivalentno suradnji). Sukladno njihovim potezima dodjeljuju im se zatvorske kazne. Ako i jedan i drugi osumnjičenik šute, dobivanju male zatvorske kazne zbog nedostatka dokaza. Ako i jedan i drugi priznaju krivnju, svatko od njih dobiva veće zatvorske kazne jer su priznali krivnju. Ako pak jedan od njih prizna krivnju a drugi šuti, ovaj koji je priznao krivnju biva oslobođen optužbi kao nagrada za suradnju s pravosudnim organima, a drugi dobiva još veću zatvorsku kaznu zbog toga što je odugovlačio postupak odbijanjem priznavanja krivice \cite{TeorijaIgaraIPravo}.
 	
-	Dilema se naravno može staviti i opisati kroz razne slikovite kontekste. No, u ovom radu će se radi jednostavnosti na dilemu gledati samo kao igru u kojoj igrači skupljaju bodove.
+	Dilema se naravno može staviti i opisati kroz razne druge slikovite kontekste. No, u ovom radu će se radi jednostavnosti na dilemu gledati samo kao igru u kojoj igrači skupljaju bodove.
 
-	Generalna pravila za "bodovanje" je da obostrana suradnja i obostrana izdaja daju simetričnu podjelu bodova, uz to da suradnja daje veći broj bodova. U slučaju da jedan igrač surađuje dok ga drugi izdaje dolazi do nesimetrične podjele bodova. Igrač koje je izdan mora dobiti manje bodove nego bi dobio obostranom izdajom. Igrač koji ga je izdao tim potezom mora dobiti više nego bi dobio obostranom suradnjom. Tipična raspodjela bodova \cite{1980Axelrod1} koja će se koristiti i u ovom radu dana je u tablici \ref{Payoffs}.
+	Generalna pravila za "bodovanje" je da suradnja oba igrača i obostrana izdaja daju simetričnu podjelu bodova, uz to da suradnja daje veći broj bodova. U slučaju da jedan igrač surađuje dok ga drugi izdaje dolazi do nesimetrične podjele bodova. Igrač koje je izdan mora dobiti manje bodove nego bi dobio obostranom izdajom. Igrač koji ga je izdao tim potezom mora dobiti više nego bi dobio suradnjom oba igrača. Tipična raspodjela bodova \cite{1980Axelrod1} koja će se koristiti i u ovom radu dana je u tablici \ref{Payoffs}.
 	 
 	Važno je primijetiti da je Zatvorenikova dilema igra s promjenjivim ishodom \cite{PrisDilemmaHrEnc}. To znači da dobitak jednog igrača nije nužno gubitak drugog igrača i gubitak jednog igrača ne mora nužno biti dobitak drugog igrača \cite{igraHrEnc}. Drugim riječima, mogući su ishodi u kojima oba igrača profitiraju ili oba igrača gube. Upravo ova karakteristika omogućuje suradnji da bude poželjan pristup igranju. 
 	
@@ -136,35 +115,35 @@ Jednadžba \eqref{jed:prvajednadzba} je moja prva jednadžba koja definira par $
 		& Izdaja & 5, 0 & 1, 1 \\ \hline
 	\end{longtblr}
 	 
-	Zbog ove karakteristike Zatvorenikova dilema dobro opisuje mnoge probleme iz stvarnog života i objašnjava zašto je ponekad suradnja sa neprijateljem poželjna. Poznati je takav primjer problem prekomjernog naoružavanja i međusobnog nepovjerenja SAD-a i SSSR-a tijekom hladnog rata \cite{1980Axelrod1} Upravo je i taj problem bio jedan od motiva nastanka i proučavanja Zatvorenikove dileme.
+	Zbog ove karakteristike Zatvorenikova dilema dobro opisuje mnoge probleme iz stvarnog života i objašnjava zašto je ponekad suradnja s neprijateljem poželjna. Poznati je takav primjer problem prekomjernog naoružavanja i međusobnog nepovjerenja SAD-a i SSSR-a tijekom hladnog rata \cite{1980Axelrod1} Upravo je i taj problem bio jedan od motiva nastanka i proučavanja Zatvorenikove dileme.
 	
-	Zatvorenikova dilema dobro modelira određena ponašanja nekih životinjskih vrsta u prirodi. Tako je primijećeno ponašanje nazvano \textit{inspekcija predatora} kod nekih vrsta riba kao što su gupi riba (lat. \textit{Poecilia reticulata}) i koljuška (lat. \textit{Gasterosteus aculeatus}). \cite{TheEvolutionOfCooperation}
+	Zatvorenikova dilema dobro modelira određena ponašanja nekih životinjskih vrsta u prirodi. Tako je primijećeno ponašanje poznato kao \textit{inspekcija predatora} kod nekih vrsta riba kao što su gupi riba (lat. \textit{Poecilia reticulata}) i koljuška (lat. \textit{Gasterosteus aculeatus}). \cite{TheEvolutionOfCooperation}
 	
-	Također je primijećena međusobna suradnja kod imapla koje se međusobno timare kako bi se štitile od krpelja. No, zbog nedostatka informacija o cijeni i nagradi za ovakvo ponašanja teško je ovaj primjer modelirati Zatvorenikovom dilemom. \cite{TheEvolutionOfCooperation}
+	Također je primijećena suradnja kod impala koje se međusobno timare kako bi se štitile od krpelja. No, zbog nedostatka informacija o cijeni i nagradi za ovakvo ponašanja teško je ovaj primjer modelirati Zatvorenikovom dilemom. \cite{TheEvolutionOfCooperation}
 
 	\section{Dobra strategija}
 	\label{pog:DobraStrategija}
 	
-		Pitanje koje se prirodno nameće u Zatvorenikovoj dilemi je dosta očito: Kako dobro igrati ovu igru? Kojom strategijom pristupiti ovoj igri?
+		Pitanje koje se prirodno nameće u ponavljajućoj Zatvorenikovoj dilemi je dosta očito: Kako dobro igrati ovu igru? Kojom strategijom pristupiti ovoj igri?
 
-		U svrhu istraživanja optimalnih strategija Robert Axelrod je 1980. organizirao turnir \cite{1980Axelrod1} u koji je pozvao znanstvenike iz raznih područja koji su se bavili Zatvorenikovom dilemom. Učesnici su za turnir izradili strategije igranja Zatvorenikove dileme u obliku računalnog programa. Svaka strategija je igrala Zatvorenikovu dilemu u 200 iteracija sa svakom drugom strategijom, sa samom sobom i sa dodatnom strategijom koja je donosila nasumične odluke. Kasnije te godine Axelrod je organizirao još jedan sličan turnir u svrhu provođenja dodatne analize \cite{1980Axelrod2}.
+		U svrhu istraživanja optimalnih strategija Robert Axelrod je 1980. organizirao turnir \cite{1980Axelrod1} u koji je pozvao znanstvenike iz raznih područja koji su se bavili Zatvorenikovom dilemom. Sudionici su za turnir izradili strategije igranja Zatvorenikove dileme u obliku računalnog programa. Svaka strategija je igrala Zatvorenikovu dilemu u 200 iteracija sa svakom drugom strategijom, sa samom sobom i s dodatnom strategijom koja je donosila nasumične odluke. Kasnije te godine Axelrod je organizirao još jedan sličan turnir u svrhu provođenja dodatne analize \cite{1980Axelrod2}.
 	
-		Pobjednik u oba turnira je bila strategija zvana \textit{Tit for Tat}, također poznata i kao \textit{Copycat}. Strategija je vrlo jednostavna - na prvom potezu uvijek surađuje, a dalje uvijek kopira suparnikov prethodni potez \cite{1980Axelrod1}.
+		Pobjednik u oba turnira je bila strategija zvana \textit{Tit for Tat}, također poznata i kao \textit{Copycat}. Strategija je vrlo jednostavna -- na prvom potezu uvijek surađuje, a dalje uvijek kopira suparnikov prethodni potez \cite{1980Axelrod1}.
 	
 		Axelrod je analizom rezultata oba turnira pronašao nekoliko karakteristika koje su bile ključne za uspješnost strategija u oba turnira. Pronađene karakteristike su:
 		\begin{itemize}
-			\item \textbf{Ljubaznost} (eng. \textit{niceness}) \cite{1980Axelrod1} - strategija je ljubazna ako nikada neće prva izdati drugog igrača
-			\item \textbf{Sklonost opraštanju} (eng. \textit{forgiveness}) \cite{1980Axelrod1} - sklonost strategije da surađuje nakon što ju je drugi igrač izdao
-			\item \textbf{Provokabilnost} (eng. \textit{provocability}) \cite{1980Axelrod2} - sklonost da strategija izda drugog igrača nakon što ju je drugi igrač izdao
+			\item \textbf{Ljubaznost} (eng. \textit{niceness}) \cite{1980Axelrod1} -- strategija je ljubazna ako nikada neće prva izdati drugog igrača
+			\item \textbf{Sklonost opraštanju} (eng. \textit{forgiveness}) \cite{1980Axelrod1} -- sklonost strategije da surađuje nakon što ju je drugi igrač izdao
+			\item \textbf{Provokabilnost} (eng. \textit{provocability}) \cite{1980Axelrod2} -- sklonost da strategija izda drugog igrača odmah nakon što ju je drugi igrač izdao
 		\end{itemize}
 		
-		Valja primijetiti da su karakteristike sklonosti opraštanju i provokabilnost zapravo u suprotnosti. No one nisu binarne (ili su prisutne u strategiji ili nisu) neko se pojavljuju u strategijama u nekoj mjeri. Zbog toga nisu međusobno isključive.
+		Valja primijetiti da su karakteristike sklonosti opraštanju i provokabilnost zapravo u suprotnosti. No one nisu binarne (ili su prisutne u strategiji ili nisu) neko se pojavljuju u strategijama u nekoj mjeri. Zbog toga nisu međusobno isključive. Također, provokabilnost promatra trenutnu reakciju na izdaju od strane drugog igrača, dok sklonost opraštanju može kroz više poteza gledati vjerojatnost da igrač oprosti izdaju \cite{1980Axelrod2}.
 	
-		Strategija \textit{Tit for Tat} je bila uspješna jer je bila ljubazna te je imala dobru ravnotežu između sklonosti opraštanju i provokabilnosti. \textit{Tit for Tat} je ljubazna strategija jer počinje sa suradnjom i izdaje samo ako ju je drugi igrač izdao prvi. Strategija oprašta jer će nakon što bude jedom izdana uzvratiti izdajom, ali će nakon toga nastaviti surađivati dok ponovno ne bude izdana - strategija pamti samo prijašnji potez suparnika. Također, strategija je provokabilna jer će nakon što bude izdana uvijek uzvratiti izdajom.
+		Strategija \textit{Tit for Tat} je bila uspješna jer je bila ljubazna te je imala dobru ravnotežu između sklonosti opraštanju i provokabilnosti. \textit{Tit for Tat} je ljubazna strategija jer počinje sa suradnjom i izdaje samo ako ju je drugi igrač izdao prvi. Strategija oprašta jer će nakon što bude jedom izdana uzvratiti izdajom, ali će nakon toga nastaviti surađivati dok ponovno ne bude izdana -- strategija pamti samo posljednji suparnikov potez. Također, strategija je provokabilna jer će nakon što bude izdana uvijek i odmah uzvratiti izdajom.
 		
-		Valja zamijetiti jednu vrlo zanimljivu činjenicu. Ako malo razmislimo o strategiji \textit{Tit for Tat}, možemo primijetiti da ta strategija nikada ne može igrati bolje od igrača sa kojim igra Zatvorenikovu dilemu. U najboljem slučaju strategija \textit{Tit for Tat} može dobiti jednak broj bodova kao i drugi igrač. Ovo pokazuje da kod iterirajuće zatvorenikove dileme nije uvijek nužno biti bolji od drugog igrača, već igrati kontinuirano dobro sa različitim strategijama. 
+		Valja zamijetiti jednu vrlo zanimljivu činjenicu. Ako malo razmislimo o strategiji \textit{Tit for Tat}, možemo primijetiti da ta strategija nikada ne može igrati bolje od igrača s kojim igra Zatvorenikovu dilemu. U najboljem slučaju strategija \textit{Tit for Tat} može dobiti jednak broj bodova kao i drugi igrač. Ovo pokazuje da kod ponavljajuće Zatvorenikove dileme nije uvijek nužno biti bolji od drugog igrača, već igrati kontinuirano dobro s različitim strategijama. 
 	
-		Axelrod je u svojem radu napomenuo važnu stvar, a to je da ne postoji najbolja strategija za Zatvorenikovu dilemu. To proizlazi iz jednostavne činjenice da performansa strategije uvelike ovisi o strategijama s kojima ta strategija igra. Dakle, okruženje u kojem se nalazi je od presudne važnosti \cite{1980Axelrod1}.
+		Axelrod je u svojem radu napomenuo važnu stvar, a to je da ne postoji najbolja strategija za igranje ponavljajuće Zatvorenikove dileme. To proizlazi iz jednostavne činjenice da performansa strategije uvelike ovisi o strategijama s kojima ta strategija igra. Dakle, okruženje u kojem se nalazi je od presudne važnosti \cite{1980Axelrod1}.
 	
 		No kroz detaljnu analizu drugog turnira Axelrod je ustanovio da su navedene karakteristike generalno poželjne i u pravilu donose dobre rezultate. Također, iako \textit{Tit for Tat} nije univerzalno najbolja strategija, pokazuje se da generalno daje odlične rezultate u raznim okruženjima zbog dobro kombiniranih poželjnih karakteristika \cite{1980Axelrod2}.
 	
@@ -177,9 +156,9 @@ Jednadžba \eqref{jed:prvajednadzba} je moja prva jednadžba koja definira par $
 	
 	Umjetne neuronske mreže su inspirirane ljudskim mozgom - sastoje se od velikog broja jednostavnih umjetnih neurona koji su gusto povezani. \cite{MITNeuralNet}
 	
-	Područje koje se bavi umjetnim neuronskim mrežama zove se neuro-računarstvo, koje čini granu računarstva iz skupine mekog-računarstva. Meko računarstvo objedinjuje pristupe čiji je cilj izgraditi tehničke sustave za rješavanje teških problema sa čestim šumom i nepouzdanošću u ulaznim podacima. \cite{skriptaNeuronskeMreze} 
+	Područje koje se bavi umjetnim neuronskim mrežama zove se neuro-računarstvo, koje čini granu računarstva iz skupine mekog-računarstva. Meko računarstvo objedinjuje pristupe čiji je cilj izgraditi tehničke sustave za rješavanje teških problema s čestim šumom i nepouzdanošću u ulaznim podacima. \cite{skriptaNeuronskeMreze} 
 	
-	Umjetni neuron je najmanja funkcionalna jedinka neuronske mreže i modelira biološki neuron u ljudskom mozgu. Umjetni neuroni imaju ulogu jednostavne procesne jedinice. Svaki umjetni neuron na ulazu prima nekakve numeričke vrijednosti (izlazi drugih neurona ili ulazni podaci), obično označene kao vektor $\vec{x}$. Svaki ulazni podatak u neuron $x_i$ se prvo množe sa težinom veze $w_i$ preko koje je došao do trenutnog neurona. Dobiveni umnošci se zbrajaju, te im se dodatno pribraja takozvani pomak (eng. \textit{bias}), obično označavan sa $w_0$. Tako nastala suma se obično označava sa \text{net} te se može izraziti formulom \ref{net}. Ako se pak vektor ulaznih podataka umjetno proširi sa komponentom $x_0$ koja ima fiksnu vrijednost $1$, onda se formula za računanje težinske sume ulaza može još jednostavnije izraziti, kao što je prikazano izrazom \ref{konacanNet}.
+	Umjetni neuron je najmanja funkcionalna jedinka neuronske mreže i modelira biološki neuron u ljudskom mozgu. Umjetni neuroni imaju ulogu jednostavne procesne jedinice. Svaki umjetni neuron na ulazu prima nekakve numeričke vrijednosti (izlazi drugih neurona ili ulazni podaci), obično označene kao vektor $\vec{x}$. Svaki ulazni podatak u neuron $x_i$ se prvo množe s težinom veze $w_i$ preko koje je došao do trenutnog neurona. Dobiveni umnošci se zbrajaju, te im se dodatno pribraja takozvani pomak (eng. \textit{bias}), obično označavan s $w_0$. Tako nastala suma se obično označava s \text{net} te se može izraziti formulom \ref{net}. Ako se pak vektor ulaznih podataka umjetno proširi s komponentom $x_0$ koja ima fiksnu vrijednost $1$, onda se formula za računanje težinske sume ulaza može još jednostavnije izraziti, kao što je prikazano izrazom \ref{konacanNet}.
 	
 	\begin{equation}
 		\label{net}
@@ -202,9 +181,9 @@ Jednadžba \eqref{jed:prvajednadzba} je moja prva jednadžba koja definira par $
 	
 	Umjetni neuroni se povezuju u paralelne strukture različitih arhitektura koje omogućuju paralelnu obradu podataka \cite{skriptaNeuronskeMreze}. Arhitektura umjetne neuronske mreže opisuje kako su povezani umjetni neuroni u mreži i koliko ih ima. Postoje razne arhitekture neuronskih mreža, što jednostavnih, što kompleksnih, a svaka ima svoje prednosti i područja u kojima ima primjenu.
 	
-	Umjetni neuroni se u umjetnim neuronskim mrežama često organiziraju u slojeve. Tako razlikujemo ulazni sloj, skrivene slojeve i izlazni sloj. Skriveni slojevi i izlazni sloj se sastoje od umjetnih neurona dok ulazni sloj zapravo ne sadrži umjetne neurone kakvi su opisani u odjeljku iznad. Neuroni ulaznog sloja na svoje ulaze samo primaju ulazne podatke neuronske mreže te ih dalje prosljeđuju neuronima prvog skrivenog sloja.
+	Umjetni neuroni se u umjetnim neuronskim mrežama često organiziraju u slojeve. Tada razlikujemo ulazni sloj, skrivene slojeve i izlazni sloj. Skriveni slojevi i izlazni sloj se sastoje od umjetnih neurona dok ulazni sloj zapravo ne sadrži umjetne neurone kakvi su opisani u odjeljku iznad. Neuroni ulaznog sloja na svoje ulaze samo primaju ulazne podatke neuronske mreže te ih dalje prosljeđuju neuronima prvog skrivenog sloja.
 	
-	Umjetne neuronske mreže danas imaju vrlo široku primjenu, od obrade slika i signala, prepoznavanja uzoraka, kompresije slika, upravljanja, financija... \cite{skriptaNeuronskeMreze}. Glavne prednosti neuronskih mreža su vrlo dobra sposobnost generalizacije i učenja, čak i uz neprecizne ulazne podatke.Njihova glavna mana je nemogućnost interpretacije njihovog ponašanja, iako su računalni znanstvenici počeli razvijati metode za dedukciju strategija koje neuronske mreže nauče \cite{MITNeuralNet}. Znanje koje neuronske mreže nauče iz podataka je implicitno pohranjeno u način povezivanja neurone i težine veza između njih \cite{skriptaNeuronskeMreze}. Stoga je teško razumjeti zašto je neuronska mreža za neki ulaz dala baš taj izraz. Također, teško je prepoznati kakvu konkretnu ulogu u sveukupnoj obradi ulaza ima pojedini neuron u mreži.
+	Umjetne neuronske mreže danas imaju vrlo široku primjenu, od obrade slika i signala, prepoznavanja uzoraka, kompresije slika, upravljanja, financija... \cite{skriptaNeuronskeMreze}. Glavne prednosti neuronskih mreža su vrlo dobra sposobnost generalizacije i učenja, čak i uz neprecizne ulazne podatke. Njihova glavna mana je nemogućnost interpretacije njihovog ponašanja, iako su računalni znanstvenici počeli razvijati metode za dedukciju strategija koje neuronske mreže nauče \cite{MITNeuralNet}. Znanje koje neuronske mreže nauče iz podataka je implicitno pohranjeno u način povezivanja neurone i težine veza između njih \cite{skriptaNeuronskeMreze}. Stoga je teško razumjeti zašto je neuronska mreža za neki ulaz dala baš taj izlaz. Također, teško je prepoznati kakvu konkretnu ulogu u sveukupnoj obradi ulaza ima pojedini neuron u mreži.
 	
 	\section{Elmanova neuronska mreža}
 	\label{pog:ElmanovaMreza}
@@ -221,14 +200,14 @@ Jednadžba \eqref{jed:prvajednadzba} je moja prva jednadžba koja definira par $
 			\label{ElmanovaMreza}
 		\end{figure}
 		
-		Ovime se omogućava da Elmanova mreža može pamtiti prošla stanja. Na ovaj način prijašnji ulazi u neuronsku mrežu utječu na rezultat obrade nekog budućeg ulaza.
+		Ovime se omogućava da Elmanova mreža može pamtiti prošla stanja. Na ovaj način prijašnji ulazi u neuronsku mrežu imaju utjecaj na rezultat obrade nekog budućeg ulaza.
 		
-		Ovo je korisno svojstvo za model inteligentnog igrača Zatvorenikove dileme, s obzirom da je prirodno da prijašnje interakcije sa drugim igračem utječu na nove odluke.
+		Ovo je korisno svojstvo za model inteligentnog igrača Zatvorenikove dileme, s obzirom na to da je prirodno da prijašnje interakcije s drugim igračem utječu na nove odluke.
 	
 \chapter{Evolucijsko računanje}
 \label{pog:EvolucijskoRacunanje}
 
-	Evolucijsko računanje je grana umjetne inteligencije koja se najčešće bavi rješavanjem optimizacijskih problema. Začeci ove grane sežu još u kasne 50-te godine prošlog stoljeća. Evolucijsko računanje se može podijeliti u tri grane \cite{skriptaEvolucijskoRacunarstvo}: 
+	Evolucijsko računanje je grana umjetne inteligencije koja se najčešće bavi rješavanjem optimizacijskih problema. Začeci ove grane sežu još u kasne 50-e godine prošlog stoljeća. Evolucijsko računanje se može podijeliti u tri grane \cite{skriptaEvolucijskoRacunarstvo}: 
 	\begin{itemize}
 		\item \textit{evolucijske algoritme}
 		\item \textit{algoritme rojeva}
@@ -258,17 +237,17 @@ Jednadžba \eqref{jed:prvajednadzba} je moja prva jednadžba koja definira par $
 			\item potomaka uvijek ima više nego je potrebno
 			\item veličina populacije je približno stalna u vremenu
 			\item hrana je ograničen resurs
-			\item ne postoje dvije potpuno identične jedinke kod vrsta koje se seksualno razmnožavaju - postoje varijacije
+			\item ne postoje dvije potpuno identične jedinke kod vrsta koje se seksualno razmnožavaju -- postoje varijacije
 			\item većina varijacija se prenosi nasljeđem
 		\end{enumerate}
 		
 		Genetski algoritam je jedan od algoritama koji rješavaju optimizacijske probleme, a koji izravno utjelovljuje navedene postavke. Genetski algoritam zapravo nije jedinstven, već se može implementirati na različite načine. \cite{skriptaEvolucijskoRacunarstvo}
 		
-		Ideja genetskog algoritma je modeliranje evolucijskog procesa. U algoritmu postoji populacija jedinki, koje zapravo predstavljaju neka od mogućih rješenja problema. Cilj algoritma je kroz selekciju roditelja, stvaranje novih jedinki korištenjem operatora križanja nad roditeljima i korištenje operatora mutiranja nad novim jedinkama. Selekcija roditelja bi trebala ovisiti o nekakvoj metrici uspješnosti - uspješniji roditelji bi trebali imati veće izglede da budu odabrani za križanje. Ta metrika se obično naziva dobrota. Takvim postupkom se očekuje da će se kontinuiranim križanjem uspješnih roditelja i mutiranjem njihove djece stvarati bolja rješenja. Ovo je zapravo svojevrstan ekvivalent prirodnoj selekciji, to jest preživljavanju najboljih.
+		Ideja genetskog algoritma je modeliranje evolucijskog procesa. U algoritmu postoji populacija jedinki, koje zapravo predstavljaju neka od mogućih rješenja problema. Cilj algoritma je kroz selekciju roditelja, stvaranje novih jedinki korištenjem operatora križanja nad roditeljima i korištenje operatora mutiranja nad novim jedinkama stvoriti najbolje ili barem dovoljno dobro rješenje problema. Selekcija roditelja bi trebala ovisiti o nekakvoj metrici uspješnosti - uspješniji roditelji bi generalno trebali imati veće izglede da budu odabrani za križanje. Ta metrika se obično naziva dobrota. Takvim postupkom se očekuje da će se kontinuiranim križanjem uspješnih roditelja i mutiranjem njihove djece stvarati bolja rješenja. Ovo je zapravo svojevrstan ekvivalent prirodnoj selekciji, to jest preživljavanju najboljih.
 	
 		Varijacije u implementaciji se mogu pojavljivati u načinu mutiranja, križanja, selekcije, ali i magnitudi izmjena u populaciji u jednoj iteraciji algoritma. 
 		
-		Tako u jednoj krajnosti imamo takozvani \textit{eliminacijski genetski algoritam} u kojem se u jednoj iteraciji samo jedna jedinka zamjenjuje jednim novonastalim djetetom. Novo dijete već u sljedećem koraku može biti roditelj.
+		Tako u jednoj krajnosti imamo takozvani \textit{eliminacijski genetski algoritam} u kojem se u jednoj iteraciji samo jedna jedinka zamjenjuje jednim novonastalim djetetom. Novo dijete već u sljedećem koraku može biti roditelj. \cite{skriptaEvolucijskoRacunarstvo}
 		
 		U drugoj krajnosti imamo \textit{generacijski genetski algoritam}. U njemu se u jednoj iteraciji iz jedne populacije biraju roditelji čija se djeca spremaju u novu populaciju sve dok nova populacije ne dosegne veličinu populacije roditelja. Tada populacija djece zamjenjuje populaciju roditelja. U ovoj varijanti dijete može biti roditelj tek kada populacija djece postane populacija roditelja, to jest u sljedećoj iteraciji. \cite{skriptaEvolucijskoRacunarstvo}
 		
@@ -279,51 +258,86 @@ Jednadžba \eqref{jed:prvajednadzba} je moja prva jednadžba koja definira par $
 \chapter{Implementacija inteligentnog igrača}
 \label{pog:Implementacija}
 
-	Inteligentni igrač Zatvorenikove dileme modeliran je jednostavnom Elmanovom neuronskom mrežom. Mreža se sastoji od ulaznog sloja, jednog skrivenog sloja sa kontekstom i izlaznog sloja. Svi slojevi su potpuno povezani. Veze između izlaza skrivenog sloja i konteksta su jedan-na-jedan, to jest izlaz jednog neurona se preslikava u "kopiju" tog neurona u kontekstu. To implicitno znači da skriveni kontekst ima jednak broj neurona kao i sam skriveni sloj. Veze između konteksta i ulaza u neurone skrivenog sloja su svaki-sa-svakim, isto kao i između ostalih slojeva u mreži.
+	Inteligentni igrač Zatvorenikove dileme modeliran je Elmanovom neuronskom mrežom. Mreža se sastoji od ulaznog sloja, jednog skrivenog sloja s kontekstom, još jednog skrivenog sloja i izlaznog sloja. Svi slojevi su potpuno povezani. Veze između izlaza skrivenog sloja i konteksta su jedan-na-jedan, to jest izlaz jednog neurona se preslikava u "kopiju" tog neurona u kontekstu. To implicitno znači da skriveni kontekst ima jednak broj neurona kao i sam skriveni sloj. Veze između konteksta i ulaza u neurone skrivenog sloja su svaki-sa-svakim, isto kao i između ostalih slojeva u mreži. Svi neuroni u korištenoj neuronskoj mreži koriste sigmoidnu prijenosnu funkciju.
 	
-	Korištena mreža je arhitekture 1 x 8 x 1. Ulaz u mrežu je brojčana vrijednost odluke suparničkog igrača iz prijašnje runde. Ako prijašnje runde još nije bilo, tada se na ulaz dovodi 0. Odluka o suradnji je brojčano kodirana vrijednošću 1, a odluka o izdaju vrijednošću -1. Izlaz mreže je brojčana vrijednost odluke koju će inteligentni igrač odigrati u ovoj rundi Zatvorenikove dileme.
+	Korištena mreža je arhitekture 1 x 4 x 2 x 1. Ulaz u mrežu je brojčana vrijednost odluke suparničkog igrača iz prijašnje runde. Ako prijašnje runde još nije bilo, tada se na ulaz dovodi 0. Odluka o suradnji je brojčano kodirana vrijednošću 1, a odluka o izdaju vrijednošću -1. Izlaz mreže je brojčana vrijednost između 0 i 1 koja se interpretira kao potez inteligentnog igrača u ovoj rundi Zatvorenikove dileme. Vrijednost se interpretira na sljedeći način:
+	\begin{itemize}
+		\item ako je vrijednost veća ili jednaka 0.5, interpretiraj izlaz mreže kao suradnju
+		\item ako je vrijednost manja od 0.5, interpretiraj izlaz mreže kao izdaju
+	\end{itemize}
 
 	\section{Učenje inteligentnog igrača}
 	\label{pog:Ucenje}
 	
-	S obzirom na karakteristike Zatvorenikove dileme i dinamiku okruženja u kojem inteligentni igrač mora donositi odluke,često korišteno nadzirano učenje neuronske mreže algoritmom propagacije unazad ovdje nije praktično.
+	S obzirom na karakteristike Zatvorenikove dileme i dinamiku okruženja u kojem inteligentni igrač mora donositi odluke, često korišteno nadzirano učenje neuronske mreže algoritmom propagacije unazad ovdje nije primjenjivo.
 	
-	Ako bismo koristili algoritam propagacije unazad, morali bismo za svaki ulaz definirati očekivani (najbolji) izlaz, to jest optimalnu odluku u toj situaciji. S obzirom da u ovom problemu postoje samo 3 moguća ulaza u mrežu (0 ako se radi o prvoj rundi, 1 ako je u prijašnjoj rundi suparnički igrač surađivao i -1 ako je izdao ovog igrača), skup za učenje bi bio premalen. Također, problem u tom pristupu je to što bismo time inteligentnom igraču zapravo predstavljali problem Zatvorenikove dileme sa samo jednom iteracijom, a taj problem ima potpuno različit pristup u odnosu na iterirajuću Zatvorenikovu dilemu, kao što je prije raspravljeno. Još jedan problem je u tome što je zapravo teško odrediti što je najbolji potez koji igrač može odigrati u nekom okruženju. 
+	Ako bismo koristili algoritam propagacije unazad, morali bismo za svaki ulaz definirati očekivani (najbolji) izlaz, to jest optimalnu odluku u toj situaciji. S obzirom na to da u ovom problemu postoje samo 3 moguća ulaza u mrežu (0 ako se radi o prvoj rundi, 1 ako je u prijašnjoj rundi suparnički igrač surađivao i -1 ako je izdao ovoga igrača), skup za učenje bi bio premalen. Također, problem u tom pristupu je to što bismo time inteligentnom igraču zapravo predstavljali problem Zatvorenikove dileme sa samo jednom iteracijom, a taj problem ima potpuno različit pristup u odnosu na ponavljajuću Zatvorenikovu dilemu, kao što je prije raspravljeno. Još jedan problem je u tome što je zapravo teško odrediti što je najbolji potez koji igrač može odigrati u nekom okruženju. 
 	
-	Bolji pristup je zato neka vrsta podržanog učenja. Općenito se kod podržanog učenja razmatra interakcija agenta i njegove okoline. Agent dobiva informacije iz okolina i na temelju njih vrši akcije. Za izvršene akcije agent dobiva nagrade ili kazne. Cilj podržanog učenja je razviti strategiju ponašanja agenta koja će maksimizirati njegovu nagradu. \textit{\textbf{???}}
-	
-	Zbog toga je za ovaj problem odlučeno koristiti jednu drugu tehniku, a to je učenje neuronske mreže genetskim algoritmom. Ideja ove tehnike je koristiti genetski algoritam kao algoritam optimizacije nad neuronskim mrežama. Cilj optimizacije je pronaći težine veza između neurona (i pomake svakog neurona) koje će davati najbolje (ili barem dovoljno dobre) performanse neuronske mreže u igri Zatvorenikove dileme.
+	Zbog toga je za ovaj problem odlučeno koristiti jednu drugu tehniku, a to je učenje neuronske mreže genetskim algoritmom. Ideja ove tehnike je koristiti genetski algoritam kao algoritam optimizacije nad neuronskim mrežama. Cilj optimizacije je pronaći težine veza između neurona (i pomake svakog neurona) koje će davati najbolje (ili barem dovoljno dobre) performanse neuronske mreže u igri Zatvorenikove dileme. Ova tehnika nam omogućuje da težine veza između neurona prilagođavamo nakon što je inteligentni igrač odigrao nekoliko igra, kada imamo bolju predodžbu o kvaliteti njegovog igranja.
 	
 	\subsection{Parametri genetskog algoritma}
 	\label{pog:ParametriGenetskogAlg}
 	
-		Za genetski algoritam nad neuronskom mrežom je samo potrebno definirati kriterij i postupak nagrađivanja te rangiranja neuronskih mreža, način selekcije roditelja, operatore križanja i mutacije sa njihovim parametrima, magnitudu izmjena u populaciji, veličinu populacije i kriterij za završetak algoritma.
+		Za genetski algoritam nad neuronskom mrežom je samo potrebno definirati kriterij i postupak nagrađivanja te rangiranja neuronskih mreža, način selekcije roditelja, operatore križanja i mutacije s njihovim parametrima, magnitudu izmjena u populaciji, veličinu populacije i kriterij za završetak algoritma.
 		
-		Kao kriterij nagrađivanja i rangiranja neuronskih mreža iz populacije koriste se bodovi dobiveni igranjem Zatvorenikove dileme. Svaka mreža iz populacije igra zadani broj rundi Zatvorenikove dileme sa svakom drugom neuronskom mrežom i sa samom sobom. Broj rundi koje će dvije mreže međusobno odigrati može podešavati sam korisnik. Dobiveni bodovi se zbrajaju te dobivena suma predstavlja takozvanu dobrotu neuronske mreže. Ti bodovi se računaju svaki puta nakon stvaranja nove generacije neuronskih mreža. Ovaj način nagrađivanja savršeno odgovara za problem iterirajuće Zatvorenikove dileme jer ovime nije nužno da neuronska mreža mora pobjeđivati druge neuronske mreže u direktnom okršaju, već je bitno da kontinuirano može dobivati dosta bodova protiv neuronskih mreža sa raznim strategijama.
+		Kao kriterij nagrađivanja i rangiranja neuronskih mreža iz populacije koriste se bodovi dobiveni igranjem Zatvorenikove dileme. Svaka mreža iz populacije igra zadani broj rundi Zatvorenikove dileme sa svakom drugom neuronskom mrežom i sa samom sobom. Dodatno, svaka mreža igra Zatvorenikovu dilemu 4 puta protiv 11 unaprijed pripremljenih strategija za igranje Zatvorenikove dileme. Jedna od tih strategija, nazvana \textit{Detective}, preuzeta je s interaktivne stranice \textit{The Evolution of Trust} koja prezentira zanimljive aspekte Zatvorenikove dileme \cite{NickyCase}. Ostalih 10 strategija preuzeto iz prvog Axelrodovog turnira. Strategije su implementirane po opisima dostupnima u Axelrodovom radu u kojem je objavio rezultate prvog turnira \cite{1980Axelrod1}. Također, za referencu je korišten i izvorni kod implementacije nekih od strategija u programskom jeziku Python pronađen na internetu \cite{AxelrodStratImplPython}. Implementirane strategije iz Axelrodovog turnira su: 
+		\begin{itemize}
+			\item \textit{Tit for Tat}
+			\item \textit{Nydegger}
+			\item \textit{Grofman}
+			\item \textit{Shubik}
+			\item \textit{Friedman}
+			\item \textit{Davis}
+			\item \textit{Downing}
+			\item \textit{Joss}
+			\item \textit{Tullock}
+			\item \textit{Random}
+		\end{itemize}
 		
-		Za selekciju roditelja je korištena proporcionalan selekcija - vjerojatnost da će neuronska mreža biti odabrana za roditelja je proporcionalna njezinim relativnim bodovima u odnosu na druge. Programsko rješenje također omogućava da korisnik odredi hoće li se dijete stvarati iz jednog ili dva roditelja. Ako je odabrano da dijete nastaje samo iz jednog roditelja, tada dijete nastaje kao kopija roditelja te se zatim nad njim primjenjuje operator mutacije. Dakle, u tom se slučaju ne koristi operator križanja.
+		Valja napomenuti da nije pronađena službena dokumentacija o točnoj implementaciji navedenih strategija. Dodatno, kod testiranja implementacija nisu dobiveni potpuno identični bodovi kod međusobnog igranja Zatvorenikove dileme između strategija kao kod objavljenog Axelrodovog rada. Stoga nema garancije da se sve implementirane strategije ponašaju potpuno identično kao što su se ponašale strategije u Axelrodovom turniru.
+		
+		Broj rundi koje će mreže odigrati u jednoj igri Zatvorenikove dileme može se podešavati u programskom rješenju. Dobiveni bodovi kod međusobnog igranja između mreža se zbrajaju, dok se kod igranja mreže protiv strategije zbraja prosjek ostvarenih bodova protiv te strategije. Dobivena suma predstavlja takozvanu dobrotu neuronske mreže. Ti bodovi se računaju svaki puta nakon stvaranja nove generacije neuronskih mreža. Ovaj način nagrađivanja savršeno odgovara za problem ponavljajuće Zatvorenikove dileme jer ovime nije nužno da neuronska mreža mora pobjeđivati druge neuronske mreže u direktnom okršaju, već je bitno da kontinuirano može dobivati dosta bodova protiv neuronskih mreža s raznim strategijama.
+		
+		Za selekciju roditelja je korištena proporcionalan selekcija - vjerojatnost da će neuronska mreža biti odabrana za roditelja je proporcionalna njezinim relativnim bodovima u odnosu na druge neuronske mreže.
 		
 		Kod operatora križanja se za određivanje parametara\footnote{Za parametre neuronske mreže podrazumijevaju se težine veza između neurona i pomaci (eng. \textit{biases})} djeteta nasumično biraju ekvivalentni parametri jednog od roditelja. Odabir roditelja od kojeg će se naslijediti konkretan parametar se ponovno vrši proporcionalnom selekcijom. Dakle, za svaki parametar vrijedi da je vjerojatnost da će on biti naslijeđen od nekog roditelja je proporcionalna relativnoj dobroti tog roditelja u odnosu na drugog roditelja.
 		
-		Operator mutacije se koristi dvjema vrstama mutacija - velikim i malim. Male mutacije su češće i manjeg intenziteta, dok su velike rjeđe i većeg intenziteta. Nakon stvaranja novog djeteta, svaki parametar ima vjerojatnost da će nad njim biti izvršen operator male mutacije. Ako ne dođe do male mutacije, parametar ima vjerojatnost da se nad njim izvrši velika mutacija. Mutacija funkcionira tako da se generira slučajan broj u nekom intervalu te se dobiveni broj pribraja vrijednosti parametra. Kod velike mutacije taj je interval širi. Interval je uvijek definiran oko nule. Vjerojatnosti i magnitude velike te male mutacije korisnik može sam određivati.
+		Operator mutacije koristi slučajne brojeve iz Gaussove normalne razdiobe s očekivanom vrijednosti 0 i podesivom standardnom devijacijom. Nakon stvaranja novog djeteta, svaki parametar ima vjerojatnost da će nad njim biti izvršen operator mutacije. Mutacija funkcionira tako da se generira slučajan broj te se dobiveni broj pribraja vrijednosti parametra. Ovime se dobivaju mutacije koje su uglavnom malog intenziteta, no mogu biti i velikog. Tako preko jedne mutacije dobivamo kombinaciju češćih malih mutacija i rjeđih velikih mutacija. Vjerojatnost pojavljivanja mutacije i standardnu devijaciju korištenu kod generiranja slučajnog broja moguće je podešavati u programskom rješenju.
 		
 		Korišten je \textit{generacijski genetski algoritam}. Dakle, u jednoj iteraciji se cijela populacija jedinki zamjenjuje. Iznimka je jedino da se najbolja mreža iz prošle generacije direktno kopira u novu generaciju bez izmjena. Time se nastoji očuvati svojstvo elitizma \footnote{Elitizam je svojstvo algoritma da ne može izgubi najbolje pronađeno rješenje \cite{skriptaEvolucijskoRacunarstvo}}. 
-	
-		Ostale parametri genetskog algoritma su: veličina populacije i maksimalni dopušteni broj generiranih populacija prije završetka algoritma. Te parametre korisnik može sam podešavati.
+		
+		Kriterij zaustavljanja genetskog algoritma je isključivo dosezanje limita za broj generiranih generacija koji se može podesiti u programskom rješenju. Također, u programskom rješenju se može podesiti veličina populacije neuronskih mreža za genetski algoritam.
 	
 \chapter{Definiranje pokusa}
 \label{pog:Pokus}
 
-	Pokus je zamišljen tako da se 20 puta pokrene treniranje neuronskim mreža. Na kraju svakog treniranja se izvlači najbolja neuronska mreža iz zadnje generacije te se sa njom igra Zatvorenikova dilema sa ciljem da se utvrdi postojanje određenih svojstava u strategiji igranja te neuronske mreže. Svojstva koja će se ispitivati su:
+	Pokus je zamišljen tako da se 20 puta pokrene treniranje neuronskim mreža. Na kraju svakog treniranja se izvlači najbolja neuronska mreža iz zadnje generacije te se s njom igra Zatvorenikova dilema s ciljem da se utvrdi postojanje određenih svojstava u strategiji igranja te neuronske mreže. Svojstva koja će se ispitivati su:
 	\begin{itemize}
 		\item Ljubaznost (eng. \textit{niceness})
 		\item sklonost opraštanju (eng. \textit{forgiveness})
 		\item provokabilnost (eng. \textit{provocability})
 	\end{itemize}
 	
-	Navedena svojstva su opisana ranije u poglavlju \ref{pog:ZatvorenikovaDilema}. Promatrat će se učestalost pojavljivanja pojedinog svojstva u strategijama najboljih igrača. Iz toga će se pokušati izvesti zaključak o tome jesu li i koliko navedena svojstva robusna i poželjna u generalnoj Zatvorenikovoj dilemi neovisnoj o drugim igračima.
+	Navedena svojstva su opisana ranije u poglavlju \ref{pog:ZatvorenikovaDilema}. Promatrat će se učestalost pojavljivanja i metrika pojedinog svojstva u strategijama najboljih igrača. Iz toga će se pokušati izvesti zaključak o tome jesu li i koliko navedena svojstva robusna i poželjna u generalnoj Zatvorenikovoj dilemi neovisnoj o drugim igračima.
 	
+	Svojstva će se ispitivati i kvantificirati tako da se protiv svake izabrane neuronske mreže igra Zatvorenikova dilema od 16 rudni nekoliko puta. 
 	
+	Igrač ispitivač protiv inteligentnog igrača prvo igra Zatvorenikovu dilemu tako da uvijek igra suradnju protiv inteligentnog igrača. Ako inteligentni igrač barem jednom odigra izdaju, smatra se da nije ljubazan, a u suprotnom da jest. 
+	
+	U drugoj igri prvi potez igrača ispitivača je suradnja. Zatim ispitivač igra izdaju dok god drugi igrač igra suradnju. Kada inteligentni igrač odigra izdaju, ispitivač igra suradnju dok god se inteligentni igrač ne "smiri" i ponovno igra suradnju. Nakon toga ispitivač ponovno igra izdaju i ponavlja postupak dok igra traje. Omjer broja ispitivačevih izdaja do reakcije inteligentnog igrača i broj reakcija inteligentnog igrača će biti metrika opraštanja. Na primjer, omjer 15/0 bi značio da je inteligentni igrač cijelu igru surađivao i nikada nije reagirao na 15 izdaja ispitivača. Takav inteligentni igrač bi se smatrao maksimalno opraštajući. Omjer 2/14 bi predstavljao igru u kojoj je nakon prve izdaje ispitivača inteligentni igrač odlučio igrati izdaju do kraja igre. Taj igrač bi bio minimalno opraštajući.
+	
+	U trećoj igri prvi potez igrača ispitivača je ponovno suradnja. Zatim ispitivač igra jednu izdaju i zatim surađuje dok god inteligentni igrač igra izdaju protiv njega. Nakon što inteligentni igrač prestane igrati izdaju ispitivač ponavlja izdaju i ponavlja postupak. Kao metrika provokabilnosti će se uzimati omjer izdaja ispitivača i trenutnih reakcija inteligentnog igrača na izdaju, neovisno koliko izdaja bilo u reakciji. Tako bi na primjer omjer 5/5 predstavljao inteligentnog igrača koji je nakon svake od 5 ispitivačevih izdaja odmah uzvratio s barem jednom izdajom. Takav igrač bi se smatrao maksimalno provokabilnim. Omjer 8/0 bi predstavljao igru u kojoj je ispitivač 8 puta izdao inteligentnog igrača, a on nije niti jednom uzvratio izdajom u slijećem potezu. Taj igrač se smatra minimalno provokabilnim.
+	
+	Bitan komentar je da kod inteligentnih igrača koji nisu ljubazni metrike za opraštanje i provokabilnost nisu toliko relevantne i smislene. To je zbog činjenice da kada neljubazan igrač igra izdaju to ne mora biti nužno reakcija na izdaju drugog igrača, već ta izdaja može biti odigrana na vlastitu inicijativu. Unatoč tome, metrike za opraštanje i provokabilnost će biti priložene i za inteligentne igrače koji nisu ljubazni.
+	
+	Kod treniranja neuronskih mreža korištene su sljedeće postavke genetskog algoritma:
+	\begin{itemize}
+		\item vjerojatnost mutacije: 0.05
+		\item magnituda mutacije (standardna devijacija kod generiranja slučajnog broja): 0.5
+		\item veličina generacije: 50
+		\item limit broja generiranih generacija: 30
+		\item broj rundi u jednoj igri Zatvorenikove dileme: 50
+	\end{itemize}
 
 % \Blindtext
 
@@ -334,41 +348,50 @@ Jednadžba \eqref{jed:prvajednadzba} je moja prva jednadžba koja definira par $
 
 	\begin{longtblr}[
 		caption={Rezultati pokusa},
-		label=Results,
+		label=Results2,
 		entry=none
 		]{
 			width = \textwidth,
-			colspec={|X[1,l]|X[1.6, l]|X[3, l]|X[3,l]|X[1.2,l]|}, 
+			colspec={|X[0.5,l]|X[0.6, l]|X[0.6, l]|X[0.8,l]|X[1,l]|}, 
 			rowhead = 0,
 		} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
 		\hline 
-		\textbf{Redni\\broj\\pokusa} & \textbf{Ljubaznost} & \textbf{Opraštanje} & \textbf{Provokabilnost} & \textbf{Najbolji\\rezultat} \\ \hline
-		\textbf{1} & da & do 3 uzastopne izdaje & 1 izdaja nakon 3 uzastopne izdaje, nakon toga se resetira & 70:15 \\ \hline
-		\textbf{2} & ne & ne oprašta & stalno izdaje & 16:16 \\ \hline
-		\textbf{3} & ne & ne oprašta & stalno izdaje & 16:16 \\ \hline
-		\textbf{4} & ne & oprašta gotovo uvijek & rijetko izdaje ako je izdana & 80:0 \\ \hline
-		\textbf{5} & ne &ne oprašta & stalno izdaje & 16:16 \\ \hline
-		\textbf{6} & da & oprašta sve & nikada ne izdaje & 80:0 \\ \hline
-		\textbf{7} & da & oprašta sve & nikada ne izdaje & 80:0 \\ \hline
-		\textbf{8} & ne & ne oprašta & stalno izdaje & 16:16 \\ \hline
-		\textbf{9} & ne & ne oprašta & stalno izdaje & 16:16 \\ \hline
-		\textbf{10} & da & oprašta sve & nikada ne izdaje & 80:0 \\ \hline
-		\textbf{11} & - & - & - & - \\ \hline
-		\textbf{12} & - & - & - & - \\ \hline
-		\textbf{13} & - & - & - & - \\ \hline
-		\textbf{14} & - & - & - & - \\ \hline
-		\textbf{15} & - & - & - & - \\ \hline
-		\textbf{16} & - & - & - & - \\ \hline
-		\textbf{17} & - & - & - & - \\ \hline
-		\textbf{18} & - & - & - & - \\ \hline
-		\textbf{19} & - & - & - & - \\ \hline
-		\textbf{20} & - & - & - & - \\ \hline
+		\textbf{Redni\\broj\\pokusa} & \textbf{Ljubaznost} & \textbf{Opraštanje} & \textbf{Provokabilnost} & \textbf{Komentar} \\ \hline
+		\textbf{1} & da & 10/5 & 5/5 & sličan strategiji \textit{Tit for Tat}, blaži \\ \hline
+		\textbf{2} & da & 10/5 & 5/5 & sličan strategiji \textit{Tit for Tat}, blaži \\ \hline
+		\textbf{3} & da & 8/8 & 5/5 & jako sličan strategiji \textit{Tit for Tat} \\ \hline
+		\textbf{4} & da & 9/6 & 8/0 & sličan strategiji \textit{Tit for Tat}, blaži; jednom izdao sa odgodom (istovremeno kao i ispitivač) \\ \hline
+		\textbf{5} & ne & 2/14 & 1/1 & nikada ne surađuje \\ \hline
+		\textbf{6} & ne & 2/14 & 1/1 & nikada ne surađuje \\ \hline
+		\textbf{7} & da & 10/5 & 6/3 & kao \textbf{1}, ali još blaži \\ \hline
+		\textbf{8} & da & 8/8 & 5/5 & \textit{Tit for Tat} \\ \hline
+		\textbf{9} & ne & 2/14 & 1/1 & nikada ne surađuje \\ \hline
+		\textbf{10} & da & 8/8 & 5/5 & \textit{Tit for Tat} \\ \hline
+		
+		\textbf{11} & ne & 2/14 & 1/1 & nikada ne surađuje \\ \hline
+		\textbf{12} & ne & 2/14 & 1/1 & nikada ne surađuje \\ \hline
+		\textbf{13} & da & 8/8 & 5/5 & \textit{Tit for Tat} \\ \hline
+		\textbf{14} & ne & 2/14 & 1/1 & nikada ne surađuje \\ \hline
+		\textbf{15} & da & 8/8 & 5/5 & \textit{Tit for Tat} \\ \hline
+		\textbf{16} & ne & 2/14 & 1/1 & nikada ne surađuje \\ \hline
+		\textbf{17} & ne & 2/14 & 1/1 & nikada ne surađuje \\ \hline
+		\textbf{18} & da & 8/8 & 5/5 & \textit{Tit for Tat} \\ \hline
+		\textbf{19} & da & 12/4 & 6/3 & jako blagi, s vremenom manje oprašta \\ \hline
+		\textbf{20} & da & 8/8 & 5/5 & \textit{Tit for Tat} \\ \hline
 	\end{longtblr}
 	
-	Napomene: Igrač iz 4. pokusa je pokoran - ako je dovoljno puta izdan, počinje samo surađivati i dopuštati da ga se iskorištava. Međutim, ako ga drugi igrač ne izdaje, on će pokušati izdati njega u prosjeku svaki drugi puta. 
+	12/20 ispitanih inteligentnih igrača je bilo ljubazno. Od toga je 6 njih igralo identično kao strategija \textit{Tit for Tat}. 5 inteligentnih ljubaznih igrača je bilo dosta slično strategiji \textit{Tit for Tat}, ali su bili skloniji opraštanju. Inteligentni igrač pod brojem \textbf{19} je bio zanimljiv jer je bio jako blag prema ispitivaču. No, u malo detaljnijem ispitivanju vidjelo da se da taj igrač s vremenom sve više sliči na strategiju \textit{Tit for Tat} kako ga se više izdaje.
+	
+	Zanimljivo je da su svi neljubazni igrači bili potpuno identični - svi su stalno igrali izdaju neovisno o drugom igraču.
 
 	\section{Rasprava}
-
+	
+		Iako je kod ljubaznih igrača bilo dosta sličnosti, ipak su postojale razlike u ponašanju kod nekih. Postojala je varijanta igrača koja je bila jako oprostiva i slabo provokabilna, ali je znala s vremenom postajati stroža. Najstroža varijanta inteligentnog igrača je bila ona identična strategiji \textit{Tit for Tat}. Zanimljivo je da niti jedan ljubazan igrač nije bio potpuno naivan tako da je stalno igrao suradnju neovisno o drugom igraču.
+		
+		Kod neljubaznih igrača nažalost nije bilo nikakve raznolikosti u ponašanju. Svi su igrali najjednostavniju strategiju stalne izdaje neovisno o potezima drugog igrača. Šteta je što kroz treniranje inteligentnog igrača nije nastao niti jedan neljubazan igrač koji bi imao neku složeniju strategiju kojom bi pokušao iskoristiti drugog igrača. Možda bi složeniji model inteligentnog igrača uspio naučiti složeniju neljubaznu strategiju igranja ponavljajuće Zatvorenikove dileme.
+		
+		
+		% Možda bi igrač sa neuronskom mrežom malo složenije arhitekture i sa više ulaznih parametara uspio naučiti složeniju neljubaznu strategiju igranja zatvorenikove dileme.
 
 % \Blindtext
 
@@ -377,7 +400,12 @@ Jednadžba \eqref{jed:prvajednadzba} je moja prva jednadžba koja definira par $
 \chapter{Zaključak}
 \label{pog:zakljucak}
 
-Na kraju rada piše se kratak zaključak, duljine do najviše jedne stranice. 
+	Ovakvi rezultati eksperimenta su uglavnom očekivani, ali ne i u potpunosti zadovoljavajući. 
+	
+	U ovom jednostavnom eksperimentu strategija \textit{Tit for Tat} se pojavila čak 6 puta, a preostalih 6 ljubaznih taktika je uglavnom imalo dosta sličnosti s tom strategijom. Zbog toga bismo mogli zaključiti da je ta strategija dosta robusna i na neki način prirodan pristup problemu ponavljajuće Zatvorenikove dileme.
+	
+	No, ne treba zanemariti činjenicu da se u postupku učenja inteligentnog igrača čak 8 buta istrenirao igrač koji je nikada nije surađivao. To se može objasniti činjenicom da najbolja strategija igranja ponavljajuće Zatvorenikove dileme ovisi o okruženju u kojem se Zatvorenikova dilema igra. S obzirom na to da je inicijalno okruženje kod treniranja inteligentnog igrača bilo nasumično, vjerojatno je puno igrača iz populacije za treniranje prvotno cijelo vrijeme igralo izdaju. Ako je takvih igrača bilo dovoljno, vjerojatno je bilo nemoguće razviti neko drugačije ponašanje koje bi se moglo istaknuti u takvom okruženju. No, ipak činjenica da je 8 od 20 igrača razvila ovakvo nekooperativno ponašanje ukazuje da je pristup stvaranja inteligentnog igrača možda mogao biti i bolji. Možda bi model inteligentnog igrača s neuronskom mrežom složenije arhitekture i s više ulaznih podataka u postupku treniranja rjeđe rezultirao igračem koji nikada ne surađuje. Bilo bi zanimljivo vidjeti ako bi složeniji model ponekada naučio neljubaznu strategiju koja na pametan način pokušava iskoristiti druge igrače.
+
 % \blindtext
 
 
@@ -394,7 +422,7 @@ Na kraju rada piše se kratak zaključak, duljine do najviše jedne stranice.
 % Sažetak na hrvatskom
 \begin{sazetak}
 	
-	Zatvorenikova dilema je poznati problem iz područja teorije igara. U jezgri dileme je sukob između racionalnog razmišljanja maksimiziranja vlastite dobiti dvaju igrača koje ih dovodi do sub-optimalne pozicija te međusobne suradnje koja je korisna za oba igrača. Ovaj rad se bavi problemom izrade inteligentnog igrača koji će moći igrati iterirajući problem Zatvorenikove dileme. Za modeliranje inteligentnog igrača korištena je Elmanova neuronska mreža. Mreža je trenirana generacijskim genetskim algoritmom. Pokusom je pokušano utvrditi učestalost pojedinih karakteristika strategije igranja inteligentnog igrača. Time se želi utvrditi robusnost strategija igranja Zatvorenikove dileme koje posjeduju tražene karakteristike. Karakteristike koje se promatraju su: ljubaznost, sklonost opraštanju i provokabilnost.
+	Zatvorenikova dilema je poznati problem iz područja teorije igara. U jezgri dileme je sukob između racionalnog razmišljanja maksimiziranja vlastite dobiti dvaju igrača koje ih dovodi do sub-optimalne pozicija te suradnje koja je korisna za oba igrača. Ovaj rad se bavi problemom izrade inteligentnog igrača koji će moći igrati ponavljajući problem Zatvorenikove dileme. Za modeliranje inteligentnog igrača korištena je Elmanova neuronska mreža. Mreža je trenirana generacijskim genetskim algoritmom. Pokusom je pokušano utvrditi učestalost pojedinih karakteristika strategije igranja inteligentnog igrača. Time se želi utvrditi robusnost strategija igranja Zatvorenikove dileme koje posjeduju tražene karakteristike. Karakteristike koje se promatraju su: ljubaznost, sklonost opraštanju i provokabilnost.
 
   % \blindtext
 \end{sazetak}
@@ -424,7 +452,7 @@ Na kraju rada piše se kratak zaključak, duljine do najviše jedne stranice.
 
 \chapter{Programski kod}
 
-	U sklopu ovog završnog rada izrađena je jednostavna aplikacija u programskom jeziku \textit{Java}. Aplikacija omogućuje treniranje Elmanove neuronske mreže genetske mreže i igranje Zatvorenikove dileme.
+	U sklopu ovog završnog rada izrađena je jednostavna aplikacija u programskom jeziku \textit{Java}. Aplikacija omogućuje treniranje Elmanove neuronske mreže genetskim algoritmom i igranje Zatvorenikove dileme.
 	
 	Aplikacija u početnom prozoru prikazuje 4 gumba pomoći kojih nudi sljedeće mogućnosti:
 	\begin{itemize}
@@ -434,24 +462,23 @@ Na kraju rada piše se kratak zaključak, duljine do najviše jedne stranice.
 		\item Prikaz kratkog opisa aplikacije u odvojenom prozoru.
 	\end{itemize}
 	
-	Kod izbora treniranja neuronske mreže prikazuje se prozor u kojem se mogu podesiti slijedeći parametri genetskog algoritma:
+	Kod izbora treniranja neuronske mreže prikazuje se prozor u kojem se mogu podesiti sljedeći parametri genetskog algoritma:
 	\begin{itemize}
-		\item Vjerojatnost male mutacije
-		\item Magnituda male mutacije
-		\item Vjerojatnost velike mutacije (kada se ne realizira mala mutacija)
-		\item Magnituda velike mutacije
-		\item Broj roditelja (1 ili 2)
+		\item Vjerojatnost mutacije
+		\item Magnituda mutacije (standardna devijacija Gaussove normalne razdiobe)
 		\item Veličina populacije
 		\item Najveći broj generiranih generacija prije završavanja algoritma
 		\item Broj iteracija u jednoj igri Zatvorenikove dileme prilikom određivanja dobrote svake mreže
 	\end{itemize}
 	
-	Nakon podešavanja parametara pokreće se genetski algoritam. Program je podešen tako da sprema najbolju, medijalnu i najlošiju neuronsku mrežu svake pete generacije u direktorij \textit{src/main/resources} Maven projekta. Na dnu prozora je prikazan teoretski najveća moguća dobrota koju neka mreža može ostvariti. Dodatno, za svaku se generaciju ispisuju slijedeći podaci:
+	Nakon podešavanja parametara pokreće se genetski algoritam. Program je podešen tako da sprema najbolju, medijalnu i najlošiju neuronsku mrežu svake pete generacije u direktorij \textit{src/main/resources} Maven projekta. Na dnu prozora je prikazan teoretski najveća moguća dobrota koju neka mreža može ostvariti. Dodatno, za svaku se generaciju ispisuju sljedeći podaci:
 	\begin{itemize}
 		\item Dobrota najbolje mreže iz te generacije
 		\item Dobrota medijalne mreže iz te generacije
 		\item Dobrota najlošije mreže iz te generacije
 	\end{itemize}
+	
+	Genetski algoritam se može prisilno završiti ranije nego je predviđeno pritiskom na gumb \textit{Stop}.
 	
 	Po završetku genetskog algoritma omogućeno je da korisnik igra Zatvorenikovu dilemu protiv najbolje mreže iz posljednje generacije genetskog algoritma. Igra se sastoji od 16 rundi Zatvorenikove dileme. Prozor prikazuje ostvarene bodove svakog igrača u svakoj rundi te ukupno ostvarene bodove. Neuronska mreža uvijek igra kao \textit{Player 2}, dok je korisnik \textit{Player 1}.
 	
@@ -472,7 +499,7 @@ Na kraju rada piše se kratak zaključak, duljine do najviše jedne stranice.
 		\textit{Player 2} & P & L \\ \hline
 	\end{longtblr}
 	
-	Nakon toga se prikazuje prozor koji prikazuje osvojene bodove svakog igrača na identičan način kao i prilikom igranja Zatvorenikove dileme sa inteligentnim igračem nakon provođenja genetskog algoritma. Igra se ponovno sastoji od 16 rundi.
+	Nakon toga se prikazuje prozor koji prikazuje osvojene bodove svakog igrača na identičan način kao i prilikom igranja Zatvorenikove dileme s inteligentnim igračem nakon provođenja genetskog algoritma. Igra se ponovno sastoji od 16 rundi.
 	
 	Kod odabira učitavanja neuronske mreže iz datoteke otvara se prozor za odabir datoteke. Nakon što korisnik odabere datoteku aplikacija će pokušati učitati neuronski mrežu iz datoteke. Po završetku uspješnog učitavanja mreže pokreće se igra identično kao i nakon treniranja neuronske mreže genetičkim algoritmom.
 	
@@ -480,15 +507,14 @@ Na kraju rada piše se kratak zaključak, duljine do najviše jedne stranice.
 	
 	Izvorni kod programskog rješenja i sam završni rad dostupni su na javnom Git repozitoriju na \href{https://github.com/PetarBelosevic/Prisoner-s-Dilemma-AI.git}{poveznici}. Za korištenje programskog rješenja potrebno je preuzeti Git repozitorij, prevesti preuzeti Maven projekt (u naredbenom retku pomoću naredbe \textit{mvn compile}) i pokrenuti izvođenje iz razreda \textit{application.GUIApp} (u naredbenom retku pomoću naredbe \textit{mvn exec:java -Dexec.mainClass="application.GUIApp"}).
 	
-	U programskom kodu dostupno je nekoliko razreda koji nude slične funkcionalnosti kao i aplikacija sa grafičkim korisničkim sučeljem. Korišteni su za isprobavanje funkcionalnosti prije izrade grafičkog korisničkog sučelja.
+	U programskom kodu dostupno je nekoliko razreda koji nude slične funkcionalnosti kao i aplikacija s grafičkim korisničkim sučeljem. Korišteni su za isprobavanje funkcionalnosti prije izrade grafičkog korisničkog sučelja.
 	
 	Prvi takav razred je \textit{game.application.ConsoleApp} koji omogućava igranje Zatvorenikove dileme koju igraju dva korisnika preko konzole. Kod oba igrača unos teksta "c" ili "C" se interpretira kao suradnja, a sve ostalo kao izdaja.
 	
-	Slijedeći takav razred je \textit{evolution.training.ConsoleTestingApp}. Razred omogućuje učitavanje neuronske mreže iz datoteke te igranje Zatvorenikove dileme protiv te mreže preko konzole.
+	Sljedeći takav razred je \textit{evolution.training.ConsoleTestingApp}. Razred omogućuje učitavanje neuronske mreže iz datoteke te igranje Zatvorenikove dileme protiv te mreže preko konzole.
 	
-	Posljednji takav razred je \textit{evolution.training.ConsoleTrainingApp}. Razred omogućava provođenje genetičkog algoritma kao i kod aplikacije sa grafičkim sučeljem. Postupak u konzoli ispisuje dobrote najbolje, medijalne i najlošije neuronske mreže svake 5-te generacije te iste neuronske mreže sprema u datoteke na disku.
+	Posljednji takav razred je \textit{evolution.training.ConsoleTrainingApp}. Razred omogućava provođenje genetičkog algoritma kao i kod aplikacije s grafičkim sučeljem. Postupak u konzoli ispisuje dobrote najbolje, medijalne i najlošije neuronske mreže svake 5. generacije te iste neuronske mreže sprema u datoteke na disku.
 
 % \Blindtext
-
 
 \end{document}

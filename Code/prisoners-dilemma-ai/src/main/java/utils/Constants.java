@@ -12,7 +12,7 @@ import java.util.List;
  * </p>
  */
 public class Constants {
-    public static final double RANDOMNESS_LEVEL = 0.1;
+    public static final double RANDOMNESS_LEVEL = 1.0;
     public static final Path DEFAULT_STORAGE = Path.of("src/main/resources/");
     public static final Path DEFAULT_TEST_STORAGE = Path.of("src/test/resources/");
     public static final List<AbstractStrategyPlayer> PD_STRATEGIES = new ArrayList<>();

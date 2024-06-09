@@ -10,11 +10,13 @@ import java.nio.file.Path;
  */
 public interface ISpecimen<T extends ISpecimen<T>> extends Comparable<ISpecimen<T>> {
     /**
-     * <p>
+     *  <p>
      *     Mutates properties of this object.
      * </p>
+     * @param mutationChance chance of mutation to happen
+     * @param mutationMagnitude magnitude of mutation
      */
-    void mutate(double smallMutationChance, double smallMutationMagnitude, double bigMutationChance, double bigMutationMagnitude);
+    void mutate(double mutationChance, double mutationMagnitude);
 
     /**
      * <p>

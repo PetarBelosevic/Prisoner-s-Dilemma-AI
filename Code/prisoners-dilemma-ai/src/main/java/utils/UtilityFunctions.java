@@ -14,28 +14,16 @@ public class UtilityFunctions {
      * <p>
      *     Generates random mutation.
      * </p>
-     * Mutation can be big, small or can be 0.
-     *
      * Mutation is based on the Gaussian normal distribution.
      *
-     * @param smallMutationChance chance for small mutation to occur
-     * @param smallMutationMagnitude magnitude of small mutation
-     * @param bigMutationChance chance for big mutation to occur if small mutation didn't occur
-     * @param bigMutationMagnitude magnitude of big mutation
+     * @param mutationChance chance for a mutation to occur
+     * @param mutationMagnitude magnitude of mutation
      * @return random mutation
      */
-    public static double generateMutation(double smallMutationChance, double smallMutationMagnitude, double bigMutationChance, double bigMutationMagnitude) {
-//        if (Math.random() < smallMutationChance) {
-//            return Math.random() * smallMutationMagnitude;
-//        }
-//        else if (Math.random() < bigMutationChance) {
-//            return Math.random() * bigMutationMagnitude;
-//        }
-
-        if (Math.random() < smallMutationChance) {
-            return RANDOM.nextGaussian(0.0, smallMutationMagnitude);
+    public static double generateMutation(double mutationChance, double mutationMagnitude) {
+        if (Math.random() < mutationChance) {
+            return RANDOM.nextGaussian(0.0, mutationMagnitude);
         }
-
         return  0.0;
     }
 
@@ -48,6 +36,5 @@ public class UtilityFunctions {
      */
     public static double getRandom(double dev) {
         return RANDOM.nextGaussian(0, dev);
-//        return (Math.random() * Constants.RANDOMNESS_LEVEL) - Constants.RANDOMNESS_LEVEL / 2;
     }
 }

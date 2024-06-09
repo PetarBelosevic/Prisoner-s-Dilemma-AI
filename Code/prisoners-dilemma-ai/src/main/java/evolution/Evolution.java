@@ -42,43 +42,23 @@ public class Evolution<T extends ISpecimen<T>> implements IEvolution<T> {
     }
 
     @Override
-    public double getSmallMutationChance() {
-        return evolution.getSmallMutationChance();
+    public double getMutationChance() {
+        return evolution.getMutationChance();
     }
 
     @Override
-    public void setSmallMutationChance(double smallMutationChance) {
-        evolution.setSmallMutationChance(smallMutationChance);
+    public void setMutationChance(double mutationChance) {
+        evolution.setMutationChance(mutationChance);
     }
 
     @Override
-    public double getSmallMutationMagnitude() {
-        return evolution.getSmallMutationMagnitude();
+    public double getMutationMagnitude() {
+        return evolution.getMutationMagnitude();
     }
 
     @Override
-    public void setSmallMutationMagnitude(double smallMutationMagnitude) {
-        evolution.setSmallMutationMagnitude(smallMutationMagnitude);
-    }
-
-    @Override
-    public double getBigMutationChance() {
-        return evolution.getBigMutationChance();
-    }
-
-    @Override
-    public void setBigMutationChance(double bigMutationChance) {
-        evolution.setBigMutationChance(bigMutationChance);
-    }
-
-    @Override
-    public double getBigMutationMagnitude() {
-        return evolution.getBigMutationMagnitude();
-    }
-
-    @Override
-    public void setBigMutationMagnitude(double bigMutationMagnitude) {
-        evolution.setBigMutationMagnitude(bigMutationMagnitude);
+    public void setMutationMagnitude(double mutationMagnitude) {
+        evolution.setMutationMagnitude(mutationMagnitude);
     }
 
     @Override

@@ -33,12 +33,12 @@ public class SimpleNeuralNetworkSpecimen extends NeuralNetwork implements ISpeci
     }
 
     @Override
-    public void mutate(double smallMutationChance, double smallMutationMagnitude, double bigMutationChance, double bigMutationMagnitude) {
+    public void mutate(double mutationChance, double mutationMagnitude) {
         double change;
         for (ILayer layer: getLayers()) {
             for (INDArray parameter: layer.getParameters()) {
                 for (int i = 0; i < parameter.length(); i++) {
-                    change = UtilityFunctions.generateMutation(smallMutationChance, smallMutationMagnitude, bigMutationChance, bigMutationMagnitude);
+                    change = UtilityFunctions.generateMutation(mutationChance, mutationMagnitude);
                     if (change != 0.0) {
                         parameter.putScalar(i, parameter.getDouble(i) + change);
                     }
@@ -107,7 +107,7 @@ public class SimpleNeuralNetworkSpecimen extends NeuralNetwork implements ISpeci
     @Override
     public void saveInFile(Path filePath) {
         try (ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(filePath.toString(), false))) {
-            os.writeInt(getDepth()-1);
+            os.writeInt(getDepth() - 1);
 
             for (ILayer layer: getLayers()) {
                 os.writeObject(layer.getClass().getCanonicalName());

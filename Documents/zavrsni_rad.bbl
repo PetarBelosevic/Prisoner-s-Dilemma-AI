@@ -24,6 +24,12 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{PrisDilemmaHrEnc}
+Zatvorenikova dilema. Hrvatska enciklopedija, mre\v zno izdanje. Leksikografski
+  zavod Miroslav Krle\v za, 2013--2024.
+  \url{https://enciklopedija.hr/clanak/zatvorenikova-dilema}; pristupljeno
+  9.3.2024.
+
 \bibitem{1980Axelrod1}
 \BIBentryALTinterwordspacing
 R.~Axelrod, ``Effective choice in the prisoner's dilemma'', \emph{The Journal
@@ -38,22 +44,17 @@ R.~Axelrod, ``Effective choice in the prisoner's dilemma'', \emph{The Journal
   zno]. Adresa: \url{https://doi.org/10.1177/002200278002400301}
 \BIBentrySTDinterwordspacing
 
-\bibitem{igraHrEnc}
-Igra. Hrvatska enciklopedija, mre\v zno izdanje. Leksikografski zavod Miroslav
-  Krle\v za, 2013--2024. https://enciklopedija.hr/clanak/70136; pristupljeno
-  8.3.2024.
-
-\bibitem{PrisDilemmaHrEnc}
-Zatvorenikova dilema. Hrvatska enciklopedija, mre\v zno izdanje. Leksikografski
-  zavod Miroslav Krle\v za, 2013--2024.
-  https://enciklopedija.hr/clanak/zatvorenikova-dilema; pristupljeno 9.3.2024.
-
 \bibitem{TeorijaIgaraIPravo}
 \BIBentryALTinterwordspacing
 M.~E. I.~Barković~Bojanić, ``Teorija igara i pravo'', \emph{Pravni vjesnik},
   sv.~29, br.~1, str. 59--76, travanj 2013. [Mre\v zno]. Adresa:
   \url{https://hrcak.srce.hr/111004}
 \BIBentrySTDinterwordspacing
+
+\bibitem{igraHrEnc}
+Igra. Hrvatska enciklopedija, mre\v zno izdanje. Leksikografski zavod Miroslav
+  Krle\v za, 2013--2024. \url{https://enciklopedija.hr/clanak/70136};
+  pristupljeno 8.3.2024.
 
 \bibitem{TheEvolutionOfCooperation}
 \BIBentryALTinterwordspacing
@@ -64,19 +65,19 @@ L.~A. Dugatkin, ``The evolution of cooperation'', \emph{BioScience}, sv.~47,
 
 \bibitem{MITNeuralNet}
 Explained: Neural networks. MIT News, 2017.
-  https://news.mit.edu/2017/explained-neural-networks-deep-learning-0414;
+  \url{https://news.mit.edu/2017/explained-neural-networks-deep-learning-0414};
   pristupljeno 23.5.2024.
 
 \bibitem{skriptaNeuronskeMreze}
 M. Čupic, Umjetne neuronske mreže, skripta iz kolegija Uvod u umjetnu
   inteligenciju, 2018.
-  http://java.zemris.fer.hr/nastava/ui/ann/ann-20180604.pdf; pristupljeno
+  \url{http://java.zemris.fer.hr/nastava/ui/ann/ann-20180604.pdf}; pristupljeno
   24.5.2024.
 
 \bibitem{ElmanNetSite}
 Implementation of Elman Recurrent Neural Network in WEKA. ICT Research Blog by
   John Salatas, 2018.
-  https://jsalatas.ictpro.gr/implementation-of-elman-recurrent-neural-network-in-weka/;
+  \url{https://jsalatas.ictpro.gr/implementation-of-elman-recurrent-neural-network-in-weka/};
   pristupljeno 22.5.2024.
 
 \bibitem{Elman}
@@ -91,7 +92,16 @@ J.~L. Elman, ``Finding structure in time'', \emph{Cognitive Science}, sv.~14,
 \bibitem{skriptaEvolucijskoRacunarstvo}
 M. Čupic, Evolucijski računarstvo, skripta iz kolegija Uvod u umjetnu
   inteligenciju, 2019.
-  http://java.zemris.fer.hr/nastava/ui/evo/evo-20190604.pdf; pristupljeno
+  \url{http://java.zemris.fer.hr/nastava/ui/evo/evo-20190604.pdf}; pristupljeno
   24.5.2024.
+
+\bibitem{NickyCase}
+The Evolution of Trust by Nicky Case, July 2017. \url{https://ncase.me/trust/};
+  pristupljeno 7.6.2024.
+
+\bibitem{AxelrodStratImplPython}
+Source code for axelrod.strategies.axelrod\_first, 2015.
+  \url{https://axelrod.readthedocs.io/en/fix-documentation/_modules/axelrod/strategies/axelrod_first.html};
+  pristupljeno 7.6.2024.
 
 \end{thebibliography}

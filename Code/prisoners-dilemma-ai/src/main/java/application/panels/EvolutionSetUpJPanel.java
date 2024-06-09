@@ -18,13 +18,11 @@ import java.awt.*;
 public class EvolutionSetUpJPanel extends JPanel {
     private final JButton backButton = new MyJButton("Back", GUIApp.NORMAL_FONT_SIZE);
     private final JButton startButton = new MyJButton("Start", GUIApp.NORMAL_FONT_SIZE);
-    private final JSpinner smallMutationChanceSpinner = createJSpinner(0.05, 0.0, 1.0, 0.01);
-    private final JSpinner smallMutationMagnitudeSpinner = createJSpinner(1, 0, -1, -1);
-    private final JSpinner bigMutationChanceSpinner = createJSpinner(0.01, 0.0, 1.0, 0.001);
-    private final JSpinner bigMutationMagnitudeSpinner = createJSpinner(6, 0, -1, -1);
-    private final JSpinner generationSizeSpinner = createJSpinner(40, 0, -1, -1);
-    private final JSpinner maxGenerationLimitSpinner = createJSpinner(40, 0, -1, -1);
-    private final JSpinner gameIterationsSpinner = createJSpinner(40, 0, -1, -1);
+    private final JSpinner mutationChanceSpinner = createJSpinner(0.05, 0.0, 1.0, 0.01);
+    private final JSpinner mutationMagnitudeSpinner = createJSpinner(0.5, 0.0, -1, 0.1);
+    private final JSpinner generationSizeSpinner = createJSpinner(50, 0, -1, -1);
+    private final JSpinner maxGenerationLimitSpinner = createJSpinner(30,   0, -1, -1);
+    private final JSpinner gameIterationsSpinner = createJSpinner(50, 0, -1, -1);
 
     public EvolutionSetUpJPanel() {
         setLayout(new BorderLayout());
@@ -32,17 +30,11 @@ public class EvolutionSetUpJPanel extends JPanel {
         JPanel centerPanel = new JPanel(new GridLayout(0, 2, 40, 40));
         centerPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        centerPanel.add(createJLabel("small mutation chance: "));
-        centerPanel.add(smallMutationChanceSpinner);
+        centerPanel.add(createJLabel("mutation chance: "));
+        centerPanel.add(mutationChanceSpinner);
 
-        centerPanel.add(createJLabel("small mutation magnitude: "));
-        centerPanel.add(smallMutationMagnitudeSpinner);
-
-        centerPanel.add(createJLabel("big mutation chance: "));
-        centerPanel.add(bigMutationChanceSpinner);
-
-        centerPanel.add(createJLabel("big mutation magnitude: "));
-        centerPanel.add(bigMutationMagnitudeSpinner);
+        centerPanel.add(createJLabel("mutation magnitude: "));
+        centerPanel.add(mutationMagnitudeSpinner);
 
         centerPanel.add(createJLabel("generation size: "));
         centerPanel.add(generationSizeSpinner);
@@ -74,22 +66,14 @@ public class EvolutionSetUpJPanel extends JPanel {
      * @return new JSpinner
      */
     private JSpinner createJSpinner(double value, double min, double max, double step) {
-        JSpinner spinner;
-        if (max == -1 && step == -1) {
-            SpinnerModel model = new SpinnerNumberModel();
-            model.setValue(value);
-            spinner = new JSpinner(model);
-            spinner.addChangeListener((e) -> {
-                double v = (double) spinner.getValue();
-                if (v < min) {
-                    spinner.setValue(spinner.getNextValue());
-                }
-            });
+        if (max == -1) {
+            max = Double.MAX_VALUE;
         }
-        else {
-            SpinnerModel model = new SpinnerNumberModel(value, min, max, step);
-            spinner = new JSpinner(model);
+        if (step == -1) {
+            step = 1;
         }
+        SpinnerModel model = new SpinnerNumberModel(value, min, max, step);
+        JSpinner spinner = new JSpinner(model);
         spinner.setFont(spinner.getFont().deriveFont(GUIApp.NORMAL_FONT_SIZE));
         return  spinner;
     }
@@ -121,31 +105,15 @@ public class EvolutionSetUpJPanel extends JPanel {
     /**
      * @return small mutation chance on input
      */
-    public double getSmallMutationChance() {
-        return (double) smallMutationChanceSpinner.getValue();
+    public double getMutationChance() {
+        return (double) mutationChanceSpinner.getValue();
     }
 
     /**
      * @return small mutation magnitude on input
      */
-    public int getSmallMutationMagnitude() {
-        double x = (double) smallMutationMagnitudeSpinner.getValue();
-        return (int) x;
-    }
-
-    /**
-     * @return big mutation chance on input
-     */
-    public double getBigMutationChance() {
-        return (double) bigMutationChanceSpinner.getValue();
-    }
-
-    /**
-     * @return big mutation magnitude on input
-     */
-    public int getBigMutationMagnitude() {
-        double x = (double) bigMutationMagnitudeSpinner.getValue();
-        return (int) x;
+    public double getMutationMagnitude() {
+        return (double) mutationMagnitudeSpinner.getValue();
     }
 
     /**

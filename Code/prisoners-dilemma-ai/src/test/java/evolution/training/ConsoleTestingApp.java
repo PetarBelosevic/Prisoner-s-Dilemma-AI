@@ -18,7 +18,7 @@ import utils.Constants;
 public class ConsoleTestingApp {
 
     public static void main(String[] args) {
-        INeuralNetwork network = new SimpleNeuralNetworkSpecimen(Constants.DEFAULT_TEST_STORAGE.resolve("bestInGen0.txt"));
+        INeuralNetwork network = new SimpleNeuralNetworkSpecimen(Constants.DEFAULT_TEST_STORAGE.resolve("bestInGen40.txt"));
         printNetwork(network);
         IGame<ConsolePDPlayer, AIPDPlayer> testGame = new PDGameLogs<>(new ConsolePDPlayer(), new AIPDPlayer(network), 12);
         testGame.run();

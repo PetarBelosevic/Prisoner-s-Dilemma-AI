@@ -15,14 +15,21 @@ import java.util.List;
  * </p>
  * Evaluator puts each neural network in Prisoner's Dilemma game against every strategy that evaluator has.
  * Fitness of each network is calculated as combined score that network accumulated playing the game.
+ * Each network plays against each strategy for a defined number of times (the default is 5 times).
  */
 public class PDEvaluatorNetVsStrat implements IEvaluator<SimpleNeuralNetworkSpecimen> {
     private final Collection<AbstractStrategyPlayer> strategies;
     private final IGame<? extends AIPDPlayer, AbstractStrategyPlayer> game;
+    private final int repetitions;
 
-    public PDEvaluatorNetVsStrat(Collection<AbstractStrategyPlayer> strategies, IGame<? extends AIPDPlayer, AbstractStrategyPlayer> game) {
+    public PDEvaluatorNetVsStrat(Collection<AbstractStrategyPlayer> strategies, IGame<? extends AIPDPlayer, AbstractStrategyPlayer> game, int repetitions) {
         this.strategies = strategies;
         this.game = game;
+        this.repetitions = repetitions;
+    }
+
+    public PDEvaluatorNetVsStrat(Collection<AbstractStrategyPlayer> strategies, IGame<? extends AIPDPlayer, AbstractStrategyPlayer> game) {
+        this(strategies, game, 5);
     }
 
     /**
@@ -36,8 +43,14 @@ public class PDEvaluatorNetVsStrat implements IEvaluator<SimpleNeuralNetworkSpec
     private double evaluateOne(SimpleNeuralNetworkSpecimen network, AbstractStrategyPlayer strategy) {
         game.getPlayer1().setNeuralNetwork(network);
         game.setPlayer2(strategy);
-        game.run();
-        double score = game.getPlayer1().getScore();
+        double score = 0.0;
+
+        for (int i = 0; i < repetitions; i++) {
+            game.run();
+            score += game.getPlayer1().getScore();
+        }
+
+        score /= repetitions;
         network.addToFitness(score);
         return score;
     }

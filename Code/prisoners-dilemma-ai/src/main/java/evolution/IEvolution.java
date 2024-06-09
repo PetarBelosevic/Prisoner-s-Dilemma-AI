@@ -51,50 +51,26 @@ public interface IEvolution<T extends ISpecimen<T>> {
     /**
      * @return number between 0.0 and 1.0, represents a chance of a small mutation to occur
      */
-    double getSmallMutationChance();
+    double getMutationChance();
 
     /**
      *<p>
      *     If given number is smaller than 0.0, method behaves like 0.0 was given.
      *     If given number is grater than 1.0, method behaves like 1.0 was given.
      *</p>
-     * @param smallMutationChance number between 0.0 and 1.0, represents a chance of small mutation to occur
+     * @param mutationChance number between 0.0 and 1.0, represents a chance of small mutation to occur
      */
-    void setSmallMutationChance(double smallMutationChance);
+    void setMutationChance(double mutationChance);
 
     /**
      * @return magnitude of small mutation when it occurs
      */
-    double getSmallMutationMagnitude();
+    double getMutationMagnitude();
 
     /**
-     * @param smallMutationMagnitude magnitude of a small mutation when it occurs
+     * @param mutationMagnitude magnitude of a small mutation when it occurs
      */
-    void setSmallMutationMagnitude(double smallMutationMagnitude);
-
-    /**
-     * @return number between 0.0 and 1.0, represents a chance of a big mutation to occur
-     */
-    double getBigMutationChance();
-
-    /**
-     * <p>
-     *     If given number is smaller than 0.0, method behaves like 0.0 was given.
-     *     If given number is grater than 1.0, method behaves like 1.0 was given.
-     * </p>
-     * @param bigMutationChance number between 0.0 and 1.0, represents a chance of big mutation to occur
-     */
-    void setBigMutationChance(double bigMutationChance);
-
-    /**
-     * @return magnitude of small mutation when it occurs
-     */
-    double getBigMutationMagnitude();
-
-    /**
-     * @param bigMutationMagnitude magnitude of a big mutation when it occurs
-     */
-    void setBigMutationMagnitude(double bigMutationMagnitude);
+    void setMutationMagnitude(double mutationMagnitude);
 
     /**
      * @return size of one generation

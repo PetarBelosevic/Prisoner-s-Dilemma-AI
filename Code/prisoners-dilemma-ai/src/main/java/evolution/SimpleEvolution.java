@@ -14,29 +14,10 @@ import evolution.specimen.factory.ISpecimenFactory;
  * @param <T> extends ISpecimen
  */
 public class SimpleEvolution<T extends ISpecimen<T>> extends AbstractEvolution<T> {
-    private double totalFitness = 0;
 
     @SafeVarargs
-    public SimpleEvolution(double smallMutationChance, double smallMutationMagnitude, double bigMutationChance, double bigMutationMagnitude, int generationSize, ISpecimenFactory<T> factory, IEvaluator<T>... evaluators) {
-        super(smallMutationChance, smallMutationMagnitude, bigMutationChance, bigMutationMagnitude, generationSize, factory, evaluators);
-    }
-
-    @Override
-    protected void evaluateNextGeneration() {
-        totalFitness = 0;
-        for (int i = 0; i < getGenerationSize(); i++) {
-            getNextGeneration().get(i).resetFitness();
-        }
-
-        for (var evaluator: getEvaluators()) {
-            totalFitness += evaluator.evaluate(getNextGeneration());
-        }
-
-
-        getNextGeneration().sort(null);
-        totalFitness -= getNextGeneration().get(getGenerationSize() - 1).getFitness() * getGenerationSize();
-
-        swapGenerations();
+    public SimpleEvolution(double mutationChance, double mutationMagnitude, int generationSize, ISpecimenFactory<T> factory, IEvaluator<T>... evaluators) {
+        super(mutationChance, mutationMagnitude, generationSize, factory, evaluators);
     }
 
     @Override
@@ -53,21 +34,14 @@ public class SimpleEvolution<T extends ISpecimen<T>> extends AbstractEvolution<T
             getNextGeneration().get(i).createOffspring(p1, p2);
             visited.put(p1, false);
             visited.put(p2, false);
-            getNextGeneration().get(i).mutate(getSmallMutationChance(), getSmallMutationMagnitude(), getBigMutationChance(), getBigMutationMagnitude());
+            getNextGeneration().get(i).mutate(getMutationChance(), getMutationMagnitude());
         }
         evaluateNextGeneration();
         incrementCurrentGenerationIndex();
     }
 
-    /**
-     * <p>
-     *     Parent is selected based on its fitness.
-     * </p>
-     * Greater fitness means greater chance of being selected.
-     *
-     * @return specimen selected for reproduction
-     */
-    private T selectParent() {
+    @Override
+    protected T selectParent() {
         double random = Math.random() * totalFitness;
         double currentFitnessSum = 0;
         for (T specimen: getCurrentGeneration()) {
